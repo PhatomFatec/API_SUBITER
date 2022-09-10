@@ -4,7 +4,7 @@ Projeto Integrador, Fatec Prof. Jessen Vidal - 2022. 4° Semestre
 Cliente: <a href="https://www.subiter.com/">Subiter</a>
 
 <br><p align="center">
- <a href="https://www.subiter.com/"><img src="https://pqtec.org.br/wpfiles/wp-content/uploads/2020/12/462ae875d43efe63a5d1.png" width="110"/></a>
+ <a href="https://www.subiter.com/"><img src="https://static.wixstatic.com/media/28f919_850cdd0bc47d4fbd8aa3eeb79db23bf3~mv2.png/v1/fill/w_260,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Subiter_NovoLogoCol.png" width="110"/></a>
 </p>
 
 <p align="center"> 
@@ -43,10 +43,14 @@ A ideia é criar um mini motor de regras com uma interface onde as regras das pr
 
 ### 📌 Requisitos Funcionais
 
-- Interface para cadastros de produtos contendo, ao menos, código, descrição e valor;
-- Tela que represente um carrinho de compras para adicionar os itens. Pode ter somente os
-itens selecionados, valor unitário, valor total e desconto aplicado;
-- Interface para criação das promoções.
+- Cadastros de usuários e horários
+- Cadastros de produtos do cliente (modelo, número de série etc.)
+- Usuários devem ter perfis diferentes (administrador, suporte, cliente)
+- Registro de chamados
+- Acompanhamento de chamados de ponta a ponta
+- Front-end para entrada e interpretação de dados
+-  Ferramenta para criação (desenho) e visualização dos “Mapas de
+Anomalias”
 
 ### 📌 Requisitos Não Funcionais
 
