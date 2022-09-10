@@ -1,7 +1,9 @@
+import ProfileDropdown from "/components/ProfileDropdown.vue"
 <template>
   <div id="app">
     <nav>
-      <img src="./assets/Subiter_logo.png" alt="Logo Subiter"/>
+      <img src="./assets/Subiter_logo.png" alt="Logo Subiter" />
+      <ProfileDropdown />
     </nav>
     <menu>
       <router-link to="/" class="menu" id="menu1">
@@ -71,7 +73,18 @@
     <!-- <router-view/> -->
   </div>
 </template>
+<script>
+import ProfileDropdown from "./components/ProfileDropdown.vue";
+
+export default {
+  name: "App",
+  components: {
+    ProfileDropdown,
+  },
+};
+</script>
+
 <style>
-@import "sass/base.css";
-@import "sass/default.css";
+@import "sass/pages/base.css";
+@import "sass/pages/default.css";
 </style>
