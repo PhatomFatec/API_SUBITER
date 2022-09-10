@@ -36,7 +36,7 @@
         <h1>Produtos</h1>
         <hr />
       </router-link>
-      <router-link to="/about" class="menu" id="menu3"
+      <router-link to="/clientes" class="menu" id="menu3"
         ><svg
           width="23"
           height="19"
@@ -52,7 +52,7 @@
         <h1>Clientes</h1>
         <hr />
       </router-link>
-      <router-link to="/about" class="menu" id="menu4"
+      <router-link to="/agendamentos" class="menu" id="menu4"
         ><svg
           width="23"
           height="19"
@@ -71,14 +71,7 @@
     <!-- <router-view/> -->
   </div>
 </template>
-<script src="./scripts/menu.js"> </script>
-
 <style>
-@import "sass/base.scss";
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+@import "sass/base.css";
+@import "sass/default.css";
 </style>
