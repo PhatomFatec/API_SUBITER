@@ -1,6 +1,8 @@
-var menu1 = document.getElementById('menu1')
-// var menu2 = document.getElementById('menu2')
-// var menu3 = document.getElementById('menu3')
-// var menu4 = document.getElementById('menu4')
+// var menu1 = document.getElementById('menu1')
+setTimeout(() => {
+    var menu1 = document.getElementById('menu1').children
+    menu1[0].style.fill = "blue"
+    menu1[1].style.color = "blue"
+    menu1[2].style.background = "blue"
 
-console.log(menu1)
+}, 1000);
