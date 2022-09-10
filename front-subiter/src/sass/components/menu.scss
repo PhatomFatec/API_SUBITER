@@ -1,13 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
-
-nav {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 60px;
-    background: linear-gradient(90deg, rgb(23, 42, 184) 0%, rgba(0, 255, 255, 1) 100%);
-}
-
 menu {
     display: flex;
     width: 100%;
@@ -43,7 +33,7 @@ menu {
     }
 
     .menu:hover {
-        hr{
+        hr {
             transition: background 0s;
             background: #c5c5c5;
         }
