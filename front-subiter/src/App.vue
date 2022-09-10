@@ -4,7 +4,7 @@
       <img src="./assets/Subiter_logo.png" alt="Logo Subiter"/>
     </nav>
     <menu>
-      <router-link to="/" class="menu">
+      <router-link to="/" class="menu" id="menu1">
         <svg
           width="23"
           height="19"
@@ -20,7 +20,7 @@
         <h1>Chamados</h1>
         <hr />
       </router-link>
-      <router-link to="/about" class="menu"
+      <router-link to="/about" class="menu" id="menu2"
         ><svg
           width="23"
           height="19"
@@ -36,7 +36,7 @@
         <h1>Produtos</h1>
         <hr />
       </router-link>
-      <router-link to="/about" class="menu"
+      <router-link to="/about" class="menu" id="menu3"
         ><svg
           width="23"
           height="19"
@@ -52,7 +52,7 @@
         <h1>Clientes</h1>
         <hr />
       </router-link>
-      <router-link to="/about" class="menu"
+      <router-link to="/about" class="menu" id="menu4"
         ><svg
           width="23"
           height="19"
@@ -71,6 +71,7 @@
     <!-- <router-view/> -->
   </div>
 </template>
+<script src="./scripts/menu.js"> </script>
 
 <style>
 @import "sass/base.scss";
