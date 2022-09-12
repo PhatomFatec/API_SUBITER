@@ -1,0 +1,55 @@
+.sub-menu {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 10%;
+  margin-top: 20px;
+}
+.sub-menu .search {
+  position: relative;
+  width: 300px;
+  height: 40px;
+  background: #e9e9e9;
+  padding: 0 20px;
+  margin-right: 17px;
+  display: flex;
+  border-radius: 20px;
+  align-items: center;
+  color: rgb(95, 95, 95);
+}
+.sub-menu .search input {
+  border: none;
+  background: none !important;
+  font-size: 14px;
+  width: 100%;
+}
+.sub-menu .search input:focus {
+  outline: none;
+}
+.sub-menu .search input:after {
+  cursor: pointer;
+}
+.sub-menu .search input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #e9e9e9 inset;
+}
+.sub-menu .search svg {
+  margin-right: 7px;
+}
+.sub-menu button {
+  position: relative;
+  border-radius: 10px;
+  background: #0257fd;
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 235px;
+  padding: 0 20px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+.sub-menu button svg {
+  margin-right: 5px;
+}/*# sourceMappingURL=sub-menu.css.map */

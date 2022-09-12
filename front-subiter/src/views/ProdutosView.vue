@@ -1,33 +1,27 @@
 <template>
-  <div class="home">
+  <div class="produtos">
     <div class="sub-menu">
       <SearchComponent ph="Pesquisar" />
-      <CriarButtonComponent txt="CRIAR CHAMADO" @click.native="formChamado()" />
+      <CriarButtonComponent txt="CRIAR PRODUTO" @click.native="formProduto()" />
     </div>
-    <ChamadosView />
   </div>
 </template>
+
 <script>
-// @ is an alias to /src
-import ChamadosView from '@/components/ChamadosComponent.vue'
 import SearchComponent from '@/components/SearchComponent.vue';
 import CriarButtonComponent from '@/components/CriarButtonComponent.vue';
 
+
 export default {
-  name: 'HomeView',
+  name: 'ProdutosComponents',
   components: {
-    ChamadosView,
     SearchComponent,
     CriarButtonComponent,
   },
   methods: {
-    formChamado() {
-      alert("Chamado")
+    formProduto() {
+      alert("produto")
     }
   }
 }
 </script>
-
-<style>
-@import '../sass/components/sub-menu.css'
-</style>

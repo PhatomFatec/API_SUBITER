@@ -2,7 +2,7 @@
   <div id="app">
     <NavbarComponent />
     <MenuComponent />
-    <!-- <router-view/> -->
+    <router-view/>
   </div>
 </template>
 
