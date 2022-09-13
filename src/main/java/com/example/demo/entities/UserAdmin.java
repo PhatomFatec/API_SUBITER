@@ -10,7 +10,7 @@ public class UserAdmin extends User {
 	public UserAdmin() {
 	}
 
-	public UserAdmin(Long id, String email, String password, Integer acessType, String cpf, String telefone,
+	public UserAdmin(Long id, String email, String password, AcessType acessType, String cpf, String telefone,
 			String nome) {
 		super(id, email, password, acessType, cpf, telefone, nome);
 	}
