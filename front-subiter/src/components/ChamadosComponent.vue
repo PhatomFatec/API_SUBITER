@@ -9,6 +9,13 @@
         <th>Criação</th>
         <th>Status</th>
       </tr>
+      <tr>
+        <td>#18723</td>
+        <td>Lorem ipsum</td>
+        <td>#Lorem ipsum</td>
+        <td>Há 10 dias</td>
+        <td>Pendente</td>
+      </tr>
     </table>
   </div>
 </template>

@@ -40,6 +40,7 @@ nav .profile .dropdown {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 6px;
   overflow-y: hidden;
+  z-index: 10;
 }
 nav .profile .dropdown .name {
   width: 100%;
