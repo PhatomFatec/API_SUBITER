@@ -1,0 +1,33 @@
+.content {
+    table {
+        margin-top: 20px;
+        width: 100%;
+        font-weight: 400;
+        border-collapse: collapse;
+
+        th {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 16px;
+            font-weight: 400;
+            padding-bottom: 10px;
+            border-bottom: solid 1px;
+        }
+
+        th:nth-child(1) {
+            width: 8%;
+        }
+        th:nth-child(4){
+            width: 10%;
+        }
+        th:nth-child(5){
+            width: 15%;
+        }
+        tr:has(td[value="Em andamento"]) td{
+            color: red;
+        }
+        td{
+            padding: 10px 10px;
+            border-bottom: solid 1px;
+        }
+    }
+}
