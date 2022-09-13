@@ -38,14 +38,14 @@ export default {
       form.style.display = "flex";
     },
   },
-  created() {
-    axios
-      .get("/produto")
-      .then((res) => {
-        console.log(res);
-        this.produtos = res.data;
-      })
-      .catch((error) => console.log(error));
-  },
+  // created() {
+  //   axios
+  //     .get("/produto")
+  //     .then((res) => {
+  //       console.log(res);
+  //       this.produtos = res.data;
+  //     })
+  //     .catch((error) => console.log(error));
+  // },
 };
 </script>
