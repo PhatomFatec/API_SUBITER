@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <h2>Lista de acesso aos Chamados</h2>
+    <h2>Lista de acesso aos Produtos</h2>
     <table>
       <tr>
         <th>Código</th>
@@ -12,9 +12,9 @@
       <tr>
         <td>#18723</td>
         <td>Lorem ipsum</td>
-        <td>#Lorem ipsum</td>
+        <td>Lorem ipsum</td>
         <td>Há 10 dias</td>
-        <td>Pendente</td>
+        <td>Em andamento</td>
       </tr>
     </table>
   </div>
@@ -23,9 +23,6 @@
 
 <script>
 export default {
-  name: 'ChamadosView',
-  props: {
-    msg: String
-  }
+  name: 'ProdutosView',
 }
 </script>

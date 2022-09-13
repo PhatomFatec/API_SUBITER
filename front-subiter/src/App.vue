@@ -2,7 +2,7 @@
   <div id="app">
     <NavbarComponent />
     <MenuComponent />
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -20,4 +20,6 @@ export default {
 
 <style>
 @import "sass/pages/default.css";
+@import "sass/components/modal.css";
+@import "sass/components/table.css";
 </style>
