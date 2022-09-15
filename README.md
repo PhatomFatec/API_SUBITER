@@ -20,9 +20,8 @@ Cliente: <a href="https://www.subiter.com/">Subiter</a>
 </p>
 
 ## Descrição do Projeto
-"Temos um problema para criação de **promoções em um Ecommerce**. Precisamos de uma solução inteligente onde, as mecânicas das promoções sejam feitas de forma flexível e de rápida atualização no sistema." - MidAll.
-
-A ideia é criar um mini motor de regras com uma interface onde as regras das promoções possam ser cadastradas e aplicadas no momento que os itens forem para o carrinho de compras.
+Realizar a de criar um “Mapa de Anomalias” e fornecer uma representação gráfica simplificada para apresentação dos resultados das inspeções realizadas no cliente. 
+A partir de uma imagem representativa (silhueta) do produto (ex.: carro,iate, avião etc.).elementos geométricos com forma, tamanho e cores diferentes são desenhados para representar a distribuição das anomalias detectadas no produto:
 
 <br>
 
@@ -62,11 +61,11 @@ Anomalias”
 
 ## Product Backlog e Kanban
 
-- [Product Backlog](https://phantomfatec.notion.site/phantomfatec/Product-Backlog-ff56da48d16b41cebd798a8e0cf435a6)
-- [Kanban](https://phantomfatec.notion.site/Sprints-Overview-9e1d85549da7478498001b3fa060b829)
+- [Product Backlog](https://apisubiter.atlassian.net/jira/software/c/projects/AS/boards/1/backlog?view=detail&issueLimit=100)
+- [Kanban](https://apisubiter.atlassian.net/jira/software/c/projects/AS/boards/1)
 
 <p align="center"> 
-Acesse nosso <a href="https://phantomfatec.notion.site/phantomfatec/Product-Backlog-ff56da48d16b41cebd798a8e0cf435a6">Product Backlog</a> e nosso <a href="https://phantomfatec.notion.site/Sprints-Overview-9e1d85549da7478498001b3fa060b829">Kanban</a> através do Notion e certifique-se de seguir as instruções descritas no site. <br><br>
+Acesse nosso <a href="https://apisubiter.atlassian.net/jira/software/c/projects/AS/boards/1/backlog?view=detail&issueLimit=1006">Product Backlog</a> e nosso <a href="(https://apisubiter.atlassian.net/jira/software/c/projects/AS/boards/1">Kanban</a><br><br>
 <img src="https://user-images.githubusercontent.com/80851038/167056812-37c6e555-2363-464d-865f-91a876dcae9a.png" width="400"/>
 </p>
 
@@ -75,13 +74,13 @@ Acesse nosso <a href="https://phantomfatec.notion.site/phantomfatec/Product-Back
 ## Sprints
 Para mais informações sobre as entregas e sobre o conteúdo do projeto, veja cada uma de nossas sprints realizadas ao longo do semestre: <br>
 
-- [x] [Sprint 01](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint01/README.md) ✔️
+- [x] [Sprint 01](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint01/README.md) ❌
  
-- [x] [Sprint 02](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint02/README.md) ✔️
+- [x] [Sprint 02](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint02/README.md) ❌
  
-- [x] [Sprint 03](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint03/README.md) ✔️
+- [x] [Sprint 03](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint03/README.md) ❌
   
-- [ ] [Sprint 04](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint04/README.md) ✔️
+- [x] [Sprint 04](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint04/README.md) ❌
  
 <br>
 
@@ -89,20 +88,19 @@ Para mais informações sobre as entregas e sobre o conteúdo do projeto, veja c
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/80851038/163726876-0c234c59-af02-4914-bb9f-e90f370412c8.png" width="480"/><br>
-<a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS">CSS</a> | 
-<a href="https://www.docker.com/">Docker</a> | 
-<a href="https://hibernate.org/">Hibernate</a> | 
 <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML">HTML</a> | 
-<a href="https://www.java.com/pt-BR/">Java</a> | 
+<a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS">CSS</a> | 
 <a href="https://www.javascript.com/">JavaScript</a> | 
-<a href="https://www.postgresql.org/">Postgres</a> | 
-<a href="https://quarkus.io/">Quarkus</a>
+<a href="https://vuejs.org/">Vue-JS</a> | 
+<a href="https://www.java.com/pt-BR/">Java</a> | 
+<a href="https://spring.io/">Spring-Boot</a> | 
+<a href="https://www.oracle.com/br/">Oracle</a> | 
 </p>
  
 <br>
 
 ## Executando o programa 
-Acesse o passo a passo de como executar o programa clicando [AQUI](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Instala%C3%A7%C3%A3o).
+Acesse o passo a passo de como executar o programa clicando [AQUI](https://github.com/PhatomFatec/API_SUBITER).
 
 <br>
 
