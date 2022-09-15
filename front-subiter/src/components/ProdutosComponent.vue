@@ -17,12 +17,15 @@
         <td>Em andamento</td>
       </tr>
     </table>
+    {{produtos}}
   </div>
 </template>
 
 
 <script>
+  import axios from 'axios'
 export default {
   name: 'ProdutosView',
+  props: {produtos}
 }
 </script>

@@ -5,7 +5,7 @@
       <CriarButtonComponent txt="CRIAR PRODUTO" @click.native="formProduto()" />
     </div>
     <FormProduto />
-    <ProdutosView />
+    <ProdutosView  :p = "produtos"/>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ import SearchComponent from "@/components/SearchComponent.vue";
 import CriarButtonComponent from "@/components/CriarButtonComponent.vue";
 import FormProduto from "@/components/FormProduto.vue";
 import ProdutosView from "@/components/ProdutosComponent.vue";
+import axios from 'axios'
 
 export default {
   name: "ProdutosComponents",
@@ -38,14 +39,15 @@ export default {
       form.style.display = "flex";
     },
   },
-  // created() {
-  //   axios
-  //     .get("/produto")
-  //     .then((res) => {
-  //       console.log(res);
-  //       this.produtos = res.data;
-  //     })
-  //     .catch((error) => console.log(error));
-  // },
+   created() {
+     axios
+       .get("/users")
+       .then((res) => {
+        
+         console.log(res.data);
+       this.produtos = res.data;
+    })
+       .catch((error) => console.log(error));
+   },
 };
 </script>
