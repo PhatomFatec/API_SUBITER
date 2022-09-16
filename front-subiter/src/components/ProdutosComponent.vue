@@ -7,25 +7,22 @@
         <th>Título</th>
         <th>Cliente</th>
         <th>Criação</th>
-        <th>Status</th>
       </tr>
       <tr>
-        <td>#18723</td>
-        <td>Lorem ipsum</td>
-        <td>Lorem ipsum</td>
-        <td>Há 10 dias</td>
-        <td>Em andamento</td>
+        <td>{{produtos[0].numeroDeSerie}}</td>
+        <td>{{produtos[0].descricao}}</td>
+        <td>{{produtos[0].user.nome}}</td>
+        <td>{{produtos[0].dataCadastro}}</td>
       </tr>
     </table>
-    {{produtos}}
   </div>
 </template>
 
 
 <script>
-  import axios from 'axios'
+//import axios from 'axios'
 export default {
   name: 'ProdutosView',
-  props: {produtos}
+  props: { produtos:Array }
 }
 </script>

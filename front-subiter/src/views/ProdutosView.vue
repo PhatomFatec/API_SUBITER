@@ -5,7 +5,7 @@
       <CriarButtonComponent txt="CRIAR PRODUTO" @click.native="formProduto()" />
     </div>
     <FormProduto />
-    <ProdutosView  :p = "produtos"/>
+    <ProdutosView :produtos="produtos" />
   </div>
 </template>
 
@@ -39,15 +39,15 @@ export default {
       form.style.display = "flex";
     },
   },
-   created() {
-     axios
-       .get("/users")
-       .then((res) => {
-        
-         console.log(res.data);
-       this.produtos = res.data;
-    })
-       .catch((error) => console.log(error));
-   },
+  created() {
+    axios
+      .get("/products")
+      .then((res) => {
+
+        console.log(res.data);
+        this.produtos = res.data;
+      })
+      .catch((error) => console.log(error));
+  },
 };
 </script>
