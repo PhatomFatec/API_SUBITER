@@ -4,15 +4,17 @@
     <table>
       <tr>
         <th>Código</th>
-        <th>Título</th>
-        <th>Cliente</th>
-        <th>Criação</th>
+        <th>Produto</th>
+        <th>Núm. de Série</th>
+        <th>Responsável do Produto</th>
+        <th>Data de Fabricação</th>
       </tr>
-      <tr>
-        <td>{{produtos[0].numeroDeSerie}}</td>
-        <td>{{produtos[0].descricao}}</td>
-        <td>{{produtos[0].user.nome}}</td>
-        <td>{{produtos[0].dataCadastro}}</td>
+      <tr v-for="(produto, index) in produtos" v-bind:key="index">
+        <td>{{produto.id}}</td>
+        <td>{{produto.modelo}}</td>
+        <td>{{produto.numeroDeSerie}}</td>
+        <td>{{produto.user.nome}}</td>
+        <td>{{produto.dataCadastro}}</td>
       </tr>
     </table>
   </div>
@@ -23,6 +25,6 @@
 //import axios from 'axios'
 export default {
   name: 'ProdutosView',
-  props: { produtos:Array }
+  props: { produtos: Array }
 }
 </script>

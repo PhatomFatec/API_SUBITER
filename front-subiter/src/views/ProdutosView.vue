@@ -12,7 +12,7 @@
 <script>
 import SearchComponent from "@/components/SearchComponent.vue";
 import CriarButtonComponent from "@/components/CriarButtonComponent.vue";
-import FormProduto from "@/components/FormProduto.vue";
+import FormProduto from "@/components/forms/FormProduto.vue";
 import ProdutosView from "@/components/ProdutosComponent.vue";
 import axios from 'axios'
 
