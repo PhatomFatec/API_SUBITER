@@ -1,17 +1,17 @@
-# API_SUBITER
+# Subiter's Call
+**Phantom Apresenta:** Projeto Integrador, Fatec Prof. Jessen Vidal - 2022. 4° Semestre <br>
+**Cliente:** <a href="https://www.subiter.com/">Subiter</a>
 
-Projeto Integrador, Fatec Prof. Jessen Vidal - 2022. 4° Semestre
-Cliente: <a href="https://www.subiter.com/">Subiter</a>
-
-<br><p align="center">
- <a href="https://www.subiter.com/"><img src="https://static.wixstatic.com/media/28f919_850cdd0bc47d4fbd8aa3eeb79db23bf3~mv2.png/v1/fill/w_260,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Subiter_NovoLogoCol.png" width="110"/></a>
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/80851038/190831621-96d01aab-af9f-4b9b-a7c5-9e6419d287bb.jpeg" width="35%">
 </p>
 
 <p align="center"> 
- <img src="https://img.shields.io/badge/Status%3A-BUILDING-orange"/>
+ <img src="https://img.shields.io/badge/Status%3A-Building-orange"/>
  <a href="https://www.java.com/pt-BR/"><img src="https://img.shields.io/badge/Language%3A-JAVA-red"/></a>
- <a href="https://www.midall.com.br/"><img src="https://img.shields.io/badge/Client%3A-Subiter-purple"/></a>
- <a href="http://fatecsjc-prd.azurewebsites.net/"><img src="https://img.shields.io/badge/Institution%3A-Fatec-blueviolet"/></a>
+ <a href="https://vuejs.org/"><img src="https://img.shields.io/badge/Language%3A-VUE.js-green"/></a>
+ <a href="https://www.midall.com.br/"><img src="https://img.shields.io/badge/Client%3A-Subiter-orange"/></a>
+ <a href="http://fatecsjc-prd.azurewebsites.net/"><img src="https://img.shields.io/badge/Institution%3A-Fatec-red"/></a>
 </p>
 
 <p align="center">
@@ -19,11 +19,13 @@ Cliente: <a href="https://www.subiter.com/">Subiter</a>
 |  <a href="#equipe-phantom">Equipe</a>
 </p>
 
-## Descrição do Projeto
-Realizar a de criar um “Mapa de Anomalias” e fornecer uma representação gráfica simplificada para apresentação dos resultados das inspeções realizadas no cliente. 
-A partir de uma imagem representativa (silhueta) do produto (ex.: carro,iate, avião etc.).elementos geométricos com forma, tamanho e cores diferentes são desenhados para representar a distribuição das anomalias detectadas no produto:
+<h2 align="left">Problema</h2>
 
-<br>
+"Temos um desafio de **sincronização dos dados** administrativos, financeiros e operacionais referentes aos serviços prestados pela empresa. A **falta de organização*** dos dados acarreta lentidão para atender **chamados**, e confusão na interpretação dos indicadores comerciais e financeiros." <br>
+
+<h2 align="left">Solução</h2>
+
+Desenvolvemos uma plataforma web que **organiza** todos os dados administrativos, financeiros e operacionais referentes aos serviços prestados pela empresa, **de forma interpretada**, cujo o **principal objetivo é criar chamados e agendamentos** conforme as **necessidades do cliente** e solucioná-los de forma **ponta a ponta** entre a relação do cliente com o suporte e, suporte com a do administrador que, trabalha na criação e sincronização dos dados em um único lugar.
 
 ## Tabela de Conteúdos
 
