@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.example.demo.entities.AcessType;
 import com.example.demo.entities.Called;
 import com.example.demo.entities.Product;
 import com.example.demo.entities.UserAdmin;
@@ -39,9 +40,9 @@ public class TestConfig implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		UserCommonClient u1 = new UserCommonClient(null, "bob@gmail.com", "fff", 2, "23232323", "97979797", "Bob");
-		UserAdmin u2 = new UserAdmin(null, "asdb@gmail.com", "effefe", 1, "gggg", "464646", "Btere");
-		UserCorpClient userCorp1 = new UserCorpClient(null, "FFF@gmail.com", "123", 3, "55555", "553535", "Gertrudes",
+		UserCommonClient u1 = new UserCommonClient(null, "bob@gmail.com", "fff", AcessType.ADMIN, "23232323", "97979797", "Bob");
+		UserAdmin u2 = new UserAdmin(null, "asdb@gmail.com", "effefe", AcessType.CLIENT, "gggg", "464646", "Btere");
+		UserCorpClient userCorp1 = new UserCorpClient(null, "FFF@gmail.com", "123", AcessType.SUPPORT, "55555", "553535", "Gertrudes",
 				"gertrudes comercio", "34234234");
 
 

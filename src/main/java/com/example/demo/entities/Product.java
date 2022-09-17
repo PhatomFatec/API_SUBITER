@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Product implements Serializable {
@@ -32,6 +33,7 @@ public class Product implements Serializable {
 	private Instant dataCadastro;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "user_id")
 	private User user;
 	

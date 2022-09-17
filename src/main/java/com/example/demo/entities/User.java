@@ -13,8 +13,9 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 @Entity
-public abstract class User implements Serializable {
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -38,12 +39,12 @@ public abstract class User implements Serializable {
 	public User() {
 	}
 
-	public User(Long id, String email, String password, Integer acessType, String cpf, String telefone, String nome) {
+	public User(Long id, String email, String password, AcessType acessType, String cpf, String telefone, String nome) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
-		this.acessType = acessType;
+		setAcessType(acessType);
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.nome = nome;
@@ -78,10 +79,6 @@ public abstract class User implements Serializable {
 		return products;
 	}
 
-
-	public void setAcessType(Integer acessType) {
-		this.acessType = acessType;
-	}
 
 	public AcessType getAcessType() {
 		return AcessType.valueOf(acessType);
