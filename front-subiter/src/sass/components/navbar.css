@@ -82,6 +82,9 @@ nav .profile .dropdown .settings .setting {
 nav .profile .dropdown .settings .setting p {
   margin-left: 8px;
 }
+nav .profile .dropdown .settings .setting p:hover {
+  text-decoration: underline;
+}
 nav .profile:hover .dropdown {
-  height: 200px;
+  height: 160px;
 }/*# sourceMappingURL=navbar.css.map */
