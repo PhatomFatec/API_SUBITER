@@ -22,12 +22,12 @@
         <input type="text" placeholder="" id="titleCall" />
       </fieldset>
       <fieldset>
-        <legend>Comentários</legend>
+        <legend>Descrição</legend>
         <textarea type="text" id="descriptionCall" />
       </fieldset>
       <fieldset>
-        <legend>Situação</legend>
-        <input type="text" placeholder="" id="statusCall" />
+        <legend>Usuário</legend>
+        <input type="text" placeholder="" id="userCall" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
@@ -54,14 +54,21 @@ export default {
     createCall() {
       var descricao = document.getElementById("descriptionCall").value;
       var titulo = document.getElementById("titleCall").value;
-      var product = document.getElementById("statusCall").value;
-      
+      // var user = document.getElementById("userCall").value;
 
       axios
         .post("/calleds", {
           titulo: titulo,
-          product: product,
-          descricao: descricao
+          descricao: descricao,
+          user: {
+            id: 2,
+            email: "bob@gmail.com",
+            password: "fff",
+            acessType: "ADMIN",
+            cpf: "23232323",
+            telefone: "97979797",
+            nome: "Bob",
+          },
         })
         .then((res) => {
           console.log(res);

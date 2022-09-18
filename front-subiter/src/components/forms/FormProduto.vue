@@ -65,17 +65,17 @@ export default {
       });
     },
     createProduct() {
-      var model = document.getElementById("modelProduct").value;
-      var serialnumber = document.getElementById("serialnumberProduct").value;
-      var description = document.getElementById("descriptionProduct").value;
-      var fabdate = document.getElementById("fabdateProduct").value;
+      var modelo = document.getElementById("modelProduct").value;
+      var numeroDeSerie = document.getElementById("serialnumberProduct").value;
+      var descricao = document.getElementById("descriptionProduct").value;
+      // var dataFabricacao = document.getElementById("fabdateProduct").value;
 
       axios
         .post("/products", {
-          model: model,
-          serialnumber: serialnumber,
-          description: description,
-          fabdate: fabdate,
+          modelo: modelo,
+          numeroDeSerie: numeroDeSerie,
+          // dataFabricacao: dataFabricacao,
+          descricao: descricao,
         })
         .then((res) => {
           console.log(res);

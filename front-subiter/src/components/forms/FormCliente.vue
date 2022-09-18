@@ -18,16 +18,12 @@
       </svg>
       <h3>Cadastro de Cliente</h3>
       <fieldset>
+        <legend>Nome</legend>
+        <input type="text" placeholder="" id="nomeClient" />
+      </fieldset>
+      <fieldset>
         <legend>Razão Social</legend>
         <input type="text" placeholder="" id="socialreasonClient" />
-      </fieldset>
-      <fieldset>
-        <legend>Número de Série</legend>
-        <input type="text" placeholder="" id="serienumberClient" />
-      </fieldset>
-      <fieldset>
-        <legend>Supervisor</legend>
-        <input type="text" placeholder="" id="managerClient" />
       </fieldset>
       <fieldset>
         <legend>E-mail</legend>
@@ -64,23 +60,20 @@ export default {
       });
     },
     createClient() {
-      var socialreason = document.getElementById("socialreasonClient").value;
-      var serialnumber = document.getElementById("serienumberClient").value;
-      var manager = document.getElementById("managerClient").value;
-      var email = document.getElementById("emailClient").value;
-      var cnpj = document.getElementById("cnpjClient").value;
+      var nome = document.getElementById("nomeClient").value;
       var tel = document.getElementById("telClient").value;
+      var email = document.getElementById("emailClient").value;
+      var socialreason = document.getElementById("socialreasonClient").value;
+      var cnpj = document.getElementById("cnpjClient").value;
 
       axios
         .post("/userCorp", {
-          nome: 'nome',
-          socialreason: socialreason,
-          serialnumber: serialnumber,
-          manager: manager,
-          acessType: 1,
+          nome: nome,
+          telefone: tel,
           email: email,
+          acessType: "SUPPORT",
+          razaoSocial: socialreason,
           cnpj: cnpj,
-          tel: tel,
         })
         .then((res) => {
           console.log(res);
