@@ -13,8 +13,8 @@
       <tr v-for="(chamado, index) in chamados" v-bind:key="index">
         <td>{{chamado.id}}</td>
         <td>{{chamado.descricao}}</td>
-        <td>{{chamado.user.nome}}</td>
-        <td>{{chamado.product.modelo}}</td>
+        <!-- <td>{{chamado.user.nome}}</td> -->
+        <!-- <td>{{chamado.product.modelo}}</td> -->
         <td>{{chamado.dataChamado}}</td>
         <td>Pendente</td>
       </tr>
