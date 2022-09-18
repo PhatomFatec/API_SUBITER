@@ -49,12 +49,14 @@
         color: #fff;
         display: flex;
         align-items: center;
+        justify-content: center;
         height: 40px;
         width: 235px;
         padding: 0 20px;
         font-weight: 700;
         font-size: 14px;
         cursor: pointer;
+        transition: width 1s;
 
         svg {
             margin-right: 5px;

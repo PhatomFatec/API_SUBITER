@@ -89,6 +89,10 @@ nav {
           p {
             margin-left: 8px;
           }
+
+          p:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -96,7 +100,7 @@ nav {
 
   .profile:hover {
     .dropdown {
-      height: 200px;
+      height: 160px;
     }
   }
 }
