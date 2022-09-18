@@ -94,7 +94,7 @@ Desenvolvemos uma plataforma web que organiza todos os dados referentes aos serv
 ## Sprints
 Para mais informações sobre as entregas e sobre o conteúdo do projeto, veja cada uma de nossas sprints realizadas ao longo do semestre: <br>
 
-- [x] [Sprint 01](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint01/README.md) ✔️
+- [x] [Sprint 01](https://github.com/PhatomFatec/API_SUBITER/tree/main/Sprints/Sprint01#readme) ✔️
  
 - [ ] [Sprint 02](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint02/README.md) ❌
  
