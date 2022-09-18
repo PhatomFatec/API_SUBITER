@@ -79,7 +79,6 @@ public class User implements Serializable {
 		return products;
 	}
 
-
 	public AcessType getAcessType() {
 		return AcessType.valueOf(acessType);
 	}
