@@ -1,7 +1,6 @@
 package com.example.demo.dtos;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 import com.example.demo.entities.Schedule;
 
@@ -9,7 +8,7 @@ public class ScheduleDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private Instant horario;
+	private String horario;
 	private String endereco;
 	private String cidade;
 	private String cep;
@@ -37,11 +36,11 @@ public class ScheduleDTO implements Serializable {
 		this.id = id;
 	}
 
-	public Instant getHorario() {
+	public String getHorario() {
 		return horario;
 	}
 
-	public void setHorario(Instant horario) {
+	public void setHorario(String horario) {
 		this.horario = horario;
 	}
 
