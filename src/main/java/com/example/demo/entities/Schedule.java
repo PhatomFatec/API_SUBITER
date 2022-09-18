@@ -1,7 +1,6 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -17,7 +16,7 @@ public class Schedule implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Instant horario;
+	private String horario;
 	private String endereco;
 	private String cidade;
 	private String cep;
@@ -26,7 +25,7 @@ public class Schedule implements Serializable{
 	public Schedule() {
 	}
 
-	public Schedule(Long id, Instant horario, String endereco, String cidade, String cep, String estado) {
+	public Schedule(Long id, String horario, String endereco, String cidade, String cep, String estado) {
 		super();
 		this.id = id;
 		this.horario = horario;
@@ -44,11 +43,11 @@ public class Schedule implements Serializable{
 		this.id = id;
 	}
 
-	public Instant getHorario() {
+	public String getHorario() {
 		return horario;
 	}
 
-	public void setHorario(Instant horario) {
+	public void setHorario(String horario) {
 		this.horario = horario;
 	}
 
