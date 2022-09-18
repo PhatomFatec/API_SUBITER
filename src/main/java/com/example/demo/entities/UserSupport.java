@@ -11,6 +11,7 @@ public class UserSupport extends User {
 	}
 
 	public UserSupport(Long id, String email, String password, AcessType acessType, String cpf, String telefone,
+
 			String nome) {
 		super(id, email, password, acessType, cpf, telefone, nome);
 	}

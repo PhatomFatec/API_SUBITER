@@ -14,6 +14,6 @@ public class UserAdmin extends User {
 			String nome) {
 		super(id, email, password, acessType, cpf, telefone, nome);
 	}
-	
+
 	
 }

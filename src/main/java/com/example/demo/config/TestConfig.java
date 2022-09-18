@@ -10,11 +10,13 @@ import org.springframework.context.annotation.Profile;
 import com.example.demo.entities.AcessType;
 import com.example.demo.entities.Called;
 import com.example.demo.entities.Product;
+import com.example.demo.entities.Schedule;
 import com.example.demo.entities.UserAdmin;
 import com.example.demo.entities.UserCommonClient;
 import com.example.demo.entities.UserCorpClient;
 import com.example.demo.repositories.CalledRepository;
 import com.example.demo.repositories.ProductRepository;
+import com.example.demo.repositories.ScheduleRepository;
 import com.example.demo.repositories.UserAdminRepository;
 import com.example.demo.repositories.UserCommonClientRepository;
 import com.example.demo.repositories.UserCorpClientRepository;
@@ -37,6 +39,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CalledRepository calledRepository;
+	
+	@Autowired
+	private ScheduleRepository scheduleRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -51,6 +56,8 @@ public class TestConfig implements CommandLineRunner {
 
 		Called c1 = new Called(null, "BO", "bo no casco do barcao", "imagem.png", Instant.now(), u1, p1);
 		
+		Schedule sc = new Schedule(null, Instant.now(),"Rua tal 150", "santo andré", "12230083", "São paulo");
+		
 		
 		
 		userCorpRepository.save(userCorp1);
@@ -58,7 +65,8 @@ public class TestConfig implements CommandLineRunner {
 		userAdminRepository.save(u2);
 		productRepository.save(p1);
 		calledRepository.save(c1);
-
+		scheduleRepository.save(sc);
+		
 	}
 
 }

@@ -14,6 +14,7 @@ public class UserCorpClient extends User {
 	}
 
 	public UserCorpClient(Long id, String email, String password, AcessType acessType, String cpf, String telefone,
+
 			String nome, String razaoSocial, String cnpj) {
 		super(id, email, password, acessType, cpf, telefone, nome);
 		this.razaoSocial = razaoSocial;

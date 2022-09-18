@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 @Entity
 public class User implements Serializable {
 
@@ -77,8 +78,6 @@ public class User implements Serializable {
 	public Set<Product> getProducts() {
 		return products;
 	}
-
-
 
 	public AcessType getAcessType() {
 		return AcessType.valueOf(acessType);
