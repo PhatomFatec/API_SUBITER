@@ -22,16 +22,16 @@
         <input type="text" placeholder="" id="titleCall" />
       </fieldset>
       <fieldset>
-        <legend>Situação</legend>
-        <input type="text" placeholder="" id="statusCall" />
-      </fieldset>
-      <fieldset>
         <legend>Comentários</legend>
         <textarea type="text" id="descriptionCall" />
       </fieldset>
+      <fieldset>
+        <legend>Situação</legend>
+        <input type="text" placeholder="" id="statusCall" />
+      </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
-        <button id="criar">Criar</button>
+        <button id="criar" v-on:click="createCall()">Criar</button>
       </div>
     </div>
   </div>
@@ -52,15 +52,16 @@ export default {
       });
     },
     createCall() {
-      var title = document.getElementById("titleCall").value;
-      var status = document.getElementById("statusCall").value;
-      var description = document.getElementById("descriptionCall").value;
+      var descricao = document.getElementById("descriptionCall").value;
+      var titulo = document.getElementById("titleCall").value;
+      var product = document.getElementById("statusCall").value;
+      
 
       axios
         .post("/calleds", {
-          title: title,
-          status: status,
-          description: description,
+          titulo: titulo,
+          product: product,
+          descricao: descricao
         })
         .then((res) => {
           console.log(res);

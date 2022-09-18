@@ -72,10 +72,12 @@ export default {
       var tel = document.getElementById("telClient").value;
 
       axios
-        .post("/user", {
+        .post("/userCorp", {
+          nome: 'nome',
           socialreason: socialreason,
           serialnumber: serialnumber,
           manager: manager,
+          acessType: 1,
           email: email,
           cnpj: cnpj,
           tel: tel,
