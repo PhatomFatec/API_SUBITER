@@ -105,7 +105,7 @@ Para mais informações sobre as entregas e sobre o conteúdo do projeto, veja c
 <br>
 
 ## Executando o programa 
-Acesse o passo a passo de como executar o programa clicando [AQUI](https://github.com/PhatomFatec/API_SUBITER).
+Acesse o passo a passo de como executar o programa clicando [AQUI](https://github.com/PhatomFatec/API_SUBITER/blob/main-back/README2.md).
 
 <br>
 
