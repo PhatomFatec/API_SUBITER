@@ -70,10 +70,21 @@ export default {
       var descricao = document.getElementById("descriptionProduct").value;
       var dataFabricacao = document.getElementById("fabdateProduct").value;
 
+      var date = new Date()
+      var hour = ("00" + date.getHours()).slice(-2)
+      var minute = ("00" + date.getMinutes()).slice(-2)
+      var day = ("00" + date.getDay()).slice(-2)
+      var month = ("00" + (parseInt(date.getMonth()) + 1)).slice(-2)
+      var year = date.getFullYear()
+      var fullHour = hour + ":" + minute
+      var fullDate = day + "/" + month + "/" + year
+      var fullTime = fullHour + " " + fullDate
+
       axios
         .post("/products", {
           modelo: modelo,
           numeroDeSerie: numeroDeSerie,
+          dataCadastro: fullTime,
           dataFabricacao: dataFabricacao,
           descricao: descricao,
         })
