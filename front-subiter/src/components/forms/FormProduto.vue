@@ -68,13 +68,13 @@ export default {
       var modelo = document.getElementById("modelProduct").value;
       var numeroDeSerie = document.getElementById("serialnumberProduct").value;
       var descricao = document.getElementById("descriptionProduct").value;
-      // var dataFabricacao = document.getElementById("fabdateProduct").value;
+      var dataFabricacao = document.getElementById("fabdateProduct").value;
 
       axios
         .post("/products", {
           modelo: modelo,
           numeroDeSerie: numeroDeSerie,
-          // dataFabricacao: dataFabricacao,
+          dataFabricacao: dataFabricacao,
           descricao: descricao,
         })
         .then((res) => {
