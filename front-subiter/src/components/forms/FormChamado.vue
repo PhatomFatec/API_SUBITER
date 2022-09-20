@@ -54,7 +54,7 @@ export default {
     createCall() {
       var descricao = document.getElementById("descriptionCall").value;
       var titulo = document.getElementById("titleCall").value;
-      //var user = document.getElementById("userCall").value;
+      // var user = document.getElementById("userCall").value;
 
       axios
         .post("/calleds", {
@@ -67,7 +67,7 @@ export default {
             acessType: "ADMIN",
             cpf: "23232323",
             telefone: "97979797",
-            nome: document.getElementById("userCall").value,
+            nome: "Bob",
           },
         })
         .then((res) => {
