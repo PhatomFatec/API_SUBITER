@@ -15,7 +15,7 @@
         <td>{{ chamado.id }}</td>
         <td>{{ chamado.titulo }}</td>
         <td>{{ chamado.descricao }}</td>
-        <td>Lucas</td>
+        <td>{{ chamado.user.nome }}</td>
         <!-- <td>{{chamado.product.modelo}}</td> -->
         <!-- <td>{{chamado.dataChamado}}</td> -->
         <!-- <td>Pendente</td> -->
