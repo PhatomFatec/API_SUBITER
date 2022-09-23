@@ -14,7 +14,8 @@
         <td>{{produto.modelo}}</td>
         <td>{{produto.numeroDeSerie}}</td>
         <td>{{produto.descricao}}</td>
-        <td>{{produto.dataCadastro}}</td>
+        <!-- <td>{{produto.dataCadastro}}</td> -->
+        <td>{{produto.dataFabricacao}}</td>
       </tr>
     </table>
   </div>

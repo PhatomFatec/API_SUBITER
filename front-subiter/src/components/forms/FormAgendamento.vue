@@ -1,18 +1,8 @@
 <template>
   <div class="modal" id="modal">
     <div class="box">
-      <svg
-        v-on:click="closeModal()"
-        viewBox="0 0 24 24"
-        width="24"
-        height="24"
-        stroke="currentColor"
-        stroke-width="2"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="css-i6dzq1"
-      >
+      <svg v-on:click="closeModal()" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
+        fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
@@ -64,17 +54,27 @@ export default {
       });
     },
     createSchedule() {
-    //   var id = document.getElementById("1").value;
-    //   var horario = document.getElementById("2").value;
+      //   var id = document.getElementById("1").value;
+      //   var horario = document.getElementById("2").value;
       var endereco = document.getElementById("addressSchedule").value;
       var cidade = document.getElementById("citySchedule").value;
       var cep = document.getElementById("cepSchedule").value;
       var estado = document.getElementById("stateSchedule").value;
 
+      var date = new Date()
+      var hour = ("00" + date.getHours()).slice(-2)
+      var minute = ("00" + date.getMinutes()).slice(-2)
+      var day = ("00" + date.getDay()).slice(-2)
+      var month = ("00" + (parseInt(date.getMonth()) + 1)).slice(-2)
+      var year = date.getFullYear()
+      var fullHour = hour + ":" + minute
+      var fullDate = day + "/" + month + "/" + year
+      var fullTime = fullHour + " " + fullDate
+
       axios
         .post("/schedule", {
-        //   id: id,
-        //   horario: horario,
+          //   id: id,
+          horario: fullTime,
           endereco: endereco,
           cidade: cidade,
           cep: cep,
