@@ -1,206 +1,138 @@
-
 <template>
-  <div>
-    <div class="card">
-      <h5>Session Storage</h5>
-      <DataTable
-        :value="customers"
-        :paginator="true"
-        :rows="10"
-        v-model="filters1"
-        v-model1="selectedCustomer1"
-        selectionMode="single"
-        dataKey="id"
-        stateStorage="session"
-        stateKey="dt-state-demo-session"
-        responsiveLayout="scroll"
-      >
-        <template #header>
-          <span class="p-input-icon-left">
-            <i class="pi pi-search" />
-            <InputText
-              v-model="filters1['global'].value"
-              placeholder="Global Search"
-            />
-          </span>
-        </template>
-        <Column field="name" header="Name" :sortable="true" style="width: 25%">
-          <template #filter>
-            <InputText
-              type="text"
-              v-model="filters1['name']"
-              class="p-column-filter"
-              placeholder="Search by name"
-            />
-          </template>
-        </Column>
-        <Column
-          header="Country"
-          :sortable="true"
-          sortField="country.name"
-          filterField="country.name"
-          filterMatchMode="contains"
-          style="width: 25%"
-        >
-          <template #body="slotProps">
-            <img
-              src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-              width="20"
-            />
-            <span class="image-text">{{ slotProps.data.country.name }}</span>
-          </template>
-          <template #filter>
-            <InputText
-              type="text"
-              v-model="filters1['country.name']"
-              class="p-column-filter"
-              placeholder="Search by country"
-            />
-          </template>
-        </Column>
-        <Column
-          header="Representative"
-          :sortable="true"
-          sortField="representative.name"
-          filterField="representative.name"
-          filterMatchMode="in"
-          style="width: 25%"
-        >
-          <template #body="slotProps">
-            <img
-              :alt="slotProps.data.representative.name"
-              src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-              width="20"
-              style="vertical-align: middle"
-            />
-            <span class="image-text">{{
-              slotProps.data.representative.name
-            }}</span>
-          </template>
-          <template #filter>
-            <MultiSelect
-              v-model="filters1['representative.name']"
-              :options="representatives"
-              optionLabel="name"
-              optionValue="name"
-              placeholder="All"
-              class="p-column-filter"
-            >
-              <template #option="slotProps">
-                <div class="p-multiselect-representative-option">
-                  <img
-                    :alt="slotProps.option.name"
-                    src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-                    width="20"
-                    style="vertical-align: middle"
-                  />
-                  <span class="image-text">{{ slotProps.option.name }}</span>
-                </div>
-              </template>
-            </MultiSelect>
-          </template>
-        </Column>
-        <Column
-          field="status"
-          header="Status"
-          :sortable="true"
-          filterMatchMode="equals"
-          style="width: 25%"
-        >
-          <template #body="slotProps">
-            <span :class="'customer-badge status-' + slotProps.data.status">{{
-              slotProps.data.status
-            }}</span>
-          </template>
-          <template #filter>
-            <Dropdown
-              v-model="filters1['status']"
-              :options="statuses"
-              placeholder="Select a Status"
-              class="p-column-filter"
-              :showClear="true"
-            >
-              <template #option="slotProps">
-                <span :class="'customer-badge status-' + slotProps.option">{{
-                  slotProps.option
-                }}</span>
-              </template>
-            </Dropdown>
-          </template>
-        </Column>
-        <template #empty> No customers found. </template>
-      </DataTable>
-    </div>
-  </div>
+  <v-card>
+    <v-card-title>
+      Lista de acesso aos chamados
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Pesquisar"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
+    <v-data-table
+      :headers="headers"
+      :items="desserts"
+      :search="search"
+    ></v-data-table>
+  </v-card>
 </template>
 
 <script>
-import Column from "primevue/column";
-// import { FilterMatchMode } from 'primevue/api';
-import DataTable from "primevue/datatable";
-import Dropdown from "primevue/dropdown";
-import MultiSelect from "primevue/multiselect";
-import InputText from "primevue/inputtext";
-import { FilterMatchMode } from "primevue/api";
-// import FilterMatchMode from "primevue/filtermatchmode";
-// import { defineComponent } from "@vue/composition-api";
-
 export default {
-   name: "ChamadosComponent",
-  components: {
-    Column,
-    DataTable,
-    Dropdown,
-    MultiSelect,
-    InputText,
-    FilterMatchMode
-  },
+  name: "ChamadosVue",
   data() {
     return {
-      customers: null,
-      selectedCustomer1: null,
-      selectedCustomer2: null,
-      filters1: {},
-      filters2: {},
-      loading: true,
-      representatives: [
-        { name: "Amy Elsner", image: "amyelsner.png" },
-        { name: "Anna Fali", image: "annafali.png" },
-        { name: "Asiya Javayant", image: "asiyajavayant.png" },
-        { name: "Bernardo Dominic", image: "bernardodominic.png" },
-        { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-        { name: "Ioni Bowcher", image: "ionibowcher.png" },
-        { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-        { name: "Onyama Limba", image: "onyamalimba.png" },
-        { name: "Stephen Shaw", image: "stephenshaw.png" },
-        { name: "XuXue Feng", image: "xuxuefeng.png" },
+      search: "",
+      headers: [
+        {
+          text: "Código",
+          align: "start",
+          sortable: false,
+          value: "calories",
+        },
+        { text: "Título do chamado", value: "name" },
+        { text: "Cliente", value: "fat" },
+        { text: "Produto", value: "carbs" },
+        { text: "Criação", value: "protein" },
+        { text: "Situação", value: "iron" },
       ],
-      statuses: [
-        "unqualified",
-        "qualified",
-        "new",
-        "negotiation",
-        "renewal",
-        "proposal",
+      desserts: [
+        {
+          name: "Frozen Yogurt",
+          calories: 159,
+          fat: 6.0,
+          carbs: 24,
+          protein: 4.0,
+          iron: "1%",
+        },
+        {
+          name: "Ice cream sandwich",
+          calories: 237,
+          fat: 9.0,
+          carbs: 37,
+          protein: 4.3,
+          iron: "1%",
+        },
+        {
+          name: "Eclair",
+          calories: 262,
+          fat: 16.0,
+          carbs: 23,
+          protein: 6.0,
+          iron: "7%",
+        },
+        {
+          name: "Cupcake",
+          calories: 305,
+          fat: 3.7,
+          carbs: 67,
+          protein: 4.3,
+          iron: "8%",
+        },
+        {
+          name: "Gingerbread",
+          calories: 356,
+          fat: 16.0,
+          carbs: 49,
+          protein: 3.9,
+          iron: "16%",
+        },
+        {
+          name: "Jelly bean",
+          calories: 375,
+          fat: 0.0,
+          carbs: 94,
+          protein: 0.0,
+          iron: "0%",
+        },
+        {
+          name: "Lollipop",
+          calories: 392,
+          fat: 0.2,
+          carbs: 98,
+          protein: 0,
+          iron: "2%",
+        },
+        {
+          name: "Honeycomb",
+          calories: 408,
+          fat: 3.2,
+          carbs: 87,
+          protein: 6.5,
+          iron: "45%",
+        },
+        {
+          name: "Donut",
+          calories: 452,
+          fat: 25.0,
+          carbs: 51,
+          protein: 4.9,
+          iron: "22%",
+        },
+        {
+          name: "KitKat",
+          calories: 518,
+          fat: 26.0,
+          carbs: 65,
+          protein: 7,
+          iron: "6%",
+        },
+        {
+          name: "KitKat",
+          calories: 518,
+          fat: 26.0,
+          carbs: 65,
+          protein: 7,
+          iron: "6%",
+        },
       ],
     };
   },
-  mounted() {
-    this.customerService
-      .getCustomersMedium()
-      .then((data) => (this.customers = data));
-  },
-  methods: {
-    initFilters1() {
-      this.filters1 = {
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-      };
-    },
-    initFilters2() {
-      this.filters2 = {
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-      };
-    },
-  },
 };
 </script>
+
+<style scoped>
+@import "@/sass/components/vuetify/table.css";
+</style>

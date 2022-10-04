@@ -35,8 +35,10 @@
 .sub-menu .search svg {
   margin-right: 7px;
 }
-.sub-menu button {
-  position: relative;
+
+.creationButton {
+  position: absolute;
+  right: 10%;
   border-radius: 10px;
   background: #0257fd;
   border: none;
@@ -51,7 +53,5 @@
   font-size: 14px;
   cursor: pointer;
   transition: width 1s;
-}
-.sub-menu button svg {
-  margin-right: 5px;
+  margin-left: 15px;
 }/*# sourceMappingURL=sub-menu.css.map */
