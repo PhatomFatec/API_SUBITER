@@ -36,7 +36,8 @@ public class CalledService {
 		newCall.setTitulo(obj.getTitulo());
 		newCall.setDescricao(obj.getDescricao());
 		newCall.setImgUrl(obj.getImgUrl());
-		newCall.setDataChamado(obj.getDataChamado());
+		newCall.setSituacao(obj.getSituacao());
+		newCall.setCriacaoChamado(obj.getCriacaoChamado());
 		newCall.setUser(obj.getUser());
 		newCall.setProduct(obj.getProduct());
 		return repository.save(newCall);
@@ -48,6 +49,6 @@ public class CalledService {
 	
 
 	public Called FromDTO(CalledDTO objDto) {
-		return new Called(objDto.getId(), objDto.getTitulo(),objDto.getDescricao(), objDto.getImgUrl(), objDto.getDataChamado(), objDto.getUser(),objDto.getProduct());
+		return new Called(objDto.getId(), objDto.getTitulo(),objDto.getDescricao(), objDto.getImgUrl(),objDto.getSituacao(), objDto.getCriacaoChamado(), objDto.getUser(),objDto.getProduct());
 	}
 }

@@ -1,12 +1,16 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Schedule implements Serializable{
@@ -16,24 +20,35 @@ public class Schedule implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String servicoPrestado;
 	private String horario;
+	private Date data;
 	private String endereco;
 	private String cidade;
 	private String cep;
 	private String estado;
 	
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
+	private Instant criacaoChamado;
+	
 	public Schedule() {
 	}
 
-	public Schedule(Long id, String horario, String endereco, String cidade, String cep, String estado) {
+	public Schedule(Long id, String servicoPrestado, String horario, Date data, String endereco, String cidade,
+			String cep, String estado, Instant criacaoChamado) {
 		super();
 		this.id = id;
+		this.servicoPrestado = servicoPrestado;
 		this.horario = horario;
+		this.data = data;
 		this.endereco = endereco;
 		this.cidade = cidade;
 		this.cep = cep;
 		this.estado = estado;
+		this.criacaoChamado = criacaoChamado;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -98,6 +113,22 @@ public class Schedule implements Serializable{
 			return false;
 		Schedule other = (Schedule) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public String getServicoPrestado() {
+		return servicoPrestado;
+	}
+
+	public void setServicoPrestado(String servicoPrestado) {
+		this.servicoPrestado = servicoPrestado;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 	
 	

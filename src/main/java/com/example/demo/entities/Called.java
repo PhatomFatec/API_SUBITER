@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Called implements Serializable {
@@ -24,12 +25,14 @@ public class Called implements Serializable {
 	private String titulo;
 	private String descricao;
 	private String imgUrl;
+	private String situacao;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant dataChamado;
+	private Instant criacaoChamado;
 
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	@ManyToOne
@@ -39,14 +42,15 @@ public class Called implements Serializable {
 	public Called() {
 	}
 
-	public Called(Long id, String titulo, String descricao, String imgUrl, Instant dataChamado, User user,
+	public Called(Long id, String titulo, String descricao, String imgUrl, String situacao, Instant criacaoChamado, User user,
 			Product product) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.imgUrl = imgUrl;
-		this.dataChamado = dataChamado;
+		this.situacao = situacao;
+		this.criacaoChamado = criacaoChamado;
 		this.user = user;
 		this.product = product;
 	}
@@ -83,12 +87,12 @@ public class Called implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public Instant getDataChamado() {
-		return dataChamado;
+	public Instant getCriacaoChamado() {
+		return criacaoChamado;
 	}
 
-	public void setDataChamado(Instant dataChamado) {
-		this.dataChamado = dataChamado;
+	public void setCriacaoChamado(Instant criacaoChamado) {
+		this.criacaoChamado = criacaoChamado;
 	}
 
 	public User getUser() {
@@ -106,6 +110,8 @@ public class Called implements Serializable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+	
+	
 
 	@Override
 	public int hashCode() {
@@ -122,6 +128,14 @@ public class Called implements Serializable {
 			return false;
 		Called other = (Called) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 
 }

@@ -14,8 +14,8 @@ private static final long serialVersionUID = 1L;
 	private String modelo;
 	private String numeroDeSerie;
 	private String descricao;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private Instant dataFabricacao;
+//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	private String dataFabricacao;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant dataCadastro;
 	private User user;
@@ -66,11 +66,11 @@ private static final long serialVersionUID = 1L;
 		this.descricao = descricao;
 	}
 
-	public Instant getDataFabricacao() {
+	public String getDataFabricacao() {
 		return dataFabricacao;
 	}
 
-	public void setDataFabricacao(Instant dataFabricacao) {
+	public void setDataFabricacao(String dataFabricacao) {
 		this.dataFabricacao = dataFabricacao;
 	}
 

@@ -26,8 +26,8 @@ public class Product implements Serializable {
 	private String numeroDeSerie;
 	private String descricao;
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private Instant dataFabricacao;
+//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	private String dataFabricacao;
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant dataCadastro;
@@ -41,7 +41,7 @@ public class Product implements Serializable {
 	public Product() {
 	}
 
-	public Product(Long id, String modelo, String numeroDeSerie, String descricao, Instant dataFabricacao,
+	public Product(Long id, String modelo, String numeroDeSerie, String descricao, String dataFabricacao,
 			Instant dataCadastro, User user) {
 		super();
 		this.id = id;
@@ -86,11 +86,11 @@ public class Product implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Instant getDataFabricacao() {
+	public String getDataFabricacao() {
 		return dataFabricacao;
 	}
 
-	public void setDataFabricacao(Instant dataFabricacao) {
+	public void setDataFabricacao(String dataFabricacao) {
 		this.dataFabricacao = dataFabricacao;
 	}
 
