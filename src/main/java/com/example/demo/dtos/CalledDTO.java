@@ -16,8 +16,9 @@ public class CalledDTO implements Serializable {
 	private String titulo;
 	private String descricao;
 	private String imgUrl;
+	private String situacao;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant dataChamado;
+	private Instant criacaoChamado;
 	private User user;
 	private Product product;
 
@@ -30,7 +31,8 @@ public CalledDTO(Called obj){
 		titulo = obj.getTitulo();
 		descricao = obj.getDescricao();
 		imgUrl = obj.getImgUrl();
-		dataChamado = obj.getDataChamado();
+		situacao = obj.getSituacao();
+		criacaoChamado = obj.getCriacaoChamado();
 		user = obj.getUser();
 		product = obj.getProduct();
 		}
@@ -67,12 +69,12 @@ public void setImgUrl(String imgUrl) {
 	this.imgUrl = imgUrl;
 }
 
-public Instant getDataChamado() {
-	return dataChamado;
+public Instant getCriacaoChamado() {
+	return criacaoChamado;
 }
 
-public void setDataChamado(Instant dataChamado) {
-	this.dataChamado = dataChamado;
+public void setCriacaoChamado(Instant criacaoChamado) {
+	this.criacaoChamado = criacaoChamado;
 }
 
 public User getUser() {
@@ -91,6 +93,13 @@ public void setProduct(Product product) {
 	this.product = product;
 }
 
+public String getSituacao() {
+	return situacao;
+}
+
+public void setSituacao(String situacao) {
+	this.situacao = situacao;
+}
 
 	
 }

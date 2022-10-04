@@ -31,7 +31,9 @@ public class ScheduleService {
 	
 	public Schedule update(Long id, Schedule obj) {
 		Schedule newSc = findById(id);
+		newSc.setServicoPrestado(obj.getServicoPrestado());
 		newSc.setHorario(obj.getHorario());
+		newSc.setData(obj.getData());
 		newSc.setEndereco(obj.getEndereco());
 		newSc.setCidade(obj.getCidade());
 		newSc.setCep(obj.getCep());
@@ -42,10 +44,9 @@ public class ScheduleService {
 	public void delete(	Long id) {
 		repository.deleteById(id);
 	}
-	
-	
+
 	public Schedule fromDTO(ScheduleDTO objDto) {
-		return new Schedule(objDto.getId(), objDto.getHorario(),objDto.getEndereco(), objDto.getCidade(),objDto.getEstado(),objDto.getCep());
+		return new Schedule(objDto.getId(), objDto.getServicoPrestado(), objDto.getHorario(), objDto.getData(),objDto.getEndereco(), objDto.getCidade(),objDto.getEstado(),objDto.getCep(), objDto.getCriacaoChamado());
 	}
 
 }
