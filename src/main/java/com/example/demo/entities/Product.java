@@ -2,12 +2,16 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -29,7 +33,8 @@ public class Product implements Serializable {
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant dataCadastro;
 
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	private Set<Called> calleds = new HashSet<>();
 
 	public Product() {
 	}
@@ -92,6 +97,15 @@ public class Product implements Serializable {
 
 	public void setDataCadastro(Instant dataCadastro) {
 		this.dataCadastro = dataCadastro;
+	}
+	
+
+	public Set<Called> getCalled() {
+		return calleds;
+	}
+
+	public void setCalled(Set<Called> called) {
+		this.calleds = called;
 	}
 
 	@Override
