@@ -45,7 +45,7 @@ public class ProductService {
 
 	public Product FromDTO(ProductDTO objDto) {
 		return new Product(objDto.getId(), objDto.getModelo(), objDto.getNumeroDeSerie(), objDto.getDescricao(),
-				objDto.getDataFabricacao(), objDto.getDataCadastro(), objDto.getUser());
+				objDto.getDataFabricacao(), objDto.getDataCadastro());
 	}
 
 }

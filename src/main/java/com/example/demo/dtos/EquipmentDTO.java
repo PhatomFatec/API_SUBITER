@@ -1,26 +1,12 @@
-package com.example.demo.entities;
+package com.example.demo.dtos;
 
 import java.sql.Date;
 import java.time.Instant;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-@Entity
-public class Equipment {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EquipmentDTO {
 	private Long id;
 	private String nome;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant dataCadastro;
-	
-	
 	private Date dataFabricacao;
 	private String descricao;
 	private String numeroDeSerie;
@@ -28,7 +14,8 @@ public class Equipment {
 	
 	
 
-	public Equipment(Long id, String nome, Instant dataCadastro, Date dataFabricacao, String descricao, String numeroDeSerie,
+	
+	public EquipmentDTO(Long id, String nome, Instant dataCadastro, Date dataFabricacao, String descricao, String numeroDeSerie,
 			Boolean disponibilidade) {
 		super();
 		this.id = id;
@@ -41,8 +28,6 @@ public class Equipment {
 	}
 	
 	
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -51,7 +36,6 @@ public class Equipment {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getNome() {
 		return nome;
@@ -96,5 +80,8 @@ public class Equipment {
 		this.disponibilidade = disponibilidade;
 	}
 	
+	
 }
+
+
 
