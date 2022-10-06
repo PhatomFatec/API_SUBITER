@@ -3,12 +3,16 @@ package com.example.demo.entities;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -28,6 +32,11 @@ public class Schedule implements Serializable{
 	private String cep;
 	private String estado;
 	
+	@OneToOne
+	private Called called;
+	
+	@ManyToMany(mappedBy = "schedule")
+    private Set<Equipment> equipment = new HashSet<>();
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant criacaoChamado;
