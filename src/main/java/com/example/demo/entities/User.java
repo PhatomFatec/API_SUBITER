@@ -23,14 +23,13 @@ public class User implements Serializable {
 	private Long id;
 	private String email;
 	private String password;
-	private Integer acessType;
+	private String roles;
 	private String cpf;
 	private String telefone;
 	private String nome;
+	private String razaoSocial;
+	private String cnpj; 
 
-	@OneToMany(mappedBy = "user")
-	@JsonIgnore
-	private Set<Product> products = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user")
 	@JsonIgnore
@@ -39,17 +38,59 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(Long id, String email, String password, AcessType acessType, String cpf, String telefone, String nome) {
+
+
+	public User(Long id, String email, String password, String roles, String cpf, String telefone, String nome,
+			String razaoSocial, String cnpj) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
-		setAcessType(acessType);
+		this.roles = roles;
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.nome = nome;
-
+		this.razaoSocial = razaoSocial;
+		this.cnpj = cnpj;
 	}
+
+
+
+	public String getRoles() {
+		return roles;
+	}
+
+
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+
+
+	public String getRazaoSocial() {
+		return razaoSocial;
+	}
+
+
+
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
+	}
+
+
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+
 
 	public String getNome() {
 		return nome;
@@ -75,20 +116,6 @@ public class User implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public Set<Product> getProducts() {
-		return products;
-	}
-
-	public AcessType getAcessType() {
-		return AcessType.valueOf(acessType);
-	}
-
-	public void setAcessType(AcessType acessType) {
-		if (acessType != null) {
-			this.acessType = acessType.getCode();
-		}
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -111,23 +138,6 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		return Objects.equals(id, other.id);
 	}
 
 }

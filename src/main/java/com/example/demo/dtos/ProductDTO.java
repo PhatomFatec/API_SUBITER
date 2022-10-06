@@ -18,7 +18,6 @@ private static final long serialVersionUID = 1L;
 	private String dataFabricacao;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant dataCadastro;
-	private User user;
 
 	public ProductDTO() {
 
@@ -29,8 +28,7 @@ private static final long serialVersionUID = 1L;
 		modelo = obj.getModelo();
 		numeroDeSerie = obj.getNumeroDeSerie();
 		descricao = obj.getDescricao();
-		user = obj.getUser();
-
+	
 	}
 	
 
@@ -80,14 +78,6 @@ private static final long serialVersionUID = 1L;
 
 	public void setDataCadastro(Instant dataCadastro) {
 		this.dataCadastro = dataCadastro;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 	
 }

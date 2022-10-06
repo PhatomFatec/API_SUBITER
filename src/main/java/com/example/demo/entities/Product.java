@@ -8,11 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Product implements Serializable {
@@ -32,17 +29,13 @@ public class Product implements Serializable {
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant dataCadastro;
 
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "user_id")
-	private User user;
-	
+
 
 	public Product() {
 	}
 
 	public Product(Long id, String modelo, String numeroDeSerie, String descricao, String dataFabricacao,
-			Instant dataCadastro, User user) {
+			Instant dataCadastro) {
 		super();
 		this.id = id;
 		this.modelo = modelo;
@@ -50,7 +43,6 @@ public class Product implements Serializable {
 		this.descricao = descricao;
 		this.dataFabricacao = dataFabricacao;
 		this.dataCadastro = dataCadastro;
-		this.user = user;
 
 	}
 
@@ -118,13 +110,4 @@ public class Product implements Serializable {
 		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }
