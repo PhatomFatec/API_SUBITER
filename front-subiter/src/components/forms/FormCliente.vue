@@ -22,20 +22,36 @@
         <input type="text" placeholder="" id="nomeClient" />
       </fieldset>
       <fieldset>
-        <legend>Razão Social</legend>
-        <input type="text" placeholder="" id="socialreasonClient" />
+        <legend>CPF</legend>
+        <input type="text" placeholder="" id="nomeClient" />
       </fieldset>
       <fieldset>
-        <legend>E-mail</legend>
-        <input type="email" placeholder="" id="emailClient" />
+        <legend>Telefone</legend>
+        <input type="tel" placeholder="" id="telClient" />
+      </fieldset>
+      <fieldset>
+        <legend>Razão Social</legend>
+        <input type="text" placeholder="" id="socialreasonClient" />
       </fieldset>
       <fieldset>
         <legend>CNPJ</legend>
         <input type="text" placeholder="" id="cnpjClient" />
       </fieldset>
       <fieldset>
-        <legend>Telefone</legend>
-        <input type="tel" placeholder="" id="telClient" />
+        <legend>E-mail</legend>
+        <input type="email" placeholder="" id="emailClient" />
+      </fieldset>
+      <fieldset>
+        <legend>Senha</legend>
+        <input type="password" placeholder="" id="emailClient" />
+      </fieldset>
+      <fieldset>
+        <legend>Role</legend>
+        <select name="roles" id="roles">
+          <option value="administrador">Administrador</option>
+          <option value="cliente">Cliente</option>
+          <option value="suporte">Suporte</option>
+        </select>
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
@@ -77,6 +93,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          this.$emit("change");
         })
         .catch((error) => console.log(error));
     },

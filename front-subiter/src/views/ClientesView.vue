@@ -1,7 +1,7 @@
 <template>
   <div class="clientes">
     <div class="sub-menu"></div>
-    <FormCliente />
+    <FormCliente @change="load"/>
     <ClientesView :clientes="clientes" />
   </div>
 </template>
@@ -31,15 +31,18 @@ export default {
       var form = document.getElementById("modal");
       form.style.display = "flex";
     },
+    load() {
+      axios
+        .get("/users")
+        .then((res) => {
+          console.log(res.data);
+          this.chamados = res.data;
+        })
+        .catch((error) => console.log(error));
+    },
   },
   created() {
-    axios
-      .get("/users")
-      .then((res) => {
-        console.log(res.data);
-        this.clientes = res.data;
-      })
-      .catch((error) => console.log(error));
+    this.load()
     setTimeout(function () {
       var fatherElement =
         document.getElementsByClassName("v-input__control")[0];
