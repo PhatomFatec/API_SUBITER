@@ -22,12 +22,16 @@
         <input type="text" placeholder="" id="titleCall" />
       </fieldset>
       <fieldset>
+        <legend>Produto</legend>
+        <input type="text" placeholder="" id="productCall" />
+      </fieldset>
+      <fieldset>
         <legend>Descrição</legend>
         <textarea type="text" id="descriptionCall" />
       </fieldset>
       <fieldset>
-        <legend>Usuário</legend>
-        <input type="text" placeholder="" id="userCall" />
+        <legend>Faça o upload de um arquivo:</legend>
+        <input type="file" placeholder="" id="arquivoCall" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
@@ -52,16 +56,28 @@ export default {
       });
     },
     createCall() {
-      var descricao = document.getElementById("descriptionCall").value;
       var titulo = document.getElementById("titleCall").value;
+      var descricao = document.getElementById("descriptionCall").value;
+      // var product = document.getElementById("productCall").value;
+      var imgUrl = document.getElementById("arquivoCall").value;
+      //var user = document.getElementById("userCall").value;
+
       // var user = document.getElementById("userCall").value;
 
       axios
         .post("/calleds", {
           titulo: titulo,
           descricao: descricao,
+          imgUrl: imgUrl,
+          // user: user,
+          product: {
+            id: 1,
+            modelo: "teste",
+            numeroDeSerie: "nums",
+            descricao: "mais um tetse",
+          },
           user: {
-            id: 2,
+            id: 1,
             email: "bob@gmail.com",
             password: "fff",
             acessType: "ADMIN",
@@ -72,6 +88,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          this.$emit("change");
         })
         .catch((error) => console.log(error));
     },
