@@ -30,12 +30,8 @@
         <textarea type="text" id="descriptionCall" />
       </fieldset>
       <fieldset>
-        <legend>Usuário</legend>
-        <input type="text" placeholder="" id="userCall" />
-      </fieldset>
-      <fieldset>
-        <legend>Data chamado</legend>
-        <input type="text" placeholder="" id="dateCall" />
+        <legend>Faça o upload de um arquivo:</legend>
+        <input type="file" placeholder="" id="arquivoCall" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
@@ -62,8 +58,8 @@ export default {
     createCall() {
       var titulo = document.getElementById("titleCall").value;
       var descricao = document.getElementById("descriptionCall").value;
-      var product = document.getElementById("productCall").value;
-      var dataChamado = document.getElementById("dateCall").value;
+      // var product = document.getElementById("productCall").value;
+      var imgUrl = document.getElementById("arquivoCall").value;
       //var user = document.getElementById("userCall").value;
 
       // var user = document.getElementById("userCall").value;
@@ -72,11 +68,16 @@ export default {
         .post("/calleds", {
           titulo: titulo,
           descricao: descricao,
-          dataChamado: dataChamado,
+          imgUrl: imgUrl,
           // user: user,
-          product: product,
+          product: {
+            id: 1,
+            modelo: "teste",
+            numeroDeSerie: "nums",
+            descricao: "mais um tetse",
+          },
           user: {
-            id: 2,
+            id: 1,
             email: "bob@gmail.com",
             password: "fff",
             acessType: "ADMIN",
@@ -87,6 +88,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          this.$emit("change");
         })
         .catch((error) => console.log(error));
     },

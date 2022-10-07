@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="sub-menu"></div>
-    <FormChamado />
+    <FormChamado @change="load" />
     <ChamadosView :chamados="chamados" />
   </div>
 </template>
@@ -32,15 +32,18 @@ export default {
       var form = document.getElementById("modal");
       form.style.display = "flex";
     },
+    load() {
+      axios
+        .get("/calleds")
+        .then((res) => {
+          console.log(res.data);
+          this.chamados = res.data;
+        })
+        .catch((error) => console.log(error));
+    },
   },
   created() {
-    axios
-      .get("/calleds")
-      .then((res) => {
-        console.log(res.data);
-        this.chamados = res.data;
-      })
-      .catch((error) => console.log(error));
+    this.load()
     setTimeout(function () {
       var fatherElement =
         document.getElementsByClassName("v-input__control")[0];
