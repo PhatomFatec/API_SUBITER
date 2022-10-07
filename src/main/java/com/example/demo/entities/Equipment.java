@@ -36,6 +36,9 @@ public class Equipment {
 			@JoinColumn(name = "schedule_id") })
 	Set<Schedule> schedule = new HashSet<>();
 
+	public Equipment() {
+		
+	}
 	public Equipment(Long id, String nome, Instant dataCadastro, Date dataFabricacao, String descricao,
 			String numeroDeSerie, Boolean disponibilidade) {
 		super();
