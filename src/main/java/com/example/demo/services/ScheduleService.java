@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dtos.ScheduleDTO;
-import com.example.demo.entities.Product;
 import com.example.demo.entities.Schedule;
 import com.example.demo.repositories.ScheduleRepository;
 
@@ -17,18 +17,23 @@ public class ScheduleService {
 	@Autowired
 	private ScheduleRepository repository;
 	
+	@PreAuthorize("isAuthenticated()")
 	public List<Schedule> findAll(){
 		return repository.findAll();
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule findById(Long id) {
 		Optional<Schedule> obj = repository.findById(id);
 		return obj.get();
 	} 
+	
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule insert(Schedule obj) {
 		return repository.save(obj);
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule update(Long id, Schedule obj) {
 		Schedule newSc = findById(id);
 		newSc.setServicoPrestado(obj.getServicoPrestado());
@@ -41,10 +46,12 @@ public class ScheduleService {
 		return repository.save(newSc);
 }
 	
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public void delete(	Long id) {
 		repository.deleteById(id);
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule fromDTO(ScheduleDTO objDto) {
 		return new Schedule(objDto.getId(), objDto.getServicoPrestado(), objDto.getHorario(), objDto.getData(),objDto.getEndereco(), objDto.getCidade(),objDto.getEstado(),objDto.getCep(), objDto.getCriacaoChamado());
 	}

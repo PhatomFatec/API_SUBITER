@@ -2,7 +2,6 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;

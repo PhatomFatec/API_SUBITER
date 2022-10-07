@@ -2,9 +2,9 @@ package com.example.demo.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dtos.ProductDTO;
@@ -17,19 +17,23 @@ public class ProductService {
 	@Autowired
 	private ProductRepository repository;
 
+	@PreAuthorize("isAuthenticated()")
 	public List<Product> findAll() {
 		return repository.findAll();
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	public Product findById(Long id) {
 		Optional<Product> obj = repository.findById(id);
 		return obj.get();
 	}
-
+	
+	@PreAuthorize("hasRole('ADMIN')")
 	public Product save(Product obj) {
 		return repository.save(obj);
 	}
-
+	
+	@PreAuthorize("hasRole('ADMIN')")
 	public Product update(Long id, Product obj) {
 		Product newProd = findById(id);
 		newProd.setModelo(obj.getModelo());
@@ -39,10 +43,12 @@ public class ProductService {
 		return repository.save(newProd);
 }
 
+	@PreAuthorize("hasRole('ADMIN')")
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
 
+	
 	public Product FromDTO(ProductDTO objDto) {
 		return new Product(objDto.getId(), objDto.getModelo(), objDto.getNumeroDeSerie(), objDto.getDescricao(),
 				objDto.getDataFabricacao(), objDto.getDataCadastro());
