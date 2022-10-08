@@ -23,7 +23,7 @@
       </fieldset>
       <fieldset>
         <legend>CPF</legend>
-        <input type="text" placeholder="" id="nomeClient" />
+        <input type="text" placeholder="" id="cpfClient" />
       </fieldset>
       <fieldset>
         <legend>Telefone</legend>
@@ -43,11 +43,11 @@
       </fieldset>
       <fieldset>
         <legend>Senha</legend>
-        <input type="password" placeholder="" id="emailClient" />
+        <input type="password" placeholder="" id="passClient" />
       </fieldset>
       <fieldset>
         <legend>Role</legend>
-        <select name="roles" id="roles">
+        <select name="roles" id="rolesClient">
           <option value="administrador">Administrador</option>
           <option value="cliente">Cliente</option>
           <option value="suporte">Suporte</option>
@@ -77,19 +77,26 @@ export default {
     },
     createClient() {
       var nome = document.getElementById("nomeClient").value;
+      var cpf = document.getElementById("cpfClient").value;
       var tel = document.getElementById("telClient").value;
+      var razaoSocial = document.getElementById("socialreasonClient").value;
+      var cnpj = document.getElementById("cnpjClient").value;
       var email = document.getElementById("emailClient").value;
-      var socialreason = document.getElementById("socialreasonClient").value;
+      var password = document.getElementById("passClient").value;
+      var roles = document.getElementById("rolesClient").value;
+
       var cnpj = document.getElementById("cnpjClient").value;
 
       axios
         .post("/userCorp", {
           nome: nome,
-          telefone: tel,
-          email: email,
-          acessType: "SUPPORT",
-          razaoSocial: socialreason,
+          cpf: cpf,
+          tel: tel,
+          razaoSocial,
           cnpj: cnpj,
+          email: email,
+          password: password,
+          roles: roles,
         })
         .then((res) => {
           console.log(res);
