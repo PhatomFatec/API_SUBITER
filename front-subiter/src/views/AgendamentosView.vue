@@ -1,7 +1,7 @@
 <template>
   <div class="agendamentos">
     <div class="sub-menu"></div>
-    <FormAgendamento />
+    <FormAgendamento @change="load"/>
     <AgendamentosView :agendamentos="agendamentos" />
   </div>
 </template>
@@ -31,15 +31,18 @@ export default {
       var form = document.getElementById("modal");
       form.style.display = "flex";
     },
+    load() {
+      axios
+        .get("/schedule")
+        .then((res) => {
+          console.log(res.data);
+          this.chamados = res.data;
+        })
+        .catch((error) => console.log(error));
+    },
   },
   created() {
-    axios
-      .get("/schedule")
-      .then((res) => {
-        console.log(res.data);
-        this.agendamentos = res.data;
-      })
-      .catch((error) => console.log(error));
+    this.load()
     setTimeout(function () {
       var fatherElement =
         document.getElementsByClassName("v-input__control")[0];
