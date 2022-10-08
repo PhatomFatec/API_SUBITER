@@ -85,10 +85,8 @@ export default {
       var password = document.getElementById("passClient").value;
       var roles = document.getElementById("rolesClient").value;
 
-      var cnpj = document.getElementById("cnpjClient").value;
-
       axios
-        .post("/userCorp", {
+        .post("/users", {
           nome: nome,
           cpf: cpf,
           tel: tel,
