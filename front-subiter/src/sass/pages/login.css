@@ -18,23 +18,20 @@
 .login img {
   width: 80%;
 }
-
-input {
+.login input {
   margin-bottom: 20px;
   height: 30px;
   padding-left: 10px;
   border-radius: 8px;
   border: solid 1px;
 }
-
-form {
+.login .form {
   margin-top: 20px;
   flex-direction: column;
   display: flex;
   align-items: center;
 }
-
-p {
+.login p {
   color: darkslategray;
   font-size: large;
   font-weight: bold;
@@ -46,32 +43,28 @@ p {
   position: absolute;
   bottom: 0%;
 }
-
-h1 {
+.login h1 {
   font-size: 30px;
   margin-bottom: 10px;
 }
-
-h2 {
+.login h2 {
   font-size: medium;
   margin-bottom: 25px;
 }
-
-.login-esquerda {
+.login .login-esquerda {
   height: 100vh;
   width: 45%;
   background: white;
   display: flex;
-  padding-top: 70px;
+  padding-top: 20%;
   justify-content: center;
   position: relative;
 }
-.login-esquerda img {
+.login .login-esquerda img {
   width: 45%;
   margin-bottom: 10px;
 }
-
-.login-direita {
+.login .login-direita {
   height: 100vh;
   width: 55%;
   background: linear-gradient(45deg, rgb(23, 42, 184) 0%, rgb(0, 255, 255) 100%);

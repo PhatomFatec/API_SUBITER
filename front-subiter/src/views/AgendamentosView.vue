@@ -1,14 +1,14 @@
 <template>
   <div class="agendamentos">
     <div class="sub-menu"></div>
-    <FormAgendamento @change="load"/>
+    <FormAgendamento @change="load" />
     <AgendamentosView :agendamentos="agendamentos" />
   </div>
 </template>
   
 <script>
 import AgendamentosView from "@/components/AgendamentosComponent.vue";
-import axios from "axios";
+// import axios from "axios";
 import FormAgendamento from "@/components/forms/FormAgendamento.vue";
 
 export default {
@@ -32,17 +32,30 @@ export default {
       form.style.display = "flex";
     },
     load() {
-      axios
-        .get("/schedule")
-        .then((res) => {
-          console.log(res.data);
-          this.chamados = res.data;
+      var myHeaders = new Headers();
+      var token = localStorage.getItem("SavedToken");
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", `${token}`);
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch("http://localhost:8090/schedule", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          this.agendamentos = JSON.parse(result);
+          console.log(typeof result);
+          console.log(JSON.parse(result))
+          console.log("result")
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log("error", error));
     },
   },
   created() {
-    this.load()
+    this.load();
     setTimeout(function () {
       var fatherElement =
         document.getElementsByClassName("v-input__control")[0];

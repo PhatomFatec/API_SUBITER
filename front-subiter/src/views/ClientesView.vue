@@ -1,7 +1,8 @@
 <template>
   <div class="clientes">
     <div class="sub-menu"></div>
-    <FormCliente @change="load"/>
+    <FormCliente @change="load" />
+    <DeleteCliente @change="load" />
     <ClientesView :clientes="clientes" />
   </div>
 </template>
@@ -9,13 +10,15 @@
 <script>
 import ClientesView from "@/components/ClientesComponent.vue";
 import FormCliente from "@/components/forms/FormCliente.vue";
-import axios from "axios";
+import DeleteCliente from "@/components/forms/DeleteCliente.vue";
+// import axios from "axios";
 
 export default {
   name: "ClientesComponents",
   components: {
     ClientesView,
     FormCliente,
+    DeleteCliente,
   },
   data() {
     return {
@@ -31,18 +34,36 @@ export default {
       var form = document.getElementById("modal");
       form.style.display = "flex";
     },
+    deleteCliente() {
+      var form = document.getElementById("delete");
+      form.style.display = "flex";
+    },
     load() {
-      axios
-        .get("/users")
-        .then((res) => {
-          console.log(res.data);
-          this.chamados = res.data;
+      var myHeaders = new Headers();
+      var token = localStorage.getItem("SavedToken");
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", `${token}`);
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch("http://localhost:8090/users", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          this.clientes = JSON.parse(result);
+          console.log(typeof result);
+          console.log(JSON.parse(result));
+          console.log("result");
+          console.log(typeof JSON.parse(result));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log("error", error));
     },
   },
   created() {
-    this.load()
+    this.load();
     setTimeout(function () {
       var fatherElement =
         document.getElementsByClassName("v-input__control")[0];
@@ -53,7 +74,10 @@ export default {
       searchElement.insertAdjacentHTML("beforebegin", searchSVG);
       areaSearch.children[0].insertAdjacentHTML(
         "beforebegin",
-        `<button class='creationButton' onclick="var modal = document.getElementById('modal');modal.style.display = 'flex';modal.style.zIndex = '10';">CRIAR CLIENTE<button>`
+        `
+        <button class='creationButton' onclick="var modal = document.getElementById('modal');modal.style.display = 'flex';modal.style.zIndex = '10';">CRIAR CLIENTE</button>
+        <button class='deleteButton' style="z-index:2;background:red;" onclick="var delet = document.getElementById('delete');delet.style.display = 'flex';delet.style.zIndex = '10';">delete</button>
+        `
       );
     }, 1);
   },

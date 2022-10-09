@@ -24,7 +24,15 @@
 //import axios from 'axios'
 export default {
   name: "ClientesView",
-  props: { clientes: Array },
+  props: {
+    clientes: Array,
+  },
+  methods:{
+    created(clientes){
+      console.log(clientes)
+      console.log("created")
+    }
+  },
   data(clientes) {
     console.log(clientes);
     return {
@@ -34,7 +42,7 @@ export default {
           text: "Código",
           align: "start",
           sortable: false,
-          value: "calories",
+          value: "id",
         },
         { text: "Nome do cliente", value: "nome" },
         { text: "CPF", value: "cpf" },

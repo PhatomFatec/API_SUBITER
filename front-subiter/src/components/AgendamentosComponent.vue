@@ -24,7 +24,9 @@
 //import axios from 'axios'
 export default {
   name: "AgendamentosView",
-  props: { agendamentos: Array },
+  props: {
+    agendamentos: Array,
+  },
   data(agendamentos) {
     console.log(agendamentos);
     return {
@@ -34,13 +36,13 @@ export default {
           text: "Código",
           align: "start",
           sortable: false,
-          value: "calories",
+          value: "id",
         },
-        { text: "Título do chamado", value: "name" },
-        { text: "Cliente", value: "fat" },
-        { text: "Produto", value: "carbs" },
-        { text: "Criação", value: "protein" },
-        { text: "Situação", value: "iron" },
+        { text: "Tipo de Serviço", value: "servicoPrestado" },
+        { text: "Horario", value: "horario" },
+        { text: "Data", value: "data" },
+        { text: "Endereço", value: "endereco" },
+        { text: "Cidade", value: "cidade" },
       ],
     };
   },

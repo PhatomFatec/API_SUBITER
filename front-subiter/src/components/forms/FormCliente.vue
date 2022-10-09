@@ -21,8 +21,8 @@
         <legend>Nome</legend>
         <input type="text" placeholder="" id="nomeClient" />
       </fieldset>
-      <fieldset>
-        <legend>CPF</legend>
+      <fieldset id="fieldCpf">
+        <legend id="legendCpf">CPF</legend>
         <input type="text" placeholder="" id="cpfClient" />
       </fieldset>
       <fieldset>
@@ -48,9 +48,9 @@
       <fieldset>
         <legend>Role</legend>
         <select name="roles" id="rolesClient">
-          <option value="administrador">Administrador</option>
-          <option value="cliente">Cliente</option>
-          <option value="suporte">Suporte</option>
+          <option value="ROLE_ADMIN">Administrador</option>
+          <option value="ROLE_CLIENT">Cliente</option>
+          <option value="ROLE_SUPPORT">Suporte</option>
         </select>
       </fieldset>
       <div class="buttons">
@@ -62,7 +62,7 @@
 </template>
   
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "FormCliente",
@@ -84,23 +84,47 @@ export default {
       var email = document.getElementById("emailClient").value;
       var password = document.getElementById("passClient").value;
       var roles = document.getElementById("rolesClient").value;
+      var token = localStorage.getItem("SavedToken")
 
-      axios
-        .post("/users", {
-          nome: nome,
-          cpf: cpf,
-          tel: tel,
-          razaoSocial,
-          cnpj: cnpj,
-          email: email,
-          password: password,
-          roles: roles,
-        })
-        .then((res) => {
-          console.log(res);
-          this.$emit("change");
-        })
-        .catch((error) => console.log(error));
+      if (cpf.trim() == ''){
+        document.getElementById("fieldCpf").style.borderColor = "red";
+        document.getElementById("legendCpf").style.color = "red";
+      }else{
+var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append(
+        "Authorization",
+        `${token}`
+      );
+
+      var raw = JSON.stringify({
+        email: email,
+        password: password,
+        roles: roles,
+        cpf: cpf,
+        telefone: tel,
+        nome: nome,
+        razaoSocial: razaoSocial,
+        cnpj: cnpj,
+      });
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      fetch("http://localhost:8090/users", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+
+      var modal = document.getElementById("modal");
+      modal.style.display = "none";
+      }
+
+      
     },
   },
 };
