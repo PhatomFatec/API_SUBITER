@@ -4,15 +4,14 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.example.demo.entities.Called;
+import com.example.demo.entities.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 public class UserDTO implements Serializable {
 
@@ -27,34 +26,24 @@ public class UserDTO implements Serializable {
 	private String telefone;
 	private String nome;
 	private String razaoSocial;
-	private String cnpj; 
-	
-	
+	private String cnpj;
+
 	public UserDTO() {
-		
-	}
-	
 
-	public UserDTO(Long id, String email, String password, String roles, String cpf, String telefone, String nome,
-			String razaoSocial, String cnpj) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.roles = roles;
-		this.cpf = cpf;
-		this.telefone = telefone;
-		this.nome = nome;
-		this.razaoSocial = razaoSocial;
-		this.cnpj = cnpj;
 	}
 
+	public UserDTO(User obj) {
+		this.id = obj.getId();
+		this.email = obj.getEmail();
+		this.password = obj.getPassword();
+		this.roles = obj.getRoles();
+		this.cpf = obj.getCpf();
+		this.telefone = obj.getTelefone();
+		this.nome = obj.getNome();
+		this.razaoSocial = obj.getRazaoSocial();
+		this.cnpj = obj.getCnpj();
 
-	@OneToMany(mappedBy = "user")
-	@JsonIgnore
-	private Set<Called> calleds = new HashSet<>();
-
-
+	}
 
 	public Long getId() {
 		return id;
@@ -127,16 +116,5 @@ public class UserDTO implements Serializable {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-
-	public Set<Called> getCalleds() {
-		return calleds;
-	}
-
-	public void setCalleds(Set<Called> calleds) {
-		this.calleds = calleds;
-	}
-
-
-
 
 }

@@ -51,9 +51,11 @@ public class ScheduleService {
 		repository.deleteById(id);
 	}
 
-	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
+	
 	public Schedule fromDTO(ScheduleDTO objDto) {
-		return new Schedule(objDto.getId(), objDto.getServicoPrestado(), objDto.getHorario(), objDto.getData(),objDto.getEndereco(), objDto.getCidade(),objDto.getEstado(),objDto.getCep(), objDto.getCriacaoChamado());
+		return new Schedule(objDto.getId(), objDto.getServicoPrestado(), objDto.getHorario(), objDto.getData(),
+				objDto.getEndereco(), objDto.getCidade(), objDto.getEstado(), objDto.getCep(),
+				objDto.getCriacaoChamado(), objDto.getCalled());
 	}
 
 }

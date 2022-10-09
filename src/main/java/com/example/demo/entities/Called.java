@@ -6,7 +6,6 @@ import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,14 +32,14 @@ public class Called implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant criacaoChamado;
 
-	@ManyToOne 
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
-	
+
 	@JsonIgnore
 	@OneToOne(mappedBy = "called", cascade = CascadeType.ALL)
 	private Schedule schedule;
@@ -48,8 +47,8 @@ public class Called implements Serializable {
 	public Called() {
 	}
 
-	public Called(Long id, String titulo, String descricao, String imgUrl, String situacao, Instant criacaoChamado, User user,
-			Product product) {
+	public Called(Long id, String titulo, String descricao, String imgUrl, String situacao, Instant criacaoChamado,
+			User user, Product product) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -59,6 +58,14 @@ public class Called implements Serializable {
 		this.criacaoChamado = criacaoChamado;
 		this.user = user;
 		this.product = product;
+	}
+
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
 	}
 
 	public Long getId() {
@@ -116,8 +123,6 @@ public class Called implements Serializable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
-	
 
 	@Override
 	public int hashCode() {
