@@ -4,11 +4,10 @@ import java.io.Serializable;
 import java.time.Instant;
 
 import com.example.demo.entities.Product;
-import com.example.demo.entities.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ProductDTO implements Serializable {
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	private String modelo;
@@ -24,13 +23,14 @@ private static final long serialVersionUID = 1L;
 	}
 
 	public ProductDTO(Product obj) {
-		id = obj.getId();
-		modelo = obj.getModelo();
-		numeroDeSerie = obj.getNumeroDeSerie();
-		descricao = obj.getDescricao();
-	
+		this.id = obj.getId();
+		this.modelo = obj.getModelo();
+		this.numeroDeSerie = obj.getNumeroDeSerie();
+		this.descricao = obj.getDescricao();
+		this.dataFabricacao = obj.getDataFabricacao();
+		this.dataCadastro = obj.getDataCadastro();
+
 	}
-	
 
 	public Long getId() {
 		return id;
@@ -79,5 +79,5 @@ private static final long serialVersionUID = 1L;
 	public void setDataCadastro(Instant dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	
+
 }

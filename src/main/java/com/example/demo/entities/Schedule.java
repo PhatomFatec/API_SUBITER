@@ -34,22 +34,24 @@ public class Schedule implements Serializable{
 	private String cep;
 	private String estado;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
+	private Instant criacaoChamado;
+	
 	@OneToOne
 	@MapsId
 	private Called called;
 	
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "schedule")
     private Set<Equipment> equipment = new HashSet<>();
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant criacaoChamado;
+	
 	
 	public Schedule() {
 	}
 
 	public Schedule(Long id, String servicoPrestado, String horario, Date data, String endereco, String cidade,
-			String cep, String estado, Instant criacaoChamado) {
+			String cep, String estado, Instant criacaoChamado, Called called) {
 		super();
 		this.id = id;
 		this.servicoPrestado = servicoPrestado;
@@ -60,8 +62,33 @@ public class Schedule implements Serializable{
 		this.cep = cep;
 		this.estado = estado;
 		this.criacaoChamado = criacaoChamado;
+		this.called = called;
 	}
 
+
+	public Called getCalled() {
+		return called;
+	}
+
+	public void setCalled(Called called) {
+		this.called = called;
+	}
+
+	public Set<Equipment> getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(Set<Equipment> equipment) {
+		this.equipment = equipment;
+	}
+
+	public Instant getCriacaoChamado() {
+		return criacaoChamado;
+	}
+
+	public void setCriacaoChamado(Instant criacaoChamado) {
+		this.criacaoChamado = criacaoChamado;
+	}
 
 	public Long getId() {
 		return id;

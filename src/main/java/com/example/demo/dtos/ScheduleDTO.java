@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
 
+import com.example.demo.entities.Called;
 import com.example.demo.entities.Schedule;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -20,27 +21,32 @@ public class ScheduleDTO implements Serializable {
 	private String estado;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant criacaoChamado;
+	private Called called;
 
 	public ScheduleDTO() {
 
 	}
 
-
-	public ScheduleDTO(Long id, String servicoPrestado, String horario, Date data, String endereco, String cidade,
-			String cep, String estado, Instant criacaoChamado) {
-		super();
-		this.id = id;
-		this.servicoPrestado = servicoPrestado;
-		this.horario = horario;
-		this.data = data;
-		this.endereco = endereco;
-		this.cidade = cidade;
-		this.cep = cep;
-		this.estado = estado;
-		this.criacaoChamado = criacaoChamado;
+	public ScheduleDTO(Schedule obj) {
+		this.id = obj.getId();
+		this.servicoPrestado = obj.getServicoPrestado();
+		this.horario = obj.getHorario();
+		this.data = obj.getData();
+		this.endereco = obj.getEndereco();
+		this.cidade = obj.getCidade();
+		this.cep = obj.getCep();
+		this.estado = obj.getEstado();
+		this.criacaoChamado = obj.getCriacaoChamado();
+		this.called = obj.getCalled();
 	}
 
+	public Called getCalled() {
+		return called;
+	}
 
+	public void setCalled(Called called) {
+		this.called = called;
+	}
 
 	public Long getId() {
 		return id;
@@ -106,11 +112,9 @@ public class ScheduleDTO implements Serializable {
 		this.data = data;
 	}
 
-
 	public Instant getCriacaoChamado() {
 		return criacaoChamado;
 	}
-
 
 	public void setCriacaoChamado(Instant criacaoChamado) {
 		this.criacaoChamado = criacaoChamado;

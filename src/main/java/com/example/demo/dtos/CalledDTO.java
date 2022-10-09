@@ -9,7 +9,6 @@ import com.example.demo.entities.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class CalledDTO implements Serializable {
-	
 
 	private static final long serialVersionUID = 1L;
 	private Long id;
@@ -22,84 +21,85 @@ public class CalledDTO implements Serializable {
 	private User user;
 	private Product product;
 
-	public CalledDTO(){
-		
+	public CalledDTO() {
+
 	}
-	
-public CalledDTO(Called obj){
-		id = obj.getId();
-		titulo = obj.getTitulo();
-		descricao = obj.getDescricao();
-		imgUrl = obj.getImgUrl();
-		situacao = obj.getSituacao();
-		criacaoChamado = obj.getCriacaoChamado();
-		user = obj.getUser();
-		product = obj.getProduct();
-		}
 
-public Long getId() {
-	return id;
-}
-
-public void setId(Long id) {
-	this.id = id;
-}
-
-public String getTitulo() {
-	return titulo;
-}
-
-public void setTitulo(String titulo) {
-	this.titulo = titulo;
-}
-
-public String getDescricao() {
-	return descricao;
-}
-
-public void setDescricao(String descricao) {
-	this.descricao = descricao;
-}
-
-public String getImgUrl() {
-	return imgUrl;
-}
-
-public void setImgUrl(String imgUrl) {
-	this.imgUrl = imgUrl;
-}
-
-public Instant getCriacaoChamado() {
-	return criacaoChamado;
-}
-
-public void setCriacaoChamado(Instant criacaoChamado) {
-	this.criacaoChamado = criacaoChamado;
-}
-
-public User getUser() {
-	return user;
-}
-
-public void setUser(User user) {
-	this.user = user;
-}
-
-public Product getProduct() {
-	return product;
-}
-
-public void setProduct(Product product) {
-	this.product = product;
-}
-
-public String getSituacao() {
-	return situacao;
-}
-
-public void setSituacao(String situacao) {
-	this.situacao = situacao;
-}
+	public CalledDTO(Called obj) {
+		this.id = obj.getId();
+		this.titulo = obj.getTitulo();
+		this.descricao = obj.getDescricao();
+		this.imgUrl = obj.getImgUrl();
+		this.situacao = obj.getSituacao();
+		this.criacaoChamado = obj.getCriacaoChamado();
+		this.user = obj.getUser();
+		this.product = obj.getProduct();
+	}
 
 	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public Instant getCriacaoChamado() {
+		return criacaoChamado;
+	}
+
+	public void setCriacaoChamado(Instant criacaoChamado) {
+		this.criacaoChamado = criacaoChamado;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
+
 }

@@ -32,13 +32,13 @@ public class Equipment {
 	private Boolean disponibilidade;
 
 	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "Equipment_Schedule", joinColumns = { @JoinColumn(name = "equipment_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "schedule_id") })
-	Set<Schedule> schedule = new HashSet<>();
+	@JoinTable(name = "Equipment_Schedule", joinColumns = @JoinColumn(name = "equipment_id"), inverseJoinColumns = @JoinColumn(name = "schedule_id"))
+	private Set<Schedule> schedule = new HashSet<>();
 
 	public Equipment() {
-		
+
 	}
+
 	public Equipment(Long id, String nome, Instant dataCadastro, Date dataFabricacao, String descricao,
 			String numeroDeSerie, Boolean disponibilidade) {
 		super();
