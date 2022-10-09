@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.example.demo.entities.Called;
 import com.example.demo.entities.Equipment;
 import com.example.demo.entities.Product;
 import com.example.demo.entities.Schedule;
@@ -51,14 +50,9 @@ public class TestConfig implements CommandLineRunner {
 
 		Product p2 = new Product(null, "fiat", "9589658", "Barcao dos veio", null,
 				Instant.parse("2014-06-20T19:53:07Z"));
-
-		Called c1 = new Called(null, "problema", "no casco", "imagem.png", "em andamento", Instant.now(), u2, p2);
-		Called c2 = new Called(null, "problema", "no casco", "imagem.png", "em andamento", Instant.now(), u1, p2);
-		Called c3 = new Called(null, "problema", "no casco", "imagem.png", "em andamento", Instant.now(), u3, p1);
-
+	
 		Equipment e1 = new Equipment(null, "camera", Instant.now(), null, "nikon", "847587358", true);
 
-		Schedule sc = new Schedule(null, "concerto", "12h", null, "rua saitama", "sjc", "739262", "sp", Instant.now());
 
 		userRepository.save(u2);
 		userRepository.save(u1);
@@ -66,8 +60,6 @@ public class TestConfig implements CommandLineRunner {
 		productRepository.save(p2);
 		productRepository.save(p1);
 		equipmentRepository.save(e1);
-		calledRepository.save(c1);
-		scheduleRepository.save(sc);
 
 	}
 

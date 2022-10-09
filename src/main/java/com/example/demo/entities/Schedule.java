@@ -12,9 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Schedule implements Serializable{
@@ -33,7 +35,9 @@ public class Schedule implements Serializable{
 	private String estado;
 	
 	@OneToOne
+	@MapsId
 	private Called called;
+	
 	
 	@ManyToMany(mappedBy = "schedule")
     private Set<Equipment> equipment = new HashSet<>();
