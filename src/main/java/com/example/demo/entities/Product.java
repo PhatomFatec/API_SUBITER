@@ -35,7 +35,7 @@ public class Product implements Serializable {
 	private Instant dataCadastro;
 
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	@OneToMany(mappedBy = "product")
 	private Set<Called> calleds = new HashSet<>();
 
 	public Product() {

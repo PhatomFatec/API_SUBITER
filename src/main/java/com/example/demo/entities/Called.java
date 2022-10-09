@@ -35,10 +35,9 @@ public class Called implements Serializable {
 
 	@ManyToOne 
 	@JoinColumn(name = "user_id")
-	@JsonIgnore
 	private User user;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
