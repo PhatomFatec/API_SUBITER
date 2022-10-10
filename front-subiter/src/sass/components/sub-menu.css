@@ -36,22 +36,28 @@
   margin-right: 7px;
 }
 
-.creationButton {
+.subMenuButton {
   position: absolute;
-  right: 10%;
   border-radius: 10px;
-  background: #0257fd;
-  border: none;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 40px;
-  width: 235px;
-  padding: 0 20px;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  transition: width 1s;
-  margin-left: 15px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.creationButton {
+  right: 10%;
+  background: #0257fd;
+}
+
+.deleteButton {
+  right: calc(10% + 50px);
+  background: rgb(241, 12, 12);
+}
+
+.editButton {
+  right: calc(10% + 100px);
+  background: rgb(4, 172, 4);
 }/*# sourceMappingURL=sub-menu.css.map */

@@ -44,13 +44,15 @@
 .modal .box fieldset:not(:last-child) {
   margin-bottom: 20px;
 }
-.modal .box input, .modal .box textarea {
+.modal .box input,
+.modal .box textarea {
   border: 0;
   width: calc(100% - 10px);
   margin: 0px 5px 5px 5px;
   resize: none;
 }
-.modal .box input:focus, .modal .box textarea:focus {
+.modal .box input:focus,
+.modal .box textarea:focus {
   outline: none;
 }
 .modal .box .buttons {
@@ -85,4 +87,12 @@
 }
 .modal .box .buttons button#criar:hover {
   color: #fff;
+}
+.modal select {
+  border: none;
+  padding-left: 5px;
+  width: 100%;
+}
+.modal select:focus {
+  outline: none;
 }/*# sourceMappingURL=modal.css.map */

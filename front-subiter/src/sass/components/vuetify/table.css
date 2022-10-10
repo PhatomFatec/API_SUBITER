@@ -43,7 +43,7 @@
 .v-card .v-input {
   flex: none;
   position: absolute;
-  right: calc(10% + 249px);
+  right: calc(10% + 150px);
 }
 .v-card .v-input__slot {
   width: 235px;

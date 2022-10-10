@@ -17,32 +17,32 @@
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
       <h3>Cadastro de Cliente</h3>
-      <fieldset>
-        <legend>Nome</legend>
+      <fieldset id="fieldNome">
+        <legend id="legendNome">Nome</legend>
         <input type="text" placeholder="" id="nomeClient" />
       </fieldset>
       <fieldset id="fieldCpf">
         <legend id="legendCpf">CPF</legend>
         <input type="text" placeholder="" id="cpfClient" />
       </fieldset>
-      <fieldset>
-        <legend>Telefone</legend>
+      <fieldset id="fieldTelefone">
+        <legend id="legendTelefone">Telefone</legend>
         <input type="tel" placeholder="" id="telClient" />
       </fieldset>
-      <fieldset>
-        <legend>Razão Social</legend>
+      <fieldset id="fieldRazaoSocial">
+        <legend id="legendRazaoSocial">Razão Social</legend>
         <input type="text" placeholder="" id="socialreasonClient" />
       </fieldset>
-      <fieldset>
-        <legend>CNPJ</legend>
+      <fieldset id="fieldCnpj">
+        <legend id="legendCnpj">CNPJ</legend>
         <input type="text" placeholder="" id="cnpjClient" />
       </fieldset>
-      <fieldset>
-        <legend>E-mail</legend>
+      <fieldset id="fieldEmail">
+        <legend id="legendEmail">E-mail</legend>
         <input type="email" placeholder="" id="emailClient" />
       </fieldset>
-      <fieldset>
-        <legend>Senha</legend>
+      <fieldset id="fieldSenha">
+        <legend id="legendSenha">Senha</legend>
         <input type="password" placeholder="" id="passClient" />
       </fieldset>
       <fieldset>
@@ -67,6 +67,29 @@
 export default {
   name: "FormCliente",
   methods: {
+    // CHANGE COLOR ******************************************************************
+    backFieldBlue(x) {
+      document.getElementById(x).style.borderColor = "#2196F3";
+      document.getElementById(x).style.background = "#fff";
+    },
+    backLegendBlue(x) {
+      document.getElementById(x).style.color = "#2196F3";
+    },
+    backBlue(f, l) {
+      this.backFieldBlue(f);
+      this.backLegendBlue(l);
+    },
+    backAllBlue() {
+      this.backBlue("fieldNome", "legendNome");
+      this.backBlue("fieldCpf", "legendCpf");
+      this.backBlue("fieldTelefone", "legendTelefone");
+      this.backBlue("fieldRazaoSocial", "legendRazaoSocial");
+      this.backBlue("fieldCnpj", "legendCnpj");
+      this.backBlue("fieldEmail", "legendEmail");
+      this.backBlue("fieldSenha", "legendSenha");
+    },
+    // CHANGE COLOR END **************************************************************
+    //CLOSE MODAL ********************************************************************
     closeModal() {
       var modal = document.getElementById("modal");
       var inputs = modal.querySelectorAll("input, textarea");
@@ -74,7 +97,10 @@ export default {
       inputs.forEach((input) => {
         input.value = "";
       });
+      this.backAllBlue();
     },
+    //CLOSE MODAL END ****************************************************************
+    //CREATE CLIENT ******************************************************************
     createClient() {
       var nome = document.getElementById("nomeClient").value;
       var cpf = document.getElementById("cpfClient").value;
@@ -84,48 +110,88 @@ export default {
       var email = document.getElementById("emailClient").value;
       var password = document.getElementById("passClient").value;
       var roles = document.getElementById("rolesClient").value;
-      var token = localStorage.getItem("SavedToken")
+      var token = localStorage.getItem("SavedToken");
 
-      if (cpf.trim() == ''){
-        document.getElementById("fieldCpf").style.borderColor = "red";
-        document.getElementById("legendCpf").style.color = "red";
-      }else{
-var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append(
-        "Authorization",
-        `${token}`
-      );
+      this.backAllBlue();
 
-      var raw = JSON.stringify({
-        email: email,
-        password: password,
-        roles: roles,
-        cpf: cpf,
-        telefone: tel,
-        nome: nome,
-        razaoSocial: razaoSocial,
-        cnpj: cnpj,
-      });
-
-      var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
-
-      fetch("http://localhost:8090/users", requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
-
-      var modal = document.getElementById("modal");
-      modal.style.display = "none";
+      function turnFieldRed(x) {
+        document.getElementById(x).style.borderColor = "red";
+        document.getElementById(x).style.background = "#ff00000f";
+      }
+      function turnLegendRed(x) {
+        document.getElementById(x).style.color = "red";
+      }
+      function turnRed(f, l) {
+        turnFieldRed(f);
+        turnLegendRed(l);
       }
 
-      
+      if (nome.trim() == "") {
+        turnRed("fieldNome", "legendNome", "nomeClient");
+      }
+      if (cpf.trim() == "") {
+        turnRed("fieldCpf", "legendCpf", "cpfClient");
+      }
+      if (tel.trim() == "") {
+        turnRed("fieldTelefone", "legendTelefone", "telClient");
+      }
+      if (razaoSocial.trim() == "") {
+        turnRed("fieldRazaoSocial", "legendRazaoSocial", "socialreasonClient");
+      }
+      if (cnpj.trim() == "") {
+        turnRed("fieldCnpj", "legendCnpj", "cnpjClient");
+      }
+      if (email.trim() == "") {
+        turnRed("fieldEmail", "legendEmail", "emailClient");
+      }
+      if (password.trim() == "") {
+        turnRed("fieldSenha", "legendSenha", "passClient");
+      }
+      if (
+        nome.trim() != "" &&
+        cpf.trim() != "" &&
+        tel.trim() != "" &&
+        razaoSocial.trim() != "" &&
+        cnpj.trim() != "" &&
+        email.trim() != "" &&
+        password.trim() != ""
+      ) {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `${token}`);
+
+        var raw = JSON.stringify({
+          email: email,
+          password: password,
+          roles: roles,
+          cpf: cpf,
+          telefone: tel,
+          nome: nome,
+          razaoSocial: razaoSocial,
+          cnpj: cnpj,
+        });
+
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        fetch("http://localhost:8090/users", requestOptions)
+          .then((response) => response.text())
+          .then((result) => console.log(result))
+          .catch((error) => console.log("error", error));
+
+        var modal = document.getElementById("modal");
+        var inputs = modal.querySelectorAll("input, textarea");
+        modal.style.display = "none";
+        inputs.forEach((input) => {
+          input.value = "";
+        });
+      }
     },
+    //CREATE CLIENT END **************************************************************
   },
 };
 </script>
