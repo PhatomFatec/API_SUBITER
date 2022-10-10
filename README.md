@@ -96,7 +96,7 @@ Para mais informações sobre as entregas e sobre o conteúdo do projeto, veja c
 
 - [x] [Sprint 01](https://github.com/PhatomFatec/API_SUBITER/tree/main/Sprints/Sprint01#readme) ✔️
  
-- [ ] [Sprint 02](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint02/README.md) ❌
+- [ ] [Sprint 02](https://github.com/PhatomFatec/API_SUBITER/tree/main/Sprints/Sprint02) ✔️
  
 - [ ] [Sprint 03](https://github.com/PhatomFatec/PI_3Semestre/tree/main/Sprints/Sprint03/README.md) ❌
   
