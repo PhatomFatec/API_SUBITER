@@ -18,11 +18,11 @@
       </svg>
       <h3>Cadastro de Produtos</h3>
       <fieldset>
-        <legend>Modelo do produto</legend>
+        <legend>Nome do produto</legend>
         <input
           type="text"
           placeholder="Exemplo: Embarcação"
-          id="modelProduct"
+          id="modelo"
         />
       </fieldset>
       <fieldset>
@@ -35,12 +35,12 @@
       </fieldset>
       <fieldset>
         <legend>Descrição</legend>
-        <textarea type="text" id="descriptionProduct" />
+        <textarea type="text" id="descricao" />
       </fieldset>
       <hr />
       <fieldset>
         <legend>Data de fabricação</legend>
-        <input type="date" id="fabdateProduct" />
+        <input type="date" id="dataFabricacao" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
@@ -65,10 +65,12 @@ export default {
       });
     },
     createProduct() {
-      var modelo = document.getElementById("modelProduct").value;
+      var modelo = document.getElementById("modelo").value;
       var numeroDeSerie = document.getElementById("serialnumberProduct").value;
-      var descricao = document.getElementById("descriptionProduct").value;
+      var descricao = document.getElementById("descricao").value;
       var dataFabricacao = document.getElementById("fabdateProduct").value;
+      var date = new Date()
+      var dateFormated = date.toLocaleString("pt-BR")
 
       axios
         .post("/products", {
@@ -76,9 +78,11 @@ export default {
           numeroDeSerie: numeroDeSerie,
           dataFabricacao: dataFabricacao,
           descricao: descricao,
+          dataCadastro: dateFormated
         })
         .then((res) => {
           console.log(res);
+          this.$emit("change");
         })
         .catch((error) => console.log(error));
     },

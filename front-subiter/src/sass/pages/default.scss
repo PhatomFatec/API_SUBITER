@@ -7,6 +7,10 @@
     font-family: 'Nunito', sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
 h1 {
     font-size: 15px;
     font-weight: 700;

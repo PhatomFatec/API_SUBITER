@@ -1,27 +1,35 @@
 <template>
   <div class="modal" id="modal">
     <div class="box">
-      <svg v-on:click="closeModal()" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
-        fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+      <svg
+        v-on:click="closeModal()"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        stroke="currentColor"
+        stroke-width="2"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="css-i6dzq1"
+      >
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
       <h3>Cadastro de Agendamento</h3>
-      <!-- <fieldset>
-        <legend>Título do Agendamento</legend>
-        <input type="number" placeholder="" id="1" />
+      <fieldset>
+        <legend>Serviço a ser prestado</legend>
+        <textarea type="text" placeholder="" id="servicoPrestado" />
       </fieldset>
       <fieldset>
-        <legend>Situação</legend>
-        <input type="text" placeholder="" id="2" />
-      </fieldset> -->
-      <fieldset>
-        <legend>Endereço</legend>
-        <textarea type="text" placeholder="" id="addressSchedule" />
+        <legend>Horário</legend>
+        <textarea type="time" placeholder="" id="horario" />
       </fieldset>
       <fieldset>
-        <legend>Cidade</legend>
-        <textarea type="text" placeholder="" id="citySchedule" />
+        <legend>Data</legend>
+        <input type="datetime-local" id="aopa"
+       name="meeting-time" value="2018-06-12T19:30"
+       >
       </fieldset>
       <fieldset>
         <legend>CEP</legend>
@@ -61,27 +69,19 @@ export default {
       var cep = document.getElementById("cepSchedule").value;
       var estado = document.getElementById("stateSchedule").value;
 
-      var date = new Date()
-      var hour = ("00" + date.getHours()).slice(-2)
-      var minute = ("00" + date.getMinutes()).slice(-2)
-      var day = ("00" + date.getDay()).slice(-2)
-      var month = ("00" + (parseInt(date.getMonth()) + 1)).slice(-2)
-      var year = date.getFullYear()
-      var fullHour = hour + ":" + minute
-      var fullDate = day + "/" + month + "/" + year
-      var fullTime = fullHour + " " + fullDate
 
       axios
         .post("/schedule", {
           //   id: id,
-          horario: fullTime,
+          // horario: fullTime,
           endereco: endereco,
           cidade: cidade,
           cep: cep,
-          estado: estado
+          estado: estado,
         })
         .then((res) => {
           console.log(res);
+          this.$emit("change");
         })
         .catch((error) => console.log(error));
     },

@@ -21,21 +21,37 @@
         <legend>Nome</legend>
         <input type="text" placeholder="" id="nomeClient" />
       </fieldset>
+      <fieldset id="fieldCpf">
+        <legend id="legendCpf">CPF</legend>
+        <input type="text" placeholder="" id="cpfClient" />
+      </fieldset>
+      <fieldset>
+        <legend>Telefone</legend>
+        <input type="tel" placeholder="" id="telClient" />
+      </fieldset>
       <fieldset>
         <legend>Razão Social</legend>
         <input type="text" placeholder="" id="socialreasonClient" />
-      </fieldset>
-      <fieldset>
-        <legend>E-mail</legend>
-        <input type="email" placeholder="" id="emailClient" />
       </fieldset>
       <fieldset>
         <legend>CNPJ</legend>
         <input type="text" placeholder="" id="cnpjClient" />
       </fieldset>
       <fieldset>
-        <legend>Telefone</legend>
-        <input type="tel" placeholder="" id="telClient" />
+        <legend>E-mail</legend>
+        <input type="email" placeholder="" id="emailClient" />
+      </fieldset>
+      <fieldset>
+        <legend>Senha</legend>
+        <input type="password" placeholder="" id="passClient" />
+      </fieldset>
+      <fieldset>
+        <legend>Role</legend>
+        <select name="roles" id="rolesClient">
+          <option value="ROLE_ADMIN">Administrador</option>
+          <option value="ROLE_CLIENT">Cliente</option>
+          <option value="ROLE_SUPPORT">Suporte</option>
+        </select>
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
@@ -46,7 +62,7 @@
 </template>
   
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "FormCliente",
@@ -61,24 +77,54 @@ export default {
     },
     createClient() {
       var nome = document.getElementById("nomeClient").value;
+      var cpf = document.getElementById("cpfClient").value;
       var tel = document.getElementById("telClient").value;
-      var email = document.getElementById("emailClient").value;
-      var socialreason = document.getElementById("socialreasonClient").value;
+      var razaoSocial = document.getElementById("socialreasonClient").value;
       var cnpj = document.getElementById("cnpjClient").value;
+      var email = document.getElementById("emailClient").value;
+      var password = document.getElementById("passClient").value;
+      var roles = document.getElementById("rolesClient").value;
+      var token = localStorage.getItem("SavedToken")
 
-      axios
-        .post("/userCorp", {
-          nome: nome,
-          telefone: tel,
-          email: email,
-          acessType: "SUPPORT",
-          razaoSocial: socialreason,
-          cnpj: cnpj,
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((error) => console.log(error));
+      if (cpf.trim() == ''){
+        document.getElementById("fieldCpf").style.borderColor = "red";
+        document.getElementById("legendCpf").style.color = "red";
+      }else{
+var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append(
+        "Authorization",
+        `${token}`
+      );
+
+      var raw = JSON.stringify({
+        email: email,
+        password: password,
+        roles: roles,
+        cpf: cpf,
+        telefone: tel,
+        nome: nome,
+        razaoSocial: razaoSocial,
+        cnpj: cnpj,
+      });
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      fetch("http://localhost:8090/users", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+
+      var modal = document.getElementById("modal");
+      modal.style.display = "none";
+      }
+
+      
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="produtos">
     <div class="sub-menu"></div>
-    <FormProduto />
+    <FormProduto @change="load"/>
     <ProdutosView :produtos="produtos" />
   </div>
 </template>
@@ -31,15 +31,18 @@ export default {
       var form = document.getElementById("modal");
       form.style.display = "flex";
     },
+    load() {
+      axios
+        .get("/products")
+        .then((res) => {
+          console.log(res.data);
+          this.chamados = res.data;
+        })
+        .catch((error) => console.log(error));
+    },
   },
   created() {
-    axios
-      .get("/products")
-      .then((res) => {
-        console.log(res.data);
-        this.produtos = res.data;
-      })
-      .catch((error) => console.log(error));
+    this.load()
     setTimeout(function () {
       var fatherElement =
         document.getElementsByClassName("v-input__control")[0];
