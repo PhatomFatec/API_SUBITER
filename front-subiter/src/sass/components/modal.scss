@@ -15,18 +15,18 @@
         border-radius: 12px;
         position: relative;
 
-        svg{
+        svg {
             position: absolute;
             top: 8px;
             right: 8px;
             cursor: pointer;
         }
 
-        h3{
+        h3 {
             margin-bottom: 20px;
         }
 
-        hr{
+        hr {
             border: none;
             height: 2px;
             background: #2196F3;
@@ -45,26 +45,30 @@
                 color: #2196F3;
             }
         }
-        fieldset:not(:last-child){
+
+        fieldset:not(:last-child) {
             margin-bottom: 20px;
         }
 
-        input, textarea {
+        input,
+        textarea {
             border: 0;
             width: calc(100% - 10px);
             margin: 0px 5px 5px 5px;
             resize: none;
         }
-        input:focus, textarea:focus{
+
+        input:focus,
+        textarea:focus {
             outline: none;
         }
 
-        .buttons{
+        .buttons {
             width: 100%;
             display: flex;
             justify-content: flex-end;
-            
-            button{
+
+            button {
                 height: 36px;
                 width: 110px;
                 border: solid 1px #2196F3;
@@ -73,27 +77,41 @@
                 transition: 0.2s;
                 cursor: pointer;
             }
-            button#cancelar{
+
+            button#cancelar {
                 background: #fff;
                 color: #2196F3;
                 font-weight: 700;
                 margin-right: 15px;
             }
-            button#cancelar:hover{
+
+            button#cancelar:hover {
                 background: #da1b1b;
                 border-color: #da1b1b;
                 color: #fff;
             }
-            button#criar{
+
+            button#criar {
                 background: #2196F3;
                 color: #fff;
                 font-weight: 700;
             }
-            button#criar:hover{
+
+            button#criar:hover {
                 // background: #56bb1c;
                 // border-color: #56bb1c;
                 color: #fff;
             }
+        }
+    }
+
+    select {
+        border: none;
+        padding-left: 5px;
+        width: calc(100%);
+
+        &:focus {
+            outline: none;
         }
     }
 }
