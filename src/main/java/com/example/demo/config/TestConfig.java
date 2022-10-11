@@ -22,7 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@Profile("prod")
+@Profile("test")
 public class TestConfig implements CommandLineRunner {
 
 	@Autowired
