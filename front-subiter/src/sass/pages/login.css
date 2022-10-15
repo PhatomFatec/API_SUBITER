@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
 }
-.login p {
+.login p#text {
   color: darkslategray;
   font-size: large;
   font-weight: bold;
@@ -42,6 +42,13 @@
   align-items: center;
   position: absolute;
   bottom: 0%;
+}
+.login p#warning {
+  color: red;
+  position: absolute;
+  margin-top: 81px;
+  font-size: 14px;
+  display: none;
 }
 .login h1 {
   font-size: 30px;

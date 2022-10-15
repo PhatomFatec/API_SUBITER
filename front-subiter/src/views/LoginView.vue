@@ -4,10 +4,11 @@
       <div class="form">
         <input type="email" name="" id="user" placeholder="username"/>
         <input type="password" name="" id="password" placeholder="password"/>
-        <button v-on:click="login()">entra</button>
+        <p id="warning">Usuário e/ou senha inválidos</p>
+        <button v-on:click="login()" id="login-btn">Login</button>
       </div>
 
-      <p>Alcance o invisível, Subiter</p>
+      <p id="text">Alcance o invisível, Subiter</p>
     </div>
     <div class="login-direita">
       <img src="@/assets/Computer login-bro.png" alt="" />
@@ -34,13 +35,19 @@ export default {
         })
         .then((res) => {
           let token = res.data.token;
+          console.log(res.data)
           localStorage.setItem("SavedToken","Bearer "+token);
+          localStorage.setItem("User", res.data.nome)
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          this.$router.push({ name: "home" });
+          setTimeout(function () {location.replace("/")}, 1000);
+          //this.$router.push({ name: "home" });
           // console.log(res.data);
           // localStorage.setItem('token', res.data.token);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {console.log(error); document.getElementById("warning").style.display = "block"});
+        
+        
+        // setTimeout(function () {location.replace("/")}, 1000);
     },
   },
 };
@@ -48,4 +55,12 @@ export default {
 
 <style scoped>
 @import "@/sass/pages/login.css";
+button#login-btn{
+  background: #2196f3;
+  color: #fff;
+  font-weight: 700;
+  width:100px;
+  height: 30px;
+  border-radius: 10px;
+}
 </style>

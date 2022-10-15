@@ -50,7 +50,7 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://localhost:8090/users", requestOptions)
+      fetch("https://subiter.azurewebsites.net/users", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           this.clientes = JSON.parse(result);

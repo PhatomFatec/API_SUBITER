@@ -9,6 +9,12 @@ nav {
   background: linear-gradient(90deg, rgb(23, 42, 184) 0%, rgba(0, 255, 255, 1) 100%);
   padding: 0 20px;
 
+  .login-nav-btn {
+    color: #fff;
+    background: #0257fd;
+    padding: 7px 15px;
+    border-radius: 10px;
+  }
 
   .profile {
     height: 100%;
@@ -16,6 +22,8 @@ nav {
     align-items: center;
     position: relative;
     cursor: default;
+    min-width: 185px;
+    justify-content: flex-end;
 
     .profile-name {
       background: #0257fd;
@@ -100,7 +108,7 @@ nav {
 
   .profile:hover {
     .dropdown {
-      height: 160px;
+      height: 125px;
     }
   }
 }

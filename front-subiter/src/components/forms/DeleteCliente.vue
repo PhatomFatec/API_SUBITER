@@ -45,13 +45,10 @@ export default {
     },
     deleteClient() {
       var myHeaders = new Headers();
-      var codClient = document.getElementById("codClient").value
+      var codClient = document.getElementById("codClient").value;
       var token = localStorage.getItem("SavedToken");
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append(
-        "Authorization",
-        `${token}`
-      );
+      myHeaders.append("Authorization", `${token}`);
 
       var requestOptions = {
         method: "DELETE",
@@ -59,7 +56,10 @@ export default {
         redirect: "follow",
       };
 
-      fetch(`http://localhost:8090/users/${codClient}`, requestOptions)
+      fetch(
+        `https://subiter.azurewebsites.net/users/${codClient}`,
+        requestOptions
+      )
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));

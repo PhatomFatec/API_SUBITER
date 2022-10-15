@@ -43,13 +43,13 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://localhost:8090/schedule", requestOptions)
+      fetch("https://subiter.azurewebsites.net/schedule", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           this.agendamentos = JSON.parse(result);
           console.log(typeof result);
-          console.log(JSON.parse(result))
-          console.log("result")
+          console.log(JSON.parse(result));
+          console.log("result");
         })
         .catch((error) => console.log("error", error));
     },

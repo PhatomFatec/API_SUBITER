@@ -34,7 +34,7 @@
         align-items: center;
     }
 
-    p {
+    p#text {
         color: darkslategray;
         font-size: large;
         font-weight: bold;
@@ -46,6 +46,13 @@
         position: absolute;
         bottom: 0%;
 
+    }
+    p#warning{
+        color: red;
+        position: absolute;
+        margin-top: 81px;
+        font-size: 14px;
+        display: none;
     }
 
     h1 {
