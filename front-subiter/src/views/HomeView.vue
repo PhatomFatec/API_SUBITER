@@ -46,7 +46,13 @@ export default {
 
       fetch("https://subiter.azurewebsites.net/calleds", requestOptions)
         .then((response) => response.text())
-        .then((result) => console.log(result))
+        .then((result) => {
+          this.clientes = JSON.parse(result);
+          console.log(typeof result);
+          console.log(JSON.parse(result));
+          console.log("result");
+          console.log(typeof JSON.parse(result));
+        })
         .catch((error) => console.log("error", error));
     },
   },

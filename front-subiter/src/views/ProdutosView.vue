@@ -9,7 +9,7 @@
 <script>
 import FormProduto from "@/components/forms/FormProduto.vue";
 import ProdutosView from "@/components/ProdutosComponent.vue";
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "ProdutosComponents",
@@ -32,13 +32,27 @@ export default {
       form.style.display = "flex";
     },
     load() {
-      axios
-        .get("/products")
-        .then((res) => {
-          console.log(res.data);
-          this.chamados = res.data;
+      var myHeaders = new Headers();
+      var token = localStorage.getItem("SavedToken");
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", `${token}`);
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch("https://subiter.azurewebsites.net/products", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          this.clientes = JSON.parse(result);
+          console.log(typeof result);
+          console.log(JSON.parse(result));
+          console.log("result");
+          console.log(typeof JSON.parse(result));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log("error", error));
     },
   },
   created() {
