@@ -33,7 +33,7 @@
 // import axios from "axios";
 
 export default {
-  name: "DeleteCliente", //
+  name: "DeleteProduct", //
   methods: {
     closeDelete() {
       var delet = document.getElementById("delete");
@@ -43,9 +43,9 @@ export default {
         input.value = "";
       });
     },
-    deleteClient() {
+    deleteProduct() { //
       var myHeaders = new Headers();
-      var codClient = document.getElementById("codClient").value; //
+      var codProduct = document.getElementById("codProduct").value; //
       var token = localStorage.getItem("SavedToken");
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
@@ -57,7 +57,7 @@ export default {
       };
 
       fetch(
-        `https://subiter.azurewebsites.net/users/${codClient}`, //
+        `https://subiter.azurewebsites.net/products/${codProduct}`, //
         requestOptions
       )
         .then((response) => response.text())

@@ -18,7 +18,7 @@ export default {
   components: {
     ClientesView,
     FormCliente,
-    DeleteCliente,
+    DeleteCliente,  //
   },
   data() {
     return {
@@ -32,10 +32,6 @@ export default {
     },
     closeModal() {
       var form = document.getElementById("modal");
-      form.style.display = "flex";
-    },
-    deleteCliente() {
-      var form = document.getElementById("delete");
       form.style.display = "flex";
     },
     load() {

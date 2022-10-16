@@ -2,6 +2,7 @@
   <div class="produtos">
     <div class="sub-menu"></div>
     <FormProduto @change="load"/>
+    <DeleteProduct @change="load" />
     <ProdutosView :produtos="produtos" />
   </div>
 </template>
@@ -9,6 +10,7 @@
 <script>
 import FormProduto from "@/components/forms/FormProduto.vue";
 import ProdutosView from "@/components/ProdutosComponent.vue";
+import DeleteProduct from "@/components/forms/DeleteProduct.vue";
 // import axios from "axios";
 
 export default {
@@ -16,6 +18,7 @@ export default {
   components: {
     FormProduto,
     ProdutosView,
+    DeleteProduct,
   },
   data() {
     return {
