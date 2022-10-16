@@ -2,20 +2,23 @@
   <div class="agendamentos">
     <div class="sub-menu"></div>
     <FormAgendamento @change="load" />
+    <DeleteAgendamento @change="load" />
     <AgendamentosView :agendamentos="agendamentos" />
   </div>
 </template>
   
 <script>
 import AgendamentosView from "@/components/AgendamentosComponent.vue";
-// import axios from "axios";
 import FormAgendamento from "@/components/forms/FormAgendamento.vue";
+import DeleteAgendamento from "@/components/forms/DeleteAgendamento.vue";
+// import axios from "axios";
 
 export default {
   name: "AgendamentosComponents",
   components: {
     AgendamentosView,
     FormAgendamento,
+    DeleteAgendamento,
   },
   data() {
     return {
