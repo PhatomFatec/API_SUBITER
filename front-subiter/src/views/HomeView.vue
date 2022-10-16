@@ -2,6 +2,7 @@
   <div class="home">
     <div class="sub-menu"></div>
     <FormChamado @change="load" />
+    <DeleteChamado @change="load" />
     <ChamadosView :chamados="chamados" />
   </div>
 </template>
@@ -9,6 +10,7 @@
 <script>
 import ChamadosView from "@/components/ChamadosComponent.vue";
 import FormChamado from "@/components/forms/FormChamado.vue";
+import DeleteChamado from "@/components/forms/DeleteChamado.vue";
 // import axios from "axios";
 
 export default {
@@ -16,6 +18,7 @@ export default {
   components: {
     ChamadosView,
     FormChamado,
+    DeleteChamado,
   },
   data() {
     return {
