@@ -18,7 +18,7 @@ export default {
   components: {
     ClientesView,
     FormCliente,
-    DeleteCliente,
+    DeleteCliente, //
   },
   data() {
     return {
@@ -34,10 +34,6 @@ export default {
       var form = document.getElementById("modal");
       form.style.display = "flex";
     },
-    deleteCliente() {
-      var form = document.getElementById("delete");
-      form.style.display = "flex";
-    },
     load() {
       var myHeaders = new Headers();
       var token = localStorage.getItem("SavedToken");
@@ -50,7 +46,7 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://localhost:8090/users", requestOptions)
+      fetch("http://subiter.azurewebsites.net/users", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           this.clientes = JSON.parse(result);

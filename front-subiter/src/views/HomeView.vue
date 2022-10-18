@@ -2,6 +2,7 @@
   <div class="home">
     <div class="sub-menu"></div>
     <FormChamado @change="load" />
+    <DeleteChamado @change="load" />
     <ChamadosView :chamados="chamados" />
   </div>
 </template>
@@ -9,6 +10,7 @@
 <script>
 import ChamadosView from "@/components/ChamadosComponent.vue";
 import FormChamado from "@/components/forms/FormChamado.vue";
+import DeleteChamado from "@/components/forms/DeleteChamado.vue";
 // import axios from "axios";
 
 export default {
@@ -16,6 +18,7 @@ export default {
   components: {
     ChamadosView,
     FormChamado,
+    DeleteChamado,
   },
   data() {
     return {
@@ -44,9 +47,15 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://localhost:8090/calleds", requestOptions)
+      fetch("http://subiter.azurewebsites.net/calleds", requestOptions)
         .then((response) => response.text())
-        .then((result) => console.log(result))
+        .then((result) => {
+          this.chamados = JSON.parse(result);
+          console.log(typeof result);
+          console.log(JSON.parse(result));
+          console.log("result");
+          console.log(typeof JSON.parse(result));
+        })
         .catch((error) => console.log("error", error));
     },
   },

@@ -178,7 +178,7 @@ export default {
           redirect: "follow",
         };
 
-        fetch("http://localhost:8090/users", requestOptions)
+        fetch("http://subiter.azurewebsites.net/users", requestOptions)
           .then((response) => response.text())
           .then((result) => console.log(result))
           .catch((error) => console.log("error", error));
@@ -195,4 +195,3 @@ export default {
   },
 };
 </script>
-  

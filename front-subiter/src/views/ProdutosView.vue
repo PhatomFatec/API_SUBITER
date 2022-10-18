@@ -1,7 +1,8 @@
 <template>
   <div class="produtos">
     <div class="sub-menu"></div>
-    <FormProduto @change="load"/>
+    <FormProduto @change="load" />
+    <DeleteProduct @change="load" />
     <ProdutosView :produtos="produtos" />
   </div>
 </template>
@@ -9,13 +10,15 @@
 <script>
 import FormProduto from "@/components/forms/FormProduto.vue";
 import ProdutosView from "@/components/ProdutosComponent.vue";
-import axios from "axios";
+import DeleteProduct from "@/components/forms/DeleteProduct.vue";
+// import axios from "axios";
 
 export default {
   name: "ProdutosComponents",
   components: {
     FormProduto,
     ProdutosView,
+    DeleteProduct,
   },
   data() {
     return {
@@ -32,17 +35,32 @@ export default {
       form.style.display = "flex";
     },
     load() {
-      axios
-        .get("/products")
-        .then((res) => {
-          console.log(res.data);
-          this.chamados = res.data;
+      var myHeaders = new Headers();
+      var token = localStorage.getItem("SavedToken");
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", `${token}`);
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch("http://subiter.azurewebsites.net/products", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          this.produtos = JSON.parse(result);
+          console.log(typeof result);
+          console.log("aqui");
+          console.log(JSON.parse(result));
+          console.log("result");
+          console.log(typeof JSON.parse(result));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log("error", error));
     },
   },
   created() {
-    this.load()
+    this.load();
     setTimeout(function () {
       var fatherElement =
         document.getElementsByClassName("v-input__control")[0];

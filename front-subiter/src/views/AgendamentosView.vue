@@ -2,20 +2,23 @@
   <div class="agendamentos">
     <div class="sub-menu"></div>
     <FormAgendamento @change="load" />
+    <DeleteAgendamento @change="load" />
     <AgendamentosView :agendamentos="agendamentos" />
   </div>
 </template>
   
 <script>
 import AgendamentosView from "@/components/AgendamentosComponent.vue";
-// import axios from "axios";
 import FormAgendamento from "@/components/forms/FormAgendamento.vue";
+import DeleteAgendamento from "@/components/forms/DeleteAgendamento.vue";
+// import axios from "axios";
 
 export default {
   name: "AgendamentosComponents",
   components: {
     AgendamentosView,
     FormAgendamento,
+    DeleteAgendamento,
   },
   data() {
     return {
@@ -43,13 +46,13 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://localhost:8090/schedule", requestOptions)
+      fetch("http://subiter.azurewebsites.net/schedule", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           this.agendamentos = JSON.parse(result);
           console.log(typeof result);
-          console.log(JSON.parse(result))
-          console.log("result")
+          console.log(JSON.parse(result));
+          console.log("result");
         })
         .catch((error) => console.log("error", error));
     },

@@ -16,14 +16,14 @@
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
-      <h3>Deletar Cliente</h3>
+      <h3>Deletar Produto</h3>
       <fieldset>
-        <legend>Código do cliente</legend>
-        <input type="number" placeholder="" id="codClient" />
+        <legend>Código do Produto</legend>
+        <input type="number" placeholder="" id="codProduct" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeDelete()">Cancelar</button>
-        <button id="criar" v-on:click="deleteClient()">Delete</button>
+        <button id="criar" v-on:click="deleteProduct()">Delete</button>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
 // import axios from "axios";
 
 export default {
-  name: "DeleteCliente", //
+  name: "DeleteProduct", //
   methods: {
     closeDelete() {
       var delet = document.getElementById("delete");
@@ -43,9 +43,10 @@ export default {
         input.value = "";
       });
     },
-    deleteClient() {
+    deleteProduct() {
+      //
       var myHeaders = new Headers();
-      var codClient = document.getElementById("codClient").value; //
+      var codProduct = document.getElementById("codProduct").value; //
       var token = localStorage.getItem("SavedToken");
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
@@ -57,7 +58,7 @@ export default {
       };
 
       fetch(
-        `http://subiter.azurewebsites.net/users/${codClient}`, //
+        `http://subiter.azurewebsites.net/products/${codProduct}`, //
         requestOptions
       )
         .then((response) => response.text())
