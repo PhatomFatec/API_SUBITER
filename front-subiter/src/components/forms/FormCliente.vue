@@ -178,7 +178,7 @@ export default {
           redirect: "follow",
         };
 
-        fetch("http://subiter.azurewebsites.net/users", requestOptions)
+        fetch("https://subiter.azurewebsites.net/users", requestOptions)
           .then((response) => response.text())
           .then((result) => console.log(result))
           .catch((error) => console.log("error", error));

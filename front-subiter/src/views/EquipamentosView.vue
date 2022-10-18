@@ -1,35 +1,34 @@
 <template>
-  <div class="home">
+  <div class="equipamentos">
     <div class="sub-menu"></div>
-    <FormChamado @change="load" />
-    <DeleteChamado @change="load" />
-    <ChamadosView :chamados="chamados" />
+    <FormEquipamento @change="load" />
+    <DeleteEquipamento @change="load" />
+    <EquipamentoView :equipamentos="equipamentos" />
   </div>
 </template>
 
 <script>
-import ChamadosView from "@/components/ChamadosComponent.vue";
-import FormChamado from "@/components/forms/FormChamado.vue";
-import DeleteChamado from "@/components/forms/DeleteChamado.vue";
+import FormEquipamento from "@/components/forms/FormEquipamento.vue";
+import EquipamentoView from "@/components/EquipamentosComponent.vue";
+import DeleteEquipamento from "@/components/forms/DeleteEquipamento.vue";
 // import axios from "axios";
 
 export default {
-  name: "HomeView",
+  name: "EquipamentoComponents",
   components: {
-    ChamadosView,
-    FormChamado,
-    DeleteChamado,
+    FormEquipamento,
+    EquipamentoView,
+    DeleteEquipamento,
   },
   data() {
     return {
-      chamados: [],
+      equipamento: [],
     };
   },
   methods: {
-    formChamado() {
-      //var form = document.getElementById("modal");
-      //form.style.display = "flex";
-      console.log("teste");
+    formEquipamento() {
+      var form = document.getElementById("modal");
+      form.style.display = "flex";
     },
     closeModal() {
       var form = document.getElementById("modal");
@@ -47,11 +46,12 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/calleds", requestOptions)
+      fetch("https://subiter.azurewebsites.net/equipment", requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          this.chamados = JSON.parse(result);
+          this.equipamento = JSON.parse(result);
           console.log(typeof result);
+          console.log("aqui");
           console.log(JSON.parse(result));
           console.log("result");
           console.log(typeof JSON.parse(result));
@@ -81,7 +81,3 @@ export default {
   },
 };
 </script>
-
-<style>
-@import "../sass/components/sub-menu.css";
-</style>

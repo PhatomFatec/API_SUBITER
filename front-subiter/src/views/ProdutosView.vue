@@ -46,7 +46,7 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://subiter.azurewebsites.net/products", requestOptions)
+      fetch("https://subiter.azurewebsites.net/products", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           this.produtos = JSON.parse(result);

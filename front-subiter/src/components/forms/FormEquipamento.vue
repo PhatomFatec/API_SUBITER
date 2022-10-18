@@ -16,9 +16,9 @@
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
-      <h3>Cadastro de Produtos</h3>
+      <h3>Cadastro de Equipamentos</h3>
       <fieldset>
-        <legend>Nome do produto</legend>
+        <legend>Nome do equipamento</legend>
         <input type="text" placeholder="Exemplo: Embarcação" id="modelo" />
       </fieldset>
       <fieldset>
@@ -26,7 +26,7 @@
         <input
           type="text"
           placeholder="Exemplo: 11, 12, 13"
-          id="serialnumberProduct"
+          id="serialnumberEquipamento"
         />
       </fieldset>
       <fieldset>
@@ -40,7 +40,7 @@
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
-        <button id="criar" v-on:click="createProduct()">Criar</button>
+        <button id="criar" v-on:click="createEquipamento()">Criar</button>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
 // import axios from "axios";
 
 export default {
-  name: "FormProduto",
+  name: "FormEquipamento",
   methods: {
     closeModal() {
       var modal = document.getElementById("modal");
@@ -60,11 +60,11 @@ export default {
         input.value = "";
       });
     },
-    createProduct() {
+    createEquipamento() {
       console.log("1");
       var modelo = document.getElementById("modelo").value;
       console.log("2");
-      var numeroDeSerie = document.getElementById("serialnumberProduct").value;
+      var numeroDeSerie = document.getElementById("serialnumberEquipamento").value;
       console.log("3");
       var descricao = document.getElementById("descricao").value;
       console.log("4");
@@ -93,7 +93,7 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/products", requestOptions)
+      fetch("https://subiter.azurewebsites.net/equipments", requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));

@@ -58,7 +58,7 @@ export default {
       };
 
       fetch(
-        `http://subiter.azurewebsites.net/products/${codProduct}`, //
+        `https://subiter.azurewebsites.net/products/${codProduct}`, //
         requestOptions
       )
         .then((response) => response.text())

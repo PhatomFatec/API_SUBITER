@@ -46,7 +46,7 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://subiter.azurewebsites.net/schedule", requestOptions)
+      fetch("https://subiter.azurewebsites.net/schedule", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           this.agendamentos = JSON.parse(result);
