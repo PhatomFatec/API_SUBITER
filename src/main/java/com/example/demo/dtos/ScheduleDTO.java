@@ -14,7 +14,7 @@ public class ScheduleDTO implements Serializable {
 	private Long id;
 	private String servicoPrestado;
 	private String horario;
-	private Date data;
+	private String data;
 	private String endereco;
 	private String cidade;
 	private String cep;
@@ -104,11 +104,11 @@ public class ScheduleDTO implements Serializable {
 		this.servicoPrestado = servicoPrestado;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
