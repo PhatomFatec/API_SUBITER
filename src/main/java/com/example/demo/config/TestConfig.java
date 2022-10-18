@@ -70,6 +70,8 @@ public class TestConfig implements CommandLineRunner {
 //
 //		productRepository.save(p1);
 		userRepository.save(u3);
+		userRepository.save(u2);
+		userRepository.save(u1);
 //		equipmentRepository.save(e1);
 //		calledRepository.save(c1);
 //		scheduleRepository.save(sc);
