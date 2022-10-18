@@ -2,7 +2,6 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -14,8 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -39,7 +38,7 @@ public class Schedule implements Serializable {
 	private Instant criacaoChamado;
 
 	@OneToOne
-	@MapsId
+	@PrimaryKeyJoinColumn
 	private Called called;
 
 	@ManyToMany
