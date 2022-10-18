@@ -1,7 +1,7 @@
 <template>
   <div class="produtos">
     <div class="sub-menu"></div>
-    <FormProduto @change="load"/>
+    <FormProduto @change="load" />
     <DeleteProduct @change="load" />
     <ProdutosView :produtos="produtos" />
   </div>
@@ -46,12 +46,12 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://localhost:8090/products", requestOptions)
+      fetch("http://subiter.azurewebsites.net/products", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           this.produtos = JSON.parse(result);
           console.log(typeof result);
-          console.log("aqui")
+          console.log("aqui");
           console.log(JSON.parse(result));
           console.log("result");
           console.log(typeof JSON.parse(result));
@@ -60,7 +60,7 @@ export default {
     },
   },
   created() {
-    this.load()
+    this.load();
     setTimeout(function () {
       var fatherElement =
         document.getElementsByClassName("v-input__control")[0];

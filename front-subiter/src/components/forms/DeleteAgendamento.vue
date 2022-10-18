@@ -19,7 +19,7 @@
       <h3>Deletar Agendamentoo</h3>
       <fieldset>
         <legend>Código do Agendamento</legend>
-        <input type="number" placeholder="" id="codAgendamento" /> 
+        <input type="number" placeholder="" id="codAgendamento" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeDelete()">Cancelar</button>
@@ -43,7 +43,8 @@ export default {
         input.value = "";
       });
     },
-    deleteAgendamento() { //
+    deleteAgendamento() {
+      //
       var myHeaders = new Headers();
       var codAgendamento = document.getElementById("codAgendamento").value; //
       var token = localStorage.getItem("SavedToken");
@@ -57,7 +58,7 @@ export default {
       };
 
       fetch(
-        `http://localhost:8090/schedule/${codAgendamento}`, //
+        `http://subiter.azurewebsites.net/schedule/${codAgendamento}`, //
         requestOptions
       )
         .then((response) => response.text())

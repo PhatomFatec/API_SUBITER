@@ -19,11 +19,7 @@
       <h3>Cadastro de Produtos</h3>
       <fieldset>
         <legend>Nome do produto</legend>
-        <input
-          type="text"
-          placeholder="Exemplo: Embarcação"
-          id="modelo"
-        />
+        <input type="text" placeholder="Exemplo: Embarcação" id="modelo" />
       </fieldset>
       <fieldset>
         <legend>Número de série</legend>
@@ -65,49 +61,49 @@ export default {
       });
     },
     createProduct() {
-      console.log("1")
+      console.log("1");
       var modelo = document.getElementById("modelo").value;
-      console.log("2")
+      console.log("2");
       var numeroDeSerie = document.getElementById("serialnumberProduct").value;
-      console.log("3")
+      console.log("3");
       var descricao = document.getElementById("descricao").value;
-      console.log("4")
+      console.log("4");
       var dataFabricacao = document.getElementById("dataFabricacao").value;
-      console.log("5")
+      console.log("5");
       var token = localStorage.getItem("SavedToken");
-      console.log("6")
+      console.log("6");
       // var date = new Date()
       // var dateFormated = date.toLocaleString("pt-BR")
 
       var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", `${token}`);
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", `${token}`);
 
-        var raw = JSON.stringify({
-          modelo: modelo,
-          numeroDeSerie: numeroDeSerie,
-          descricao: descricao,
-          dataFabricacao: dataFabricacao,
-        });
+      var raw = JSON.stringify({
+        modelo: modelo,
+        numeroDeSerie: numeroDeSerie,
+        descricao: descricao,
+        dataFabricacao: dataFabricacao,
+      });
 
-        var requestOptions = {
-          method: "POST",
-          headers: myHeaders,
-          body: raw,
-          redirect: "follow",
-        };
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
 
-        fetch("http://localhost:8090/products", requestOptions)
-          .then((response) => response.text())
-          .then((result) => console.log(result))
-          .catch((error) => console.log("error", error));
+      fetch("http://subiter.azurewebsites.net/products", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
 
-        var modal = document.getElementById("modal");
-        var inputs = modal.querySelectorAll("input, textarea");
-        modal.style.display = "none";
-        inputs.forEach((input) => {
-          input.value = "";
-        });
+      var modal = document.getElementById("modal");
+      var inputs = modal.querySelectorAll("input, textarea");
+      modal.style.display = "none";
+      inputs.forEach((input) => {
+        input.value = "";
+      });
     },
   },
 };

@@ -43,7 +43,8 @@ export default {
         input.value = "";
       });
     },
-    deleteChamado() { //
+    deleteChamado() {
+      //
       var myHeaders = new Headers();
       var codChamado = document.getElementById("codChamado").value; //
       var token = localStorage.getItem("SavedToken");
@@ -57,7 +58,7 @@ export default {
       };
 
       fetch(
-        `http://localhost:8090/calleds/${codChamado}`, //
+        `http://subiter.azurewebsites.net/calleds/${codChamado}`, //
         requestOptions
       )
         .then((response) => response.text())

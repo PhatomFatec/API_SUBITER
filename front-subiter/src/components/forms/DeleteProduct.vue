@@ -19,7 +19,7 @@
       <h3>Deletar Produto</h3>
       <fieldset>
         <legend>Código do Produto</legend>
-        <input type="number" placeholder="" id="codProduct" /> 
+        <input type="number" placeholder="" id="codProduct" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeDelete()">Cancelar</button>
@@ -43,7 +43,8 @@ export default {
         input.value = "";
       });
     },
-    deleteProduct() { //
+    deleteProduct() {
+      //
       var myHeaders = new Headers();
       var codProduct = document.getElementById("codProduct").value; //
       var token = localStorage.getItem("SavedToken");
@@ -57,7 +58,7 @@ export default {
       };
 
       fetch(
-        `http://localhost:8090/products/${codProduct}`, //
+        `http://subiter.azurewebsites.net/products/${codProduct}`, //
         requestOptions
       )
         .then((response) => response.text())

@@ -18,7 +18,7 @@ export default {
   components: {
     ClientesView,
     FormCliente,
-    DeleteCliente,  //
+    DeleteCliente, //
   },
   data() {
     return {
@@ -46,7 +46,7 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://localhost:8090/users", requestOptions)
+      fetch("http://subiter.azurewebsites.net/users", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           this.clientes = JSON.parse(result);

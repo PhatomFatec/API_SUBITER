@@ -19,7 +19,7 @@
       <h3>Deletar Cliente</h3>
       <fieldset>
         <legend>Código do cliente</legend>
-        <input type="number" placeholder="" id="codClient" /> 
+        <input type="number" placeholder="" id="codClient" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeDelete()">Cancelar</button>
@@ -57,7 +57,7 @@ export default {
       };
 
       fetch(
-        `http://localhost:8090/users/${codClient}`, //
+        `http://subiter.azurewebsites.net/users/${codClient}`, //
         requestOptions
       )
         .then((response) => response.text())
