@@ -6,7 +6,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,15 +28,15 @@ public class Product implements Serializable {
 	private String modelo;
 	private String numeroDeSerie;
 	private String descricao;
-	
+
 //	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private String dataFabricacao;
-	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant dataCadastro;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "product")
+	@OneToMany(cascade = {CascadeType.MERGE}, fetch= FetchType.EAGER, mappedBy ="product")
 	private Set<Called> calleds = new HashSet<>();
 
 	public Product() {
@@ -52,11 +54,9 @@ public class Product implements Serializable {
 
 	}
 
-	
 	public Set<Called> getCalleds() {
 		return calleds;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -105,7 +105,6 @@ public class Product implements Serializable {
 	public void setDataCadastro(Instant dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	
 
 	public Set<Called> getCalled() {
 		return calleds;

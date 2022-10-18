@@ -45,9 +45,9 @@ public class EquipmentResource {
 	
 	@PostMapping
 	public ResponseEntity<Equipment> insertEquipment(@RequestBody 	EquipmentDTO objDto) {
-		Equipment equip = service.FromDTO(objDto);
-		equip = service.save(equip);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(equip.getId()).toUri();
+		Equipment obj = service.FromDTO(objDto);
+		obj = service.save(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	

@@ -5,13 +5,10 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -31,8 +28,7 @@ public class Equipment {
 	private String numeroDeSerie;
 	private Boolean disponibilidade;
 
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "Equipment_Schedule", joinColumns = @JoinColumn(name = "equipment_id"), inverseJoinColumns = @JoinColumn(name = "schedule_id"))
+	@ManyToMany(mappedBy = "equipment")
 	private Set<Schedule> schedule = new HashSet<>();
 
 	public Equipment() {

@@ -6,12 +6,15 @@ import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,16 +35,17 @@ public class Called implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant criacaoChamado;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@ManyToOne(cascade = {CascadeType.MERGE},fetch= FetchType.EAGER)
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 
-	@ManyToOne
-	@JoinColumn(name = "product_id")
+	@ManyToOne(cascade = {CascadeType.MERGE},fetch= FetchType.EAGER)
+	@JoinColumn(name = "product_id", referencedColumnName = "id")
 	private Product product;
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "called", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "called")
+	@Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 	private Schedule schedule;
 
 	public Called() {

@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,15 +31,12 @@ public class User implements Serializable {
 	private String razaoSocial;
 	private String cnpj; 
 
-	
-	@OneToMany(mappedBy = "user")
 	@JsonIgnore
+	@OneToMany(cascade = {CascadeType.ALL},fetch= FetchType.EAGER, mappedBy = "user")
 	private Set<Called> calleds = new HashSet<>();
 
 	public User() {
 	}
-
-
 
 	public User(Long id, String email, String password, String roles, String cpf, String telefone, String nome,
 			String razaoSocial, String cnpj) {
@@ -52,6 +51,21 @@ public class User implements Serializable {
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
 	}
+
+
+	public Set<Called> getCalleds() {
+		return calleds;
+	}
+
+
+
+	public void setCalleds(Set<Called> calleds) {
+		this.calleds = calleds;
+	}
+
+
+
+
 
 
 
