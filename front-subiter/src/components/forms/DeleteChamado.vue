@@ -57,7 +57,7 @@ export default {
       };
 
       fetch(
-        `https://subiter.azurewebsites.net/calleds/${codChamado}`, //
+        `http://localhost:8090/calleds/${codChamado}`, //
         requestOptions
       )
         .then((response) => response.text())

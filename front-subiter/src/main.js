@@ -5,7 +5,7 @@ import store from './store'
 import axios from 'axios'
 import vuetify from './plugins/vuetify'
 
-axios.defaults.baseURL = 'https://subiter.azurewebsites.net'
+axios.defaults.baseURL = 'http://localhost:8090'
 
 Vue.config.productionTip = false
 

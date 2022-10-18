@@ -57,7 +57,7 @@ export default {
       };
 
       fetch(
-        `https://subiter.azurewebsites.net/users/${codClient}`, //
+        `http://localhost:8090/users/${codClient}`, //
         requestOptions
       )
         .then((response) => response.text())

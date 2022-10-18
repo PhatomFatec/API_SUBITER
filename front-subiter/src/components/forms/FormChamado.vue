@@ -29,10 +29,10 @@
         <legend>Descrição</legend>
         <textarea type="text" id="descriptionCall" />
       </fieldset>
-      <fieldset>
+      <!-- <fieldset>
         <legend>Faça o upload de um arquivo:</legend>
         <input type="file" placeholder="" id="arquivoCall" />
-      </fieldset>
+      </fieldset> -->
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
         <button id="criar" v-on:click="createCall()">Criar</button>

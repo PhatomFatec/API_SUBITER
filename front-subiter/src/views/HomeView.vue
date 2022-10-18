@@ -47,10 +47,10 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/calleds", requestOptions)
+      fetch("http://localhost:8090/calleds", requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          this.clientes = JSON.parse(result);
+          this.chamados = JSON.parse(result);
           console.log(typeof result);
           console.log(JSON.parse(result));
           console.log("result");

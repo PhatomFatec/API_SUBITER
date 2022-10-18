@@ -24,8 +24,13 @@
 //import axios from 'axios'
 export default {
   name: "ProdutosView",
-  props: { produtos: Array },
-  data() {
+  props: {
+    produtos: Array,
+  },
+  data(produtos) {
+    console.log("aeee")
+    console.log(produtos)
+    console.log("aaaaaa")
     return {
       search: "",
       headers: [

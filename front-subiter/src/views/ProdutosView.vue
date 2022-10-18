@@ -46,11 +46,12 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/products", requestOptions)
+      fetch("http://localhost:8090/products", requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          this.clientes = JSON.parse(result);
+          this.produtos = JSON.parse(result);
           console.log(typeof result);
+          console.log("aqui")
           console.log(JSON.parse(result));
           console.log("result");
           console.log(typeof JSON.parse(result));

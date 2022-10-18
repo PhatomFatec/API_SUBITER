@@ -57,7 +57,7 @@ export default {
       };
 
       fetch(
-        `https://subiter.azurewebsites.net/schedule/${codAgendamento}`, //
+        `http://localhost:8090/schedule/${codAgendamento}`, //
         requestOptions
       )
         .then((response) => response.text())

@@ -57,7 +57,7 @@ export default {
       };
 
       fetch(
-        `https://subiter.azurewebsites.net/products/${codProduct}`, //
+        `http://localhost:8090/products/${codProduct}`, //
         requestOptions
       )
         .then((response) => response.text())
