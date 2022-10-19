@@ -42,7 +42,7 @@
 </template>
   
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "FormChamado",
@@ -58,39 +58,65 @@ export default {
     createCall() {
       var titulo = document.getElementById("titleCall").value;
       var descricao = document.getElementById("descriptionCall").value;
-      // var product = document.getElementById("productCall").value;
-      var imgUrl = document.getElementById("arquivoCall").value;
+      var product = document.getElementById("productCall").value;
+      // var imgUrl = document.getElementById("arquivoCall").value;
       //var user = document.getElementById("userCall").value;
 
       // var user = document.getElementById("userCall").value;
 
-      axios
-        .post("/calleds", {
-          titulo: titulo,
+      // axios
+      //   .post("/calleds", {
+      //     id: null,
+      //     titulo: titulo,
+      //     descricao: descricao,
+      //     imgUrl: null,
+      //     situacao: "Em andamento",
+      //     criacaoChamado: "data",
+      //     user: "Gertrudes",
+      //     product: product,
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     this.$emit("change");
+      //   })
+      //   .catch((error) => console.log(error));
+
+
+var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", `${token}`);
+      var token = localStorage.getItem("SavedToken");
+
+      var raw = JSON.stringify({
+        titulo: titulo,
           descricao: descricao,
-          imgUrl: imgUrl,
-          // user: user,
-          product: {
-            id: 1,
-            modelo: "teste",
-            numeroDeSerie: "nums",
-            descricao: "mais um tetse",
-          },
-          user: {
-            id: 1,
-            email: "bob@gmail.com",
-            password: "fff",
-            acessType: "ADMIN",
-            cpf: "23232323",
-            telefone: "97979797",
-            nome: "Bob",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-          this.$emit("change");
-        })
-        .catch((error) => console.log(error));
+          imgUrl: null,
+          situacao: "Em andamento",
+          criacaoChamado: "data",
+          user: "Gertrudes",
+          product: product,
+      });
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      fetch("https://subiter.azurewebsites.net/calleds", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+
+      var modal = document.getElementById("modal");
+      var inputs = modal.querySelectorAll("input, textarea");
+      modal.style.display = "none";
+      inputs.forEach((input) => {
+        input.value = "";
+      });
+
+
     },
   },
 };

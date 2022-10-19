@@ -34,10 +34,13 @@ export default {
           senha: password,
         })
         .then((res) => {
+          console.log("res")
+          console.log(res)
           let token = res.data.token;
           console.log(res.data)
           localStorage.setItem("SavedToken","Bearer "+token);
           localStorage.setItem("User", res.data.nome)
+          localStorage.setItem("Role", res.data.autorizacao)
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
           setTimeout(function () {location.replace("/")}, 1000);
           //this.$router.push({ name: "home" });

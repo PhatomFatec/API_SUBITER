@@ -72,15 +72,18 @@ export default {
       console.log("5");
       var token = localStorage.getItem("SavedToken");
       console.log("6");
+      
+      
       // var date = new Date()
       // var dateFormated = date.toLocaleString("pt-BR")
 
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
+      console.log("7");
 
       var raw = JSON.stringify({
-        modelo: modelo,
+        nome: modelo,
         numeroDeSerie: numeroDeSerie,
         descricao: descricao,
         dataFabricacao: dataFabricacao,
@@ -95,8 +98,10 @@ export default {
 
       fetch("https://subiter.azurewebsites.net/equipments", requestOptions)
         .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
+        .then((result) => {console.log(result); console.log("funcionou")})
+        .catch((error) => {
+          console.log("ta errado aqui")
+          console.log("error", error)});
 
       var modal = document.getElementById("modal");
       var inputs = modal.querySelectorAll("input, textarea");
