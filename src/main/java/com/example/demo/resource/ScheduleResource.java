@@ -47,7 +47,7 @@ public class ScheduleResource {
 	} 
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody ScheduleDTO objDto) {
+	public ResponseEntity<Schedule> insert(@RequestBody ScheduleDTO objDto) {
 		Schedule obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();

@@ -1,10 +1,8 @@
 package com.example.demo.dtos;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 import com.example.demo.entities.Product;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -13,10 +11,7 @@ public class ProductDTO implements Serializable {
 	private String modelo;
 	private String numeroDeSerie;
 	private String descricao;
-//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private String dataFabricacao;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant dataCadastro;
 
 	public ProductDTO() {
 
@@ -28,7 +23,6 @@ public class ProductDTO implements Serializable {
 		this.numeroDeSerie = obj.getNumeroDeSerie();
 		this.descricao = obj.getDescricao();
 		this.dataFabricacao = obj.getDataFabricacao();
-		this.dataCadastro = obj.getDataCadastro();
 
 	}
 
@@ -70,14 +64,6 @@ public class ProductDTO implements Serializable {
 
 	public void setDataFabricacao(String dataFabricacao) {
 		this.dataFabricacao = dataFabricacao;
-	}
-
-	public Instant getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(Instant dataCadastro) {
-		this.dataCadastro = dataCadastro;
 	}
 
 }

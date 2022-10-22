@@ -17,7 +17,7 @@ public class ProductService {
 	@Autowired
 	private ProductRepository repository;
 
-	@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Product> findAll() {
 		return repository.findAll();
 	}
@@ -51,7 +51,7 @@ public class ProductService {
 	
 	public Product FromDTO(ProductDTO objDto) {
 		return new Product(objDto.getId(), objDto.getModelo(), objDto.getNumeroDeSerie(), objDto.getDescricao(),
-				objDto.getDataFabricacao(), objDto.getDataCadastro());
+				objDto.getDataFabricacao());
 	}
 
 }

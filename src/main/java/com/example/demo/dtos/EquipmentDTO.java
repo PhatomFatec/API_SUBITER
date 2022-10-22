@@ -1,14 +1,14 @@
 package com.example.demo.dtos;
 
+import java.io.Serializable;
 import java.sql.Date;
-import java.time.Instant;
 
 import com.example.demo.entities.Equipment;
 
-public class EquipmentDTO {
+public class EquipmentDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String nome;
-	private Instant dataCadastro;
 	private Date dataFabricacao;
 	private String descricao;
 	private String numeroDeSerie;
@@ -17,7 +17,6 @@ public class EquipmentDTO {
 	public EquipmentDTO(Equipment obj) {
 		this.id = obj.getId();
 		this.nome = obj.getNome();
-		this.dataCadastro = obj.getDataCadastro();
 		this.dataFabricacao = obj.getDataFabricacao();
 		this.descricao = obj.getDescricao();
 		this.numeroDeSerie = obj.getNumeroDeSerie();
@@ -38,14 +37,6 @@ public class EquipmentDTO {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Instant getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(Instant dataCadastro) {
-		this.dataCadastro = dataCadastro;
 	}
 
 	public Date getDataFabricacao() {

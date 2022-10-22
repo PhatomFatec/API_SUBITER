@@ -2,6 +2,7 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -13,8 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -28,7 +31,10 @@ public class Schedule implements Serializable {
 	private Long id;
 	private String servicoPrestado;
 	private String horario;
-	private String data;
+
+	@Temporal(TemporalType.DATE)
+	private Date data;
+
 	private String endereco;
 	private String cidade;
 	private String cep;
@@ -38,7 +44,7 @@ public class Schedule implements Serializable {
 	private Instant criacaoChamado;
 
 	@OneToOne
-	@PrimaryKeyJoinColumn
+	@MapsId
 	private Called called;
 
 	@ManyToMany
@@ -48,8 +54,8 @@ public class Schedule implements Serializable {
 	public Schedule() {
 	}
 
-	public Schedule(Long id, String servicoPrestado, String horario, String data, String endereco, String cidade,
-			String cep, String estado, Instant criacaoChamado, Called called) {
+	public Schedule(Long id, String servicoPrestado, String horario, Date data, String endereco, String cidade,
+			String cep, String estado, Called called) {
 		super();
 		this.id = id;
 		this.servicoPrestado = servicoPrestado;
@@ -59,10 +65,9 @@ public class Schedule implements Serializable {
 		this.cidade = cidade;
 		this.cep = cep;
 		this.estado = estado;
-		this.criacaoChamado = criacaoChamado;
+		this.criacaoChamado = Instant.now();
 		this.called = called;
 	}
-	
 
 	public Called getCalled() {
 		return called;
@@ -135,6 +140,14 @@ public class Schedule implements Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
 
 	@Override
 	public int hashCode() {
@@ -161,12 +174,7 @@ public class Schedule implements Serializable {
 		this.servicoPrestado = servicoPrestado;
 	}
 
-	public String getData() {
-		return data;
-	}
 
-	public void setData(String data) {
-		this.data = data;
-	}
+
 
 }

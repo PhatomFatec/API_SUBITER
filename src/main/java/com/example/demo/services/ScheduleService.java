@@ -13,26 +13,26 @@ import com.example.demo.repositories.ScheduleRepository;
 
 @Service
 public class ScheduleService {
-	
+
 	@Autowired
 	private ScheduleRepository repository;
-	
-	@PreAuthorize("isAuthenticated()")
-	public List<Schedule> findAll(){
+
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
+	public List<Schedule> findAll() {
 		return repository.findAll();
 	}
-	
+
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule findById(Long id) {
 		Optional<Schedule> obj = repository.findById(id);
 		return obj.get();
-	} 
-	
+	}
+
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule insert(Schedule obj) {
 		return repository.save(obj);
 	}
-	
+
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule update(Long id, Schedule obj) {
 		Schedule newSc = findById(id);
@@ -44,18 +44,16 @@ public class ScheduleService {
 		newSc.setCep(obj.getCep());
 		newSc.setEstado(obj.getEstado());
 		return repository.save(newSc);
-}
-	
+	}
+
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
-	public void delete(	Long id) {
+	public void delete(Long id) {
 		repository.deleteById(id);
 	}
 
-	
 	public Schedule fromDTO(ScheduleDTO objDto) {
 		return new Schedule(objDto.getId(), objDto.getServicoPrestado(), objDto.getHorario(), objDto.getData(),
-				objDto.getEndereco(), objDto.getCidade(), objDto.getEstado(), objDto.getCep(),
-				objDto.getCriacaoChamado(), objDto.getCalled());
+				objDto.getEndereco(), objDto.getCidade(), objDto.getEstado(), objDto.getCep(), objDto.getCalled());
 	}
 
 }

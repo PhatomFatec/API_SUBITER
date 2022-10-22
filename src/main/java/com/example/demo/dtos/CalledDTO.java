@@ -1,12 +1,10 @@
 package com.example.demo.dtos;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 import com.example.demo.entities.Called;
 import com.example.demo.entities.Product;
 import com.example.demo.entities.User;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class CalledDTO implements Serializable {
 
@@ -16,8 +14,6 @@ public class CalledDTO implements Serializable {
 	private String descricao;
 	private String imgUrl;
 	private String situacao;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant criacaoChamado;
 	private User user;
 	private Product product;
 
@@ -31,7 +27,6 @@ public class CalledDTO implements Serializable {
 		this.descricao = obj.getDescricao();
 		this.imgUrl = obj.getImgUrl();
 		this.situacao = obj.getSituacao();
-		this.criacaoChamado = obj.getCriacaoChamado();
 		this.user = obj.getUser();
 		this.product = obj.getProduct();
 	}
@@ -70,13 +65,6 @@ public class CalledDTO implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public Instant getCriacaoChamado() {
-		return criacaoChamado;
-	}
-
-	public void setCriacaoChamado(Instant criacaoChamado) {
-		this.criacaoChamado = criacaoChamado;
-	}
 
 	public User getUser() {
 		return user;

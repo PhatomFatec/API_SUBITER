@@ -28,7 +28,6 @@ import com.example.demo.services.EquipmentService;
 public class EquipmentResource {
 
 	@Autowired
-	
 	private EquipmentService service;
 	
 	@GetMapping

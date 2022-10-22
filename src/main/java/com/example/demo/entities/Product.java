@@ -36,21 +36,20 @@ public class Product implements Serializable {
 	private Instant dataCadastro;
 
 	@JsonIgnore
-	@OneToMany(cascade = {CascadeType.MERGE}, fetch= FetchType.EAGER, mappedBy ="product")
+	@OneToMany(mappedBy ="product")
 	private Set<Called> calleds = new HashSet<>();
 
 	public Product() {
 	}
 
-	public Product(Long id, String modelo, String numeroDeSerie, String descricao, String dataFabricacao,
-			Instant dataCadastro) {
+	public Product(Long id, String modelo, String numeroDeSerie, String descricao, String dataFabricacao) {
 		super();
 		this.id = id;
 		this.modelo = modelo;
 		this.numeroDeSerie = numeroDeSerie;
 		this.descricao = descricao;
 		this.dataFabricacao = dataFabricacao;
-		this.dataCadastro = dataCadastro;
+		this.dataCadastro = Instant.now();
 
 	}
 

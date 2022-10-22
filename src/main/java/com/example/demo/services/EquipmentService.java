@@ -13,7 +13,7 @@ import com.example.demo.repositories.EquipmentRepository;
 
 @Service
 public class EquipmentService {
-	
+
 	@Autowired
 	private EquipmentRepository repository;
 
@@ -43,7 +43,7 @@ public class EquipmentService {
 		newEquipment.setDataFabricacao(obj.getDataFabricacao());
 		newEquipment.setDescricao(obj.getDescricao());
 		return repository.save(newEquipment);
-}
+	}
 
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public void delete(Long id) {
@@ -51,8 +51,8 @@ public class EquipmentService {
 	}
 
 	public Equipment FromDTO(EquipmentDTO objDto) {
-		return new Equipment(objDto.getId(),objDto.getNome(),objDto.getDataCadastro(), objDto.getDataFabricacao(), objDto.getDescricao(), objDto.getNumeroDeSerie(),objDto.getDisponibilidade());
+		return new Equipment(objDto.getId(), objDto.getNome(), objDto.getDataFabricacao(), objDto.getDescricao(),
+				objDto.getNumeroDeSerie(), objDto.getDisponibilidade());
 	}
-
 
 }

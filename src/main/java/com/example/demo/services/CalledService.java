@@ -13,26 +13,26 @@ import com.example.demo.repositories.CalledRepository;
 
 @Service
 public class CalledService {
-	
+
 	@Autowired
 	private CalledRepository repository;
-	
+
 	@PreAuthorize("isAuthenticated()")
-	public List<Called> findAll(){
+	public List<Called> findAll() {
 		return repository.findAll();
 	}
-	
+
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Called findById(Long id) {
 		Optional<Called> obj = repository.findById(id);
 		return obj.get();
 	}
-	
+
 	@PreAuthorize("isAuthenticated()")
 	public Called save(Called obj) {
 		return repository.save(obj);
 	}
-	
+
 	@PreAuthorize("isAuthenticated()")
 	public Called update(Long id, Called obj) {
 		Called newCall = findById(id);
@@ -44,15 +44,15 @@ public class CalledService {
 		newCall.setUser(obj.getUser());
 		newCall.setProduct(obj.getProduct());
 		return repository.save(newCall);
-}
-	
+	}
+
 	@PreAuthorize("isAuthenticated()")
-	public void delete(	Long id) {
+	public void delete(Long id) {
 		repository.deleteById(id);
 	}
-	
 
 	public Called FromDTO(CalledDTO objDto) {
-		return new Called(objDto.getId(), objDto.getTitulo(),objDto.getDescricao(), objDto.getImgUrl(),objDto.getSituacao(), objDto.getCriacaoChamado(), objDto.getUser(),objDto.getProduct());
+		return new Called(objDto.getId(), objDto.getTitulo(), objDto.getDescricao(), objDto.getImgUrl(),
+				objDto.getSituacao(), objDto.getUser(), objDto.getProduct());
 	}
 }

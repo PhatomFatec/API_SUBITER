@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Equipment {
@@ -28,6 +29,7 @@ public class Equipment {
 	private String numeroDeSerie;
 	private Boolean disponibilidade;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "equipment")
 	private Set<Schedule> schedule = new HashSet<>();
 
@@ -35,12 +37,12 @@ public class Equipment {
 
 	}
 
-	public Equipment(Long id, String nome, Instant dataCadastro, Date dataFabricacao, String descricao,
+	public Equipment(Long id, String nome,  Date dataFabricacao, String descricao,
 			String numeroDeSerie, Boolean disponibilidade) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.dataCadastro = dataCadastro;
+		this.dataCadastro = Instant.now();
 		this.dataFabricacao = dataFabricacao;
 		this.descricao = descricao;
 		this.numeroDeSerie = numeroDeSerie;

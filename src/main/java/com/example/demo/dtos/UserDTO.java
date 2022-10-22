@@ -1,17 +1,12 @@
 package com.example.demo.dtos;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-import com.example.demo.entities.Called;
 import com.example.demo.entities.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDTO implements Serializable {
 

@@ -1,12 +1,10 @@
 package com.example.demo.dtos;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 
 import com.example.demo.entities.Called;
 import com.example.demo.entities.Schedule;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ScheduleDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -14,13 +12,11 @@ public class ScheduleDTO implements Serializable {
 	private Long id;
 	private String servicoPrestado;
 	private String horario;
-	private String data;
+	private Date data;
 	private String endereco;
 	private String cidade;
 	private String cep;
 	private String estado;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant criacaoChamado;
 	private Called called;
 
 	public ScheduleDTO() {
@@ -36,7 +32,7 @@ public class ScheduleDTO implements Serializable {
 		this.cidade = obj.getCidade();
 		this.cep = obj.getCep();
 		this.estado = obj.getEstado();
-		this.criacaoChamado = obj.getCriacaoChamado();
+
 		this.called = obj.getCalled();
 	}
 
@@ -104,20 +100,14 @@ public class ScheduleDTO implements Serializable {
 		this.servicoPrestado = servicoPrestado;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
-	public Instant getCriacaoChamado() {
-		return criacaoChamado;
-	}
 
-	public void setCriacaoChamado(Instant criacaoChamado) {
-		this.criacaoChamado = criacaoChamado;
-	}
 
 }

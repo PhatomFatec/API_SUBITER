@@ -32,7 +32,7 @@ public class User implements Serializable {
 	private String cnpj; 
 
 	@JsonIgnore
-	@OneToMany(cascade = {CascadeType.ALL},fetch= FetchType.EAGER, mappedBy = "user")
+	@OneToMany(mappedBy = "user")
 	private Set<Called> calleds = new HashSet<>();
 
 	public User() {
