@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.demo.dtos.EquipmentDTO;
-import com.example.demo.entities.Equipment;
-import com.example.demo.services.EquipmentService;
+import com.example.demo.dtos.EquipDTO;
+import com.example.demo.entities.Equip;
+import com.example.demo.services.EquipService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
@@ -26,39 +26,40 @@ import io.swagger.annotations.Authorization;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/equipments")
-public class EquipmentResource {
+public class EquipResource {
 
 	@Autowired
-	private EquipmentService service;
+	private EquipService service;
 	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping
-	public ResponseEntity<List<Equipment>> findAll() {
-		List<Equipment> list = service.findAll();
+	public ResponseEntity<List<Equip>> findAll() {
+		List<Equip> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 
 	}
+	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping(value ="/{id}" )
-	public ResponseEntity<Equipment> findById(@PathVariable Long id){
-		Equipment equi = service.findById(id);
-		return ResponseEntity.ok().body(equi);
+	public ResponseEntity<Equip> findById(@PathVariable Long id){
+		Equip user = service.findById(id);
+		return ResponseEntity.ok().body(user);
 	}
 	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PostMapping
-	public ResponseEntity<Equipment> insertEquipment(@RequestBody EquipmentDTO objDto) {
-		Equipment obj = service.FromDTO(objDto);
-		obj = service.save(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+	public ResponseEntity<Equip> insertEquip(@RequestBody EquipDTO objDto) {
+		Equip call = service.FromDTO(objDto);
+		call = service.save(call);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(call.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PutMapping(value= "/{id}")
-	public ResponseEntity<Equipment> updateEquipment(@PathVariable Long id, @RequestBody Equipment obj){
-		Equipment newEquipment = service.update(id, obj);
-		return ResponseEntity.ok().body(newEquipment);
+	public ResponseEntity<Equip> updateEquip(@PathVariable Long id, @RequestBody Equip obj){
+		Equip newCall = service.update(id, obj);
+		return ResponseEntity.ok().body(newCall);
 	}
 	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
@@ -67,6 +68,4 @@ public class EquipmentResource {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
-	
 }

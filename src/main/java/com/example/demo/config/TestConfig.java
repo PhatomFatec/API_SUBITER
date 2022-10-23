@@ -1,18 +1,17 @@
 package com.example.demo.config;
 
+import com.example.demo.entities.User;
+import com.example.demo.repositories.CalledRepository;
+import com.example.demo.repositories.ProductRepository;
+import com.example.demo.repositories.ScheduleRepository;
+import com.example.demo.repositories.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.example.demo.entities.User;
-import com.example.demo.repositories.CalledRepository;
-import com.example.demo.repositories.EquipmentRepository;
-import com.example.demo.repositories.ProductRepository;
-import com.example.demo.repositories.ScheduleRepository;
-import com.example.demo.repositories.UserRepository;
 
 @Configuration
 @Profile("test")
@@ -21,8 +20,6 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private CalledRepository calledRepository;
 
-	@Autowired
-	private EquipmentRepository equipmentRepository;
 
 	@Autowired
 	private ProductRepository productRepository;

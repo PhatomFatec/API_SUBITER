@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
@@ -20,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Schedule implements Serializable {
@@ -47,9 +46,9 @@ public class Schedule implements Serializable {
 	@MapsId
 	private Called called;
 
-	@ManyToMany
-	@JoinTable(name = "schedule_equipment", joinColumns = @JoinColumn(name = "schedule_id"), inverseJoinColumns = @JoinColumn(name = "equipment_id"))
-	private Set<Equipment> equipment = new HashSet<>();
+	@JsonIgnore
+	@ManyToMany(mappedBy = "schedules")
+	private Set<Equip> equipments = new HashSet<>();
 
 	public Schedule() {
 	}
@@ -77,12 +76,12 @@ public class Schedule implements Serializable {
 		this.called = called;
 	}
 
-	public Set<Equipment> getEquipment() {
-		return equipment;
+	public Set<Equip> getEquipment() {
+		return equipments;
 	}
 
-	public void setEquipment(Set<Equipment> equipment) {
-		this.equipment = equipment;
+	public void setEquipment(Set<Equip> equipment) {
+		this.equipments = equipment;
 	}
 
 	public Instant getCriacaoChamado() {
@@ -140,7 +139,7 @@ public class Schedule implements Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
 	public Date getData() {
 		return data;
 	}
@@ -173,8 +172,5 @@ public class Schedule implements Serializable {
 	public void setServicoPrestado(String servicoPrestado) {
 		this.servicoPrestado = servicoPrestado;
 	}
-
-
-
 
 }

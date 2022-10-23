@@ -2,18 +2,16 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
 public class User implements Serializable {
@@ -29,7 +27,7 @@ public class User implements Serializable {
 	private String telefone;
 	private String nome;
 	private String razaoSocial;
-	private String cnpj; 
+	private String cnpj;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
@@ -52,58 +50,37 @@ public class User implements Serializable {
 		this.cnpj = cnpj;
 	}
 
-
 	public Set<Called> getCalleds() {
 		return calleds;
 	}
-
-
 
 	public void setCalleds(Set<Called> calleds) {
 		this.calleds = calleds;
 	}
 
-
-
-
-
-
-
 	public String getRoles() {
 		return roles;
 	}
-
-
 
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
 
-
-
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
-
-
 
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
 
-
-
 	public String getCnpj() {
 		return cnpj;
 	}
 
-
-
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-
-
 
 	public String getNome() {
 		return nome;
@@ -151,6 +128,23 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }

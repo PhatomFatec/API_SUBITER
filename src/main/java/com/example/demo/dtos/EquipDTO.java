@@ -1,26 +1,30 @@
 package com.example.demo.dtos;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import com.example.demo.entities.Equipment;
+import com.example.demo.entities.Equip;
 
-public class EquipmentDTO implements Serializable {
+public class EquipDTO implements Serializable {
+
 	private static final long serialVersionUID = 1L;
+
 	private Long id;
-	private String nome;
-	private Date dataFabricacao;
 	private String descricao;
+	private String nome;
 	private String numeroDeSerie;
 	private Boolean disponibilidade;
 
-	public EquipmentDTO(Equipment obj) {
+	public EquipDTO() {
+
+	}
+
+	public EquipDTO(Equip obj) {
 		this.id = obj.getId();
-		this.nome = obj.getNome();
-		this.dataFabricacao = obj.getDataFabricacao();
 		this.descricao = obj.getDescricao();
+		this.nome = obj.getNome();
 		this.numeroDeSerie = obj.getNumeroDeSerie();
 		this.disponibilidade = obj.getDisponibilidade();
+
 	}
 
 	public Long getId() {
@@ -31,28 +35,20 @@ public class EquipmentDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Date getDataFabricacao() {
-		return dataFabricacao;
-	}
-
-	public void setDataFabricacao(Date dataFabricacao) {
-		this.dataFabricacao = dataFabricacao;
-	}
-
 	public String getDescricao() {
 		return descricao;
 	}
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getNumeroDeSerie() {
