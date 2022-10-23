@@ -20,41 +20,48 @@ import com.example.demo.dtos.EquipmentDTO;
 import com.example.demo.entities.Equipment;
 import com.example.demo.services.EquipmentService;
 
-@CrossOrigin
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/equipments")
-
 public class EquipmentResource {
 
 	@Autowired
 	private EquipmentService service;
 	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping
 	public ResponseEntity<List<Equipment>> findAll() {
 		List<Equipment> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 
 	}
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping(value ="/{id}" )
 	public ResponseEntity<Equipment> findById(@PathVariable Long id){
 		Equipment equi = service.findById(id);
 		return ResponseEntity.ok().body(equi);
 	}
 	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PostMapping
-	public ResponseEntity<Equipment> insertEquipment(@RequestBody 	EquipmentDTO objDto) {
+	public ResponseEntity<Equipment> insertEquipment(@RequestBody EquipmentDTO objDto) {
 		Equipment obj = service.FromDTO(objDto);
 		obj = service.save(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PutMapping(value= "/{id}")
 	public ResponseEntity<Equipment> updateEquipment(@PathVariable Long id, @RequestBody Equipment obj){
 		Equipment newEquipment = service.update(id, obj);
 		return ResponseEntity.ok().body(newEquipment);
 	}
+	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);

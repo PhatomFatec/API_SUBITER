@@ -20,8 +20,10 @@ import com.example.demo.dtos.ProductDTO;
 import com.example.demo.entities.Product;
 import com.example.demo.services.ProductService;
 
-@CrossOrigin
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/products")
 public class ProductResource {
@@ -29,19 +31,21 @@ public class ProductResource {
 	@Autowired
 	private ProductService service;
 	
-
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Product>> findAll() {
 		List<Product> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Product> findById(@PathVariable Long id) {
 		Product prod = service.findById(id);
 		return ResponseEntity.ok().body(prod);
 	}
 
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PostMapping
 	public ResponseEntity<Product> saveProduct(@RequestBody ProductDTO objDto) {
 		Product obj = service.FromDTO(objDto);
@@ -50,12 +54,14 @@ public class ProductResource {
 		return ResponseEntity.created(uri).build();
 	}
 
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PutMapping(value= "/{id}")
 	public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product obj){
 		Product newProd = service.update(id, obj);
 		return ResponseEntity.ok().body(newProd);
 	}
 	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);

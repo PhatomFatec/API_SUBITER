@@ -47,8 +47,7 @@ public class Called implements Serializable {
 	public Called() {
 	}
 
-	public Called(Long id, String titulo, String descricao, String imgUrl, String situacao,
-			User user, Product product) {
+	public Called(Long id, String titulo, String descricao, String imgUrl, String situacao, User user) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -57,7 +56,6 @@ public class Called implements Serializable {
 		this.situacao = situacao;
 		this.criacaoChamado = Instant.now();
 		this.user = user;
-		this.product = product;
 	}
 
 	public Schedule getSchedule() {

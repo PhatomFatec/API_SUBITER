@@ -20,6 +20,9 @@ import com.example.demo.dtos.UserDTO;
 import com.example.demo.entities.User;
 import com.example.demo.services.UserService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
+
 @CrossOrigin
 
 @RestController
@@ -29,6 +32,7 @@ public class UserResource {
 	@Autowired
 	private UserService service;
 
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping
 	public ResponseEntity<List<User>> findAll() {
 		List<User> list = service.findAll();
@@ -36,12 +40,14 @@ public class UserResource {
 
 	}
 
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
 		User user = service.findById(id);
 		return ResponseEntity.ok().body(user);
 	}
 
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PostMapping
 	public ResponseEntity<User> insert(@RequestBody UserDTO obj) {
 		User user1 = service.fromDto(obj);
@@ -50,12 +56,14 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 	}
 
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PutMapping(value= "/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User obj){
 		User newUser = service.update(id, obj);

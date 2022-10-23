@@ -39,9 +39,8 @@ public class EquipmentService {
 		newEquipment.setNome(obj.getNome());
 		newEquipment.setNumeroDeSerie(obj.getNumeroDeSerie());
 		newEquipment.setDescricao(obj.getDescricao());
-		newEquipment.setDataCadastro(obj.getDataCadastro());
 		newEquipment.setDataFabricacao(obj.getDataFabricacao());
-		newEquipment.setDescricao(obj.getDescricao());
+		newEquipment.setDisponibilidade(obj.getDisponibilidade());
 		return repository.save(newEquipment);
 	}
 

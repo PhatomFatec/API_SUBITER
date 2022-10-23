@@ -1,7 +1,7 @@
 package com.example.demo.dtos;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import com.example.demo.entities.Equipment;
 
@@ -67,7 +67,7 @@ public class EquipmentDTO implements Serializable {
 		return disponibilidade;
 	}
 
-	public void setDisponilidade(Boolean disponibilidade) {
+	public void setDisponibilidade(Boolean disponibilidade) {
 		this.disponibilidade = disponibilidade;
 	}
 

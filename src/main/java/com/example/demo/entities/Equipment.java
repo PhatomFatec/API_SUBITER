@@ -1,7 +1,9 @@
 package com.example.demo.entities;
 
-import java.sql.Date;
+
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,12 +12,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Equipment {
+public class Equipment implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -24,7 +31,9 @@ public class Equipment {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant dataCadastro;
 
+	@Temporal(TemporalType.DATE)
 	private Date dataFabricacao;
+	
 	private String descricao;
 	private String numeroDeSerie;
 	private Boolean disponibilidade;
@@ -49,6 +58,7 @@ public class Equipment {
 		this.disponibilidade = disponibilidade;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -97,11 +107,19 @@ public class Equipment {
 		this.numeroDeSerie = numeroDeSerie;
 	}
 
+	public Set<Schedule> getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(Set<Schedule> schedule) {
+		this.schedule = schedule;
+	}
+
 	public Boolean getDisponibilidade() {
 		return disponibilidade;
 	}
 
-	public void setDisponilidade(Boolean disponibilidade) {
+	public void setDisponibilidade(Boolean disponibilidade) {
 		this.disponibilidade = disponibilidade;
 	}
 

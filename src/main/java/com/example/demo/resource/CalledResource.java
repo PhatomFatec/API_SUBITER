@@ -20,8 +20,10 @@ import com.example.demo.dtos.CalledDTO;
 import com.example.demo.entities.Called;
 import com.example.demo.services.CalledService;
 
-@CrossOrigin
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/calleds")
 public class CalledResource {
@@ -29,18 +31,22 @@ public class CalledResource {
 	@Autowired
 	private CalledService service;
 	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping
 	public ResponseEntity<List<Called>> findAll() {
 		List<Called> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 
 	}
+	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping(value ="/{id}" )
 	public ResponseEntity<Called> findById(@PathVariable Long id){
 		Called user = service.findById(id);
 		return ResponseEntity.ok().body(user);
 	}
 	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PostMapping
 	public ResponseEntity<Called> insertCalled(@RequestBody CalledDTO objDto) {
 		Called call = service.FromDTO(objDto);
@@ -49,11 +55,14 @@ public class CalledResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PutMapping(value= "/{id}")
 	public ResponseEntity<Called> updateCalled(@PathVariable Long id, @RequestBody Called obj){
 		Called newCall = service.update(id, obj);
 		return ResponseEntity.ok().body(newCall);
 	}
+	
+	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);

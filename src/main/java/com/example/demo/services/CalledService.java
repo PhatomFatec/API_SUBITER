@@ -53,6 +53,6 @@ public class CalledService {
 
 	public Called FromDTO(CalledDTO objDto) {
 		return new Called(objDto.getId(), objDto.getTitulo(), objDto.getDescricao(), objDto.getImgUrl(),
-				objDto.getSituacao(), objDto.getUser(), objDto.getProduct());
+				objDto.getSituacao(), objDto.getUser());
 	}
 }

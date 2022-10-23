@@ -3,7 +3,6 @@ package com.example.demo.dtos;
 import java.io.Serializable;
 
 import com.example.demo.entities.Called;
-import com.example.demo.entities.Product;
 import com.example.demo.entities.User;
 
 public class CalledDTO implements Serializable {
@@ -15,7 +14,6 @@ public class CalledDTO implements Serializable {
 	private String imgUrl;
 	private String situacao;
 	private User user;
-	private Product product;
 
 	public CalledDTO() {
 
@@ -27,12 +25,10 @@ public class CalledDTO implements Serializable {
 		this.descricao = obj.getDescricao();
 		this.imgUrl = obj.getImgUrl();
 		this.situacao = obj.getSituacao();
-		this.user = obj.getUser();
-		this.product = obj.getProduct();
+		this.setUser(obj.getUser());
+
 	}
 
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -65,6 +61,13 @@ public class CalledDTO implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
 
 	public User getUser() {
 		return user;
@@ -72,22 +75,6 @@ public class CalledDTO implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public String getSituacao() {
-		return situacao;
-	}
-
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
 	}
 
 }
