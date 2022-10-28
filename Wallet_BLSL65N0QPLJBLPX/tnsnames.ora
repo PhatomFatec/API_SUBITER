@@ -1,0 +1,8 @@
+blsl65n0qpljblpx_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-vinhedo-1.oraclecloud.com))(connect_data=(service_name=g241943c9c5b6d7_blsl65n0qpljblpx_high.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-vinhedo-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+blsl65n0qpljblpx_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-vinhedo-1.oraclecloud.com))(connect_data=(service_name=g241943c9c5b6d7_blsl65n0qpljblpx_low.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-vinhedo-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+blsl65n0qpljblpx_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-vinhedo-1.oraclecloud.com))(connect_data=(service_name=g241943c9c5b6d7_blsl65n0qpljblpx_medium.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-vinhedo-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+
+

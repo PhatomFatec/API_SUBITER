@@ -8,7 +8,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dtos.ScheduleDTO;
+import com.example.demo.entities.Equip;
 import com.example.demo.entities.Schedule;
+import com.example.demo.repositories.EquipRepository;
 import com.example.demo.repositories.ScheduleRepository;
 
 @Service
@@ -16,6 +18,9 @@ public class ScheduleService {
 
 	@Autowired
 	private ScheduleRepository repository;
+
+	@Autowired
+	private EquipRepository repositoryEquip;
 
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public List<Schedule> findAll() {
@@ -31,6 +36,16 @@ public class ScheduleService {
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule insert(Schedule obj) {
 		return repository.save(obj);
+	}
+
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
+	public Schedule addEquip(Long idSchedule, Long idEquip) {
+
+		Schedule sche = repository.findById(idSchedule).get();
+		Equip equip = repositoryEquip.findById(idEquip).get();
+		sche.getEquipment().add(equip);
+		return repository.save(sche);
+
 	}
 
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")

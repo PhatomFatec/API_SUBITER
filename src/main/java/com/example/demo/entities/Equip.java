@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Equip implements Serializable {
 
@@ -29,8 +31,8 @@ public class Equip implements Serializable {
 	private Instant dataCadastro;
 	private Boolean disponibilidade;
 
-	@ManyToMany
-	@JoinTable(name = "equip_schedule", joinColumns = @JoinColumn(name = "equip_id"), inverseJoinColumns = @JoinColumn(name = "schedule_id"))
+	@JsonIgnore
+	@ManyToMany(mappedBy = "equipments")
 	private Set<Schedule> schedules = new HashSet<>();
 
 	public Equip() {

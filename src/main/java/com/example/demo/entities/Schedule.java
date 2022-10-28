@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
@@ -46,8 +48,8 @@ public class Schedule implements Serializable {
 	@MapsId
 	private Called called;
 
-	@JsonIgnore
-	@ManyToMany(mappedBy = "schedules")
+	@ManyToMany
+	@JoinTable(name = "equip_schedule", joinColumns = @JoinColumn(name = "schedule_id"), inverseJoinColumns = @JoinColumn(name = "equip_id"))
 	private Set<Equip> equipments = new HashSet<>();
 
 	public Schedule() {
