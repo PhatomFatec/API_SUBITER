@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,8 @@ public class Called implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "cal_id")
 	private Long id;
 	private String titulo;
 	private String descricao;
@@ -33,11 +35,11 @@ public class Called implements Serializable {
 	private Instant criacaoChamado;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	@JoinColumn(name = "u_id")
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	@JoinColumn(name = "prod_id")
 	private Product product;
 
 	@JsonIgnore

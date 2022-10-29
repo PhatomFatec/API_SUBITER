@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,7 @@ public class Schedule implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sc_id")
 	private Long id;
 	private String servicoPrestado;
 	private String horario;
@@ -49,7 +51,9 @@ public class Schedule implements Serializable {
 	private Called called;
 
 	@ManyToMany
-	@JoinTable(name = "equip_schedule", joinColumns = @JoinColumn(name = "schedule_id"), inverseJoinColumns = @JoinColumn(name = "equip_id"))
+	@JoinTable(name = "equip_schedule", 
+	joinColumns = @JoinColumn(name = "sc_id"), 
+	inverseJoinColumns = @JoinColumn(name = "eq_id"))
 	private Set<Equip> equipments = new HashSet<>();
 
 	public Schedule() {
