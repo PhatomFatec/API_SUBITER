@@ -1,27 +1,27 @@
 <template>
-  <div class="chamados">
+  <div class="clientes">
     <div class="sub-menu"></div>
-    <FormChamado @change="load" />
-    <DeleteChamado @change="load" />
-    <ChamadosComponent :chamados="chamados" />
+    <FormCliente @change="load" />
+    <DeleteCliente @change="load" />
+    <ClientesComponent :clientes="clientes" />
   </div>
 </template>
 
 <script>
-import ChamadosComponent from "@/components/ChamadosComponent.vue";
-import FormChamado from "@/components/forms/FormChamado.vue";
-import DeleteChamado from "@/components/forms/DeleteChamado.vue";
+import ClientesComponent from "@/components/ClientesComponent.vue";
+import FormCliente from "@/components/forms/FormCliente.vue";
+import DeleteCliente from "@/components/forms/DeleteCliente.vue";
 
 export default {
-  name: "ChamadosView",
+  name: "ClientesView",
   components: {
-    ChamadosComponent,
-    FormChamado,
-    DeleteChamado,
+    ClientesComponent,
+    FormCliente,
+    DeleteCliente,
   },
   data() {
     return {
-      chamados: [],
+      clientes: [],
     };
   },
   methods: {
@@ -38,10 +38,14 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/calleds", requestOptions)
+      fetch("https://subiter.azurewebsites.net/users", requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          this.chamados = JSON.parse(result);
+          this.clientes = JSON.parse(result);
+          console.log(typeof result);
+          console.log(JSON.parse(result));
+          console.log("result");
+          console.log(typeof JSON.parse(result));
         })
         .catch((error) => console.log("error", error));
     },
@@ -70,10 +74,7 @@ export default {
     }, 1);
     //remove os botões do CRUD para usuários sem acesso
     setTimeout(function () {
-      if (
-        localStorage.getItem("Role") != "ROLE_ADMIN" &&
-        localStorage.getItem("Role") != "ROLE_CLIENT"
-      ) {
+      if (localStorage.getItem("Role") != "ROLE_ADMIN") {
         document.getElementById("btn1").style.display = "none";
         document.getElementById("btn2").style.display = "none";
         document.getElementById("btn3").style.display = "none";

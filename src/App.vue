@@ -15,6 +15,12 @@ export default {
     NavbarComponent,
     MenuComponent,
   },
+  methods:{
+    closeModal() {
+      var form = document.getElementById("modal");
+      form.style.display = "flex";
+    },
+  }
 };
 </script>
 

@@ -1,27 +1,27 @@
 <template>
-  <div class="chamados">
+  <div class="agendamentos">
     <div class="sub-menu"></div>
-    <FormChamado @change="load" />
-    <DeleteChamado @change="load" />
-    <ChamadosComponent :chamados="chamados" />
+    <FormAgendamento @change="load" />
+    <DeleteAgendamento @change="load" />
+    <AgendamentosComponent :agendamentos="agendamentos" />
   </div>
 </template>
 
 <script>
-import ChamadosComponent from "@/components/ChamadosComponent.vue";
-import FormChamado from "@/components/forms/FormChamado.vue";
-import DeleteChamado from "@/components/forms/DeleteChamado.vue";
+import AgendamentosComponent from "@/components/AgendamentosComponent.vue";
+import FormAgendamento from "@/components/forms/FormAgendamento.vue";
+import DeleteAgendamento from "@/components/forms/DeleteAgendamento.vue";
 
 export default {
-  name: "ChamadosView",
+  name: "AgendamentosView",
   components: {
-    ChamadosComponent,
-    FormChamado,
-    DeleteChamado,
+    AgendamentosComponent,
+    FormAgendamento,
+    DeleteAgendamento,
   },
   data() {
     return {
-      chamados: [],
+      agendamentos: [],
     };
   },
   methods: {
@@ -38,10 +38,10 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/calleds", requestOptions)
+      fetch("https://subiter.azurewebsites.net/schedule", requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          this.chamados = JSON.parse(result);
+          this.agendamentos = JSON.parse(result);
         })
         .catch((error) => console.log("error", error));
     },
@@ -70,13 +70,16 @@ export default {
     }, 1);
     //remove os botões do CRUD para usuários sem acesso
     setTimeout(function () {
-      if (
-        localStorage.getItem("Role") != "ROLE_ADMIN" &&
-        localStorage.getItem("Role") != "ROLE_CLIENT"
-      ) {
+      if (localStorage.getItem("Role") != "ROLE_ADMIN") {
         document.getElementById("btn1").style.display = "none";
         document.getElementById("btn2").style.display = "none";
         document.getElementById("btn3").style.display = "none";
+
+        var styles = `.v-card .v-input{right:10% !important;}`;
+
+        var styleSheet = document.createElement("style");
+        styleSheet.innerText = styles;
+        document.head.appendChild(styleSheet);
       }
     }, 10);
   },
