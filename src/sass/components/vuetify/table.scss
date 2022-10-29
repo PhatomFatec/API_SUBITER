@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
+.v-card {
+    box-shadow: none !important;
+    padding: 0 10% 50px 10%;
+
+    .v-card__title {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .v-input__control {
+        background: #e9e9e9;
+        border-radius: 50px;
+        padding: 4px;
+        padding-left: 10px !important;
+        max-width: 300px !important;
+        min-width: 300px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        label {
+            font-size: 14px;
+            color: #757575;
+        }
+
+        ::before {
+            content: none !important;
+        }
+
+        svg {
+            color: rgb(95, 95, 95);
+            margin-left: 4px;
+        }
+    }
+
+
+
+    .v-text-field--single-line {
+        ::after {
+            content: none !important;
+        }
+    }
+
+    .v-text-field {
+        margin: 0;
+        padding: 0;
+    }
+
+    .v-input {
+        flex: none;
+        position: absolute;
+        right: calc(10% + 150px);
+    }
+
+    .v-input__slot {
+        width: 235px;
+        margin-left: 10px;
+    }
+}
+
+.v-data-footer__select {
+    display: none;
+}

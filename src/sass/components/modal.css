@@ -1,0 +1,98 @@
+.modal {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.modal .box {
+  background: #fff;
+  padding: 50px 50px 30px 50px;
+  border-radius: 12px;
+  position: relative;
+}
+.modal .box svg {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+.modal .box h3 {
+  margin-bottom: 20px;
+}
+.modal .box hr {
+  border: none;
+  height: 2px;
+  background: #2196F3;
+  margin-bottom: 7px;
+}
+.modal .box fieldset {
+  border-radius: 4px;
+  border-color: #2196F3;
+  width: 350px;
+}
+.modal .box fieldset legend {
+  margin-left: 5px;
+  padding: 0 5px;
+  font-size: 12px;
+  color: #2196F3;
+}
+.modal .box fieldset:not(:last-child) {
+  margin-bottom: 20px;
+}
+.modal .box input,
+.modal .box textarea {
+  border: 0;
+  width: calc(100% - 10px);
+  margin: 0px 5px 5px 5px;
+  resize: none;
+}
+.modal .box input:focus,
+.modal .box textarea:focus {
+  outline: none;
+}
+.modal .box .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.modal .box .buttons button {
+  height: 36px;
+  width: 110px;
+  border: solid 1px #2196F3;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.modal .box .buttons button#cancelar {
+  background: #fff;
+  color: #2196F3;
+  font-weight: 700;
+  margin-right: 15px;
+}
+.modal .box .buttons button#cancelar:hover {
+  background: #da1b1b;
+  border-color: #da1b1b;
+  color: #fff;
+}
+.modal .box .buttons button#criar {
+  background: #2196F3;
+  color: #fff;
+  font-weight: 700;
+}
+.modal .box .buttons button#criar:hover {
+  color: #fff;
+}
+.modal select {
+  border: none;
+  padding-left: 5px;
+  width: 100%;
+}
+.modal select:focus {
+  outline: none;
+}/*# sourceMappingURL=modal.css.map */

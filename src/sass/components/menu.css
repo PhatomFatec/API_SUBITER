@@ -1,0 +1,44 @@
+menu {
+  display: flex;
+  width: 100%;
+  margin-top: 80px;
+  padding: 0 10%;
+}
+menu h1 {
+  margin-bottom: 15px;
+  color: #bbbbbb;
+  transition: color 0.5s;
+}
+menu svg {
+  margin-bottom: 10px;
+  fill: #bbbbbb;
+  transition: fill 0.5s;
+}
+menu hr {
+  width: 100%;
+  height: 3px;
+  border: 0;
+  background-color: #E0E0E0;
+  transition: background 0.5s;
+}
+menu .menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 25%;
+}
+menu .menu:hover hr {
+  transition: background 0s;
+  background: #c5c5c5;
+}
+
+a.router-link-exact-active svg {
+  fill: #0257FD;
+}
+a.router-link-exact-active h1 {
+  color: #0257FD;
+}
+a.router-link-exact-active hr {
+  background: #0257FD !important;
+}/*# sourceMappingURL=menu.css.map */
