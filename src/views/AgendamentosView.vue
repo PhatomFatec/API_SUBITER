@@ -48,6 +48,10 @@ export default {
   },
   //executa assim que a tela é carregada
   created() {
+    //redireciona para a página de login
+    if(localStorage.length == 0){
+      window.location.replace("/login")
+    }
     //chama a função que carrega o get da tabela
     this.load();
     //insere botões responsáveis pelas funções do CRUD
@@ -75,7 +79,7 @@ export default {
         document.getElementById("btn2").style.display = "none";
         document.getElementById("btn3").style.display = "none";
 
-        var styles = `.v-card .v-input{right:10% !important;}`;
+        var styles = `.v-card .v-input{right:10%;}`;
 
         var styleSheet = document.createElement("style");
         styleSheet.innerText = styles;
