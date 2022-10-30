@@ -10,14 +10,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	public User findByEmail(String email);
 
-	public List<User> findByNomeContains(String nome);
+	public List<User> findByNameContains(String name);
 
-	public User findByNomeAndPassword(String nome, String password);
+	public User findByNameAndPassword(String name, String password);
 
-	// @Query("select u from User u where u.nome = ?1")
-	// public User buscarPorNome(String nome);
-
-	// @Query("select u from User u where u.nome = ?1 and u.senha = ?2")
-	// public User buscarPorNomeESenha(String nome, String senha);
 
 }

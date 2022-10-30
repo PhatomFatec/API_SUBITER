@@ -8,22 +8,22 @@ public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private String modelo;
-	private String numeroDeSerie;
-	private String descricao;
-	private String dataFabricacao;
+	private String model;
+	private String serialNumber;
+	private String description;
+	private String manufactureDate;
 
 	public ProductDTO() {
 
 	}
 
-	public ProductDTO(Product obj) {
-		this.id = obj.getId();
-		this.modelo = obj.getModelo();
-		this.numeroDeSerie = obj.getNumeroDeSerie();
-		this.descricao = obj.getDescricao();
-		this.dataFabricacao = obj.getDataFabricacao();
-
+	public ProductDTO(Long id, String model, String serialNumber, String description, String manufactureDate) {
+		super();
+		this.id = id;
+		this.model = model;
+		this.serialNumber = serialNumber;
+		this.description = description;
+		this.manufactureDate = manufactureDate;
 	}
 
 	public Long getId() {
@@ -34,36 +34,36 @@ public class ProductDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getModelo() {
-		return modelo;
+	public String getModel() {
+		return model;
 	}
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
-	public String getNumeroDeSerie() {
-		return numeroDeSerie;
+	public String getSerialNumber() {
+		return serialNumber;
 	}
 
-	public void setNumeroDeSerie(String numeroDeSerie) {
-		this.numeroDeSerie = numeroDeSerie;
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getDataFabricacao() {
-		return dataFabricacao;
+	public String getManufactureDate() {
+		return manufactureDate;
 	}
 
-	public void setDataFabricacao(String dataFabricacao) {
-		this.dataFabricacao = dataFabricacao;
+	public void setManufactureDate(String manufactureDate) {
+		this.manufactureDate = manufactureDate;
 	}
 
 }

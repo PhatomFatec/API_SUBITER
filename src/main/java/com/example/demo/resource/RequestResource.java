@@ -16,50 +16,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.demo.dtos.CalledDTO;
-import com.example.demo.entities.Called;
-import com.example.demo.services.CalledService;
+import com.example.demo.dtos.RequestDTO;
+import com.example.demo.entities.Request;
+import com.example.demo.services.RequestService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/calleds")
-public class CalledResource {
+@RequestMapping(value = "/requests")
+public class RequestResource {
 
 	@Autowired
-	private CalledService service;
+	private RequestService service;
 	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping
-	public ResponseEntity<List<Called>> findAll() {
-		List<Called> list = service.findAll();
+	public ResponseEntity<List<Request>> findAll() {
+		List<Request> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 
 	}
 	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@GetMapping(value ="/{id}" )
-	public ResponseEntity<Called> findById(@PathVariable Long id){
-		Called user = service.findById(id);
+	public ResponseEntity<Request> findById(@PathVariable Long id){
+		Request user = service.findById(id);
 		return ResponseEntity.ok().body(user);
 	}
 	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PostMapping
-	public ResponseEntity<Called> insertCalled(@RequestBody CalledDTO objDto) {
-		Called call = service.FromDTO(objDto);
-		call = service.save(call);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(call.getId()).toUri();
+	public ResponseEntity<Request> insertRequest(@RequestBody RequestDTO objDto) {
+		Request req = service.FromDTO(objDto);
+		req = service.save(req);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(req.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })
 	@PutMapping(value= "/{id}")
-	public ResponseEntity<Called> updateCalled(@PathVariable Long id, @RequestBody Called obj){
-		Called newCall = service.update(id, obj);
-		return ResponseEntity.ok().body(newCall);
+	public ResponseEntity<Request> updateRequest(@PathVariable Long id, @RequestBody Request obj){
+		Request newRequest = service.update(id, obj);
+		return ResponseEntity.ok().body(newRequest);
 	}
 	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="Bearer") })

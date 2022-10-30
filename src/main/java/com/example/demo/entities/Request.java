@@ -13,26 +13,38 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Called implements Serializable {
+@Table(name="request")
+public class Request implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "cal_id")
+	@Column(name = "req_id")
 	private Long id;
-	private String titulo;
-	private String descricao;
+	
+	@Column(name ="req_title")
+	private String title;
+	
+	@Column(name ="req_description")
+	private String description;
+	
+	@Column(name ="req_imgurl")
 	private String imgUrl;
-	private String situacao;
-
+	
+	@Column(name ="req_status")
+	private String status;
+	
+	
+	@Column(name ="req_date")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant criacaoChamado;
+	private Instant requestDate;
 
 	@ManyToOne
 	@JoinColumn(name = "u_id")
@@ -43,20 +55,20 @@ public class Called implements Serializable {
 	private Product product;
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "called", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
 	private Schedule schedule;
 
-	public Called() {
+	public Request() {
 	}
 
-	public Called(Long id, String titulo, String descricao, String imgUrl, String situacao, User user) {
+	public Request(Long id, String title, String description, String imgUrl, String status, User user) {
 		super();
 		this.id = id;
-		this.titulo = titulo;
-		this.descricao = descricao;
+		this.title = title;
+		this.description = description;
 		this.imgUrl = imgUrl;
-		this.situacao = situacao;
-		this.criacaoChamado = Instant.now();
+		this.status = status;
+		this.requestDate = Instant.now();
 		this.user = user;
 	}
 
@@ -76,20 +88,20 @@ public class Called implements Serializable {
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getImgUrl() {
@@ -100,12 +112,12 @@ public class Called implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public Instant getCriacaoChamado() {
-		return criacaoChamado;
+	public Instant getRequestDate() {
+		return requestDate;
 	}
 
-	public void setCriacaoChamado(Instant criacaoChamado) {
-		this.criacaoChamado = criacaoChamado;
+	public void setRequestDate(Instant requestDate) {
+		this.requestDate = requestDate;
 	}
 
 	public User getUser() {
@@ -137,16 +149,16 @@ public class Called implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Called other = (Called) obj;
+		Request other = (Request) obj;
 		return Objects.equals(id, other.id);
 	}
 
-	public String getSituacao() {
-		return situacao;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

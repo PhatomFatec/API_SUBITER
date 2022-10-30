@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name="schedule")
 public class Schedule implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,70 +34,56 @@ public class Schedule implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sc_id")
 	private Long id;
-	private String servicoPrestado;
-	private String horario;
 
+	@Column(name = "sc_service_provided")
+	private String serviceProvided;
+
+	@Column(name = "sc_appointment")
+	private String appointment;
+
+	@Column(name = "sc_date")
 	@Temporal(TemporalType.DATE)
-	private Date data;
+	private Date date;
 
-	private String endereco;
-	private String cidade;
-	private String cep;
-	private String estado;
+	@Column(name = "sc_address")
+	private String address;
 
+	@Column(name = "sc_city")
+	private String city;
+
+	@Column(name = "sc_zipcode")
+	private String zipcode;
+
+	@Column(name = "sc_state")
+	private String state;
+
+	@Column(name = "sc_register_date")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant criacaoChamado;
+	private Instant registerDate;
 
 	@OneToOne
 	@MapsId
-	private Called called;
+	private Request request;
 
 	@ManyToMany
-	@JoinTable(name = "equip_schedule", 
-	joinColumns = @JoinColumn(name = "sc_id"), 
-	inverseJoinColumns = @JoinColumn(name = "eq_id"))
-	private Set<Equip> equipments = new HashSet<>();
+	@JoinTable(name = "equipment_schedule", joinColumns = @JoinColumn(name = "sc_id"), inverseJoinColumns = @JoinColumn(name = "eq_id"))
+	private Set<Equipment> equipments = new HashSet<>();
 
 	public Schedule() {
 	}
 
-	public Schedule(Long id, String servicoPrestado, String horario, Date data, String endereco, String cidade,
-			String cep, String estado, Called called) {
+	public Schedule(Long id, String serviceProvided, String appointment, Date date, String address, String city,
+			String zipcode, String state, Request request) {
 		super();
 		this.id = id;
-		this.servicoPrestado = servicoPrestado;
-		this.horario = horario;
-		this.data = data;
-		this.endereco = endereco;
-		this.cidade = cidade;
-		this.cep = cep;
-		this.estado = estado;
-		this.criacaoChamado = Instant.now();
-		this.called = called;
-	}
-
-	public Called getCalled() {
-		return called;
-	}
-
-	public void setCalled(Called called) {
-		this.called = called;
-	}
-
-	public Set<Equip> getEquipment() {
-		return equipments;
-	}
-
-	public void setEquipment(Set<Equip> equipment) {
-		this.equipments = equipment;
-	}
-
-	public Instant getCriacaoChamado() {
-		return criacaoChamado;
-	}
-
-	public void setCriacaoChamado(Instant criacaoChamado) {
-		this.criacaoChamado = criacaoChamado;
+		this.serviceProvided = serviceProvided;
+		this.appointment = appointment;
+		this.date = date;
+		this.address = address;
+		this.city = city;
+		this.zipcode = zipcode;
+		this.state = state;
+		this.request = request;
 	}
 
 	public Long getId() {
@@ -106,52 +94,84 @@ public class Schedule implements Serializable {
 		this.id = id;
 	}
 
-	public String getHorario() {
-		return horario;
+	public String getServiceProvided() {
+		return serviceProvided;
 	}
 
-	public void setHorario(String horario) {
-		this.horario = horario;
+	public void setServiceProvided(String serviceProvided) {
+		this.serviceProvided = serviceProvided;
 	}
 
-	public String getEndereco() {
-		return endereco;
+	public String getAppointment() {
+		return appointment;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setAppointment(String appointment) {
+		this.appointment = appointment;
 	}
 
-	public String getCidade() {
-		return cidade;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public String getCep() {
-		return cep;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getCity() {
+		return city;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	public Date getData() {
-		return data;
+	public String getZipcode() {
+		return zipcode;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Instant getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(Instant registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	public Request getRequest() {
+		return request;
+	}
+
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+
+	public Set<Equipment> getEquipments() {
+		return equipments;
+	}
+
+	public void setEquipments(Set<Equipment> equipments) {
+		this.equipments = equipments;
 	}
 
 	@Override
@@ -169,14 +189,6 @@ public class Schedule implements Serializable {
 			return false;
 		Schedule other = (Schedule) obj;
 		return Objects.equals(id, other.id);
-	}
-
-	public String getServicoPrestado() {
-		return servicoPrestado;
-	}
-
-	public void setServicoPrestado(String servicoPrestado) {
-		this.servicoPrestado = servicoPrestado;
 	}
 
 }

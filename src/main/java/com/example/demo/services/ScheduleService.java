@@ -8,9 +8,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dtos.ScheduleDTO;
-import com.example.demo.entities.Equip;
+import com.example.demo.entities.Equipment;
 import com.example.demo.entities.Schedule;
-import com.example.demo.repositories.EquipRepository;
+import com.example.demo.repositories.EquipmentRepository;
 import com.example.demo.repositories.ScheduleRepository;
 
 @Service
@@ -20,7 +20,7 @@ public class ScheduleService {
 	private ScheduleRepository repository;
 
 	@Autowired
-	private EquipRepository repositoryEquip;
+	private EquipmentRepository repositoryEquip;
 
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public List<Schedule> findAll() {
@@ -42,8 +42,8 @@ public class ScheduleService {
 	public Schedule addEquip(Long idSchedule, Long idEquip) {
 
 		Schedule sche = repository.findById(idSchedule).get();
-		Equip equip = repositoryEquip.findById(idEquip).get();
-		sche.getEquipment().add(equip);
+		Equipment equip = repositoryEquip.findById(idEquip).get();
+		sche.getEquipments().add(equip);
 		return repository.save(sche);
 
 	}
@@ -51,13 +51,13 @@ public class ScheduleService {
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule update(Long id, Schedule obj) {
 		Schedule newSc = findById(id);
-		newSc.setServicoPrestado(obj.getServicoPrestado());
-		newSc.setHorario(obj.getHorario());
-		newSc.setData(obj.getData());
-		newSc.setEndereco(obj.getEndereco());
-		newSc.setCidade(obj.getCidade());
-		newSc.setCep(obj.getCep());
-		newSc.setEstado(obj.getEstado());
+		newSc.setServiceProvided(obj.getServiceProvided());
+		newSc.setAppointment(obj.getAppointment());
+		newSc.setDate(obj.getDate());
+		newSc.setAddress(obj.getAddress());
+		newSc.setCity(obj.getCity());
+		newSc.setZipcode(obj.getZipcode());
+		newSc.setState(obj.getState());
 		return repository.save(newSc);
 	}
 
@@ -67,8 +67,8 @@ public class ScheduleService {
 	}
 
 	public Schedule fromDTO(ScheduleDTO objDto) {
-		return new Schedule(objDto.getId(), objDto.getServicoPrestado(), objDto.getHorario(), objDto.getData(),
-				objDto.getEndereco(), objDto.getCidade(), objDto.getEstado(), objDto.getCep(), objDto.getCalled());
+		return new Schedule(objDto.getId(), objDto.getServiceProvided(), objDto.getAppointment(), objDto.getDate(),
+				objDto.getAddress(), objDto.getCity(), objDto.getState(), objDto.getZipcode(), objDto.getRequest());
 	}
 
 }
