@@ -34,10 +34,10 @@
         <textarea type="text" id="descricao" />
       </fieldset>
       <hr />
-      <fieldset>
+      <!-- <fieldset>
         <legend>Data de fabricação</legend>
         <input type="date" id="dataFabricacao" />
-      </fieldset>
+      </fieldset> -->
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
         <button id="criar" v-on:click="createEquipamento()">Criar</button>
@@ -66,8 +66,8 @@ export default {
       console.log("3");
       var descricao = document.getElementById("descricao").value;
       console.log("4");
-      var dataFabricacao = document.getElementById("dataFabricacao").value;
-      console.log("5");
+      // var dataFabricacao = document.getElementById("dataFabricacao").value;
+      // console.log("5");
       var token = localStorage.getItem("SavedToken");
       console.log("6");
       
@@ -84,7 +84,7 @@ export default {
         nome: modelo,
         numeroDeSerie: numeroDeSerie,
         descricao: descricao,
-        dataFabricacao: dataFabricacao,
+        // dataFabricacao: dataFabricacao,
       });
 
       var requestOptions = {
