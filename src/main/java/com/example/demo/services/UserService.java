@@ -39,7 +39,7 @@ public class UserService implements SegurancaService {
 	@Override
 	@PreAuthorize("hasRole('ADMIN')")
 	public User insert(User obj) {
-		if (obj.getNome() == null || obj.getNome().trim().isEmpty() ||
+		if (obj.getName() == null || obj.getName().trim().isEmpty() ||
 
 				obj.getRoles() == null || obj.getRoles().trim().isEmpty()) {
 			throw new IllegalArgumentException("Algum atributo em branco!");
@@ -63,16 +63,16 @@ public class UserService implements SegurancaService {
 		newUser.setEmail(obj.getEmail());
 		newUser.setPassword(obj.getPassword());
 		newUser.setRoles(obj.getRoles());
-		newUser.setTelefone(obj.getTelefone());
-		newUser.setNome(obj.getNome());
-		newUser.setRazaoSocial(obj.getRazaoSocial());
+		newUser.setFoneNumber(obj.getFoneNumber());
+		newUser.setName(obj.getName());
+		newUser.setCorporateName(obj.getCorporateName());
 		newUser.setCnpj(obj.getCnpj());
 		return repository.save(newUser);
 	}
 
 	public User fromDto(UserDTO objDto) {
 		return new User(objDto.getId(), objDto.getEmail(), objDto.getPassword(), objDto.getRoles(), objDto.getCpf(),
-				objDto.getTelefone(), objDto.getNome(), objDto.getRazaoSocial(), objDto.getCnpj());
+				objDto.getFoneNumber(), objDto.getName(), objDto.getCorporateName(), objDto.getCnpj());
 	}
 
 	@Override

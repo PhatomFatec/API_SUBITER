@@ -1,17 +1,12 @@
 package com.example.demo.dtos;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-import com.example.demo.entities.Called;
 import com.example.demo.entities.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDTO implements Serializable {
 
@@ -23,27 +18,31 @@ public class UserDTO implements Serializable {
 	private String password;
 	private String roles;
 	private String cpf;
-	private String telefone;
-	private String nome;
-	private String razaoSocial;
+	private String foneNumber;
+	private String name;
+	private String corporateName;
 	private String cnpj;
 
 	public UserDTO() {
 
 	}
 
-	public UserDTO(User obj) {
-		this.id = obj.getId();
-		this.email = obj.getEmail();
-		this.password = obj.getPassword();
-		this.roles = obj.getRoles();
-		this.cpf = obj.getCpf();
-		this.telefone = obj.getTelefone();
-		this.nome = obj.getNome();
-		this.razaoSocial = obj.getRazaoSocial();
-		this.cnpj = obj.getCnpj();
 
+	public UserDTO(Long id, String email, String password, String roles, String cpf, String foneNumber, String name,
+			String corporateName, String cnpj) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+		this.cpf = cpf;
+		this.foneNumber = foneNumber;
+		this.name = name;
+		this.corporateName = corporateName;
+		this.cnpj = cnpj;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -85,29 +84,37 @@ public class UserDTO implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	
+
+	public String getFoneNumber() {
+		return foneNumber;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+
+	public void setFoneNumber(String foneNumber) {
+		this.foneNumber = foneNumber;
 	}
 
-	public String getNome() {
-		return nome;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getRazaoSocial() {
-		return razaoSocial;
+
+	public String getCorporateName() {
+		return corporateName;
 	}
 
-	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
+
+	public void setCorporateName(String corporateName) {
+		this.corporateName = corporateName;
 	}
+
 
 	public String getCnpj() {
 		return cnpj;

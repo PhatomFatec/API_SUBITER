@@ -1,27 +1,30 @@
 package com.example.demo.dtos;
 
-import java.sql.Date;
-import java.time.Instant;
+import java.io.Serializable;
 
 import com.example.demo.entities.Equipment;
 
-public class EquipmentDTO {
+public class EquipmentDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
-	private String nome;
-	private Instant dataCadastro;
-	private Date dataFabricacao;
-	private String descricao;
-	private String numeroDeSerie;
-	private Boolean disponibilidade;
+	private String description;
+	private String name;
+	private String serialNumber;
+	private Boolean availability;
+
+	public EquipmentDTO() {
+
+	}
 
 	public EquipmentDTO(Equipment obj) {
 		this.id = obj.getId();
-		this.nome = obj.getNome();
-		this.dataCadastro = obj.getDataCadastro();
-		this.dataFabricacao = obj.getDataFabricacao();
-		this.descricao = obj.getDescricao();
-		this.numeroDeSerie = obj.getNumeroDeSerie();
-		this.disponibilidade = obj.getDisponibilidade();
+		this.description = obj.getDescription();
+		this.name = obj.getName();
+		this.serialNumber = obj.getSerialNumber();
+		this.availability = obj.getAvailability();
+
 	}
 
 	public Long getId() {
@@ -32,52 +35,35 @@ public class EquipmentDTO {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Instant getDataCadastro() {
-		return dataCadastro;
+	public String getName() {
+		return name;
 	}
 
-	public void setDataCadastro(Instant dataCadastro) {
-		this.dataCadastro = dataCadastro;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Date getDataFabricacao() {
-		return dataFabricacao;
+	public String getSerialNumber() {
+		return serialNumber;
 	}
 
-	public void setDataFabricacao(Date dataFabricacao) {
-		this.dataFabricacao = dataFabricacao;
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public Boolean getAvailability() {
+		return availability;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setAvailability(Boolean availability) {
+		this.availability = availability;
 	}
-
-	public String getNumeroDeSerie() {
-		return numeroDeSerie;
-	}
-
-	public void setNumeroDeSerie(String numeroDeSerie) {
-		this.numeroDeSerie = numeroDeSerie;
-	}
-
-	public Boolean getDisponibilidade() {
-		return disponibilidade;
-	}
-
-	public void setDisponilidade(Boolean disponibilidade) {
-		this.disponibilidade = disponibilidade;
-	}
-
 }

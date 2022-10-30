@@ -6,57 +6,65 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name="product")
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "prod_id")
 	private Long id;
-	private String modelo;
-	private String numeroDeSerie;
-	private String descricao;
 	
-//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private String dataFabricacao;
+	@Column(name = "prod_model")
+	private String model;
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant dataCadastro;
+	@Column(name = "prod_serial")
+	private String serialNumber;
+	
+	@Column(name = "prod_description")
+	private String description;
+	
+	@Column(name = "prod_manufacture_date")
+	private String manufactureDate;
+
+	@Column(name = "prod_register_date")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
+	private Instant registerDate;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "product")
-	private Set<Called> calleds = new HashSet<>();
+	@OneToMany(mappedBy ="product")
+	private Set<Request> requests = new HashSet<>();
 
 	public Product() {
 	}
 
-	public Product(Long id, String modelo, String numeroDeSerie, String descricao, String dataFabricacao,
-			Instant dataCadastro) {
+	
+	public Product(Long id, String model, String serialNumber, String description, String manufactureDate) {
 		super();
 		this.id = id;
-		this.modelo = modelo;
-		this.numeroDeSerie = numeroDeSerie;
-		this.descricao = descricao;
-		this.dataFabricacao = dataFabricacao;
-		this.dataCadastro = dataCadastro;
-
+		this.model = model;
+		this.serialNumber = serialNumber;
+		this.description = description;
+		this.manufactureDate = manufactureDate;
 	}
 
-	
-	public Set<Called> getCalleds() {
-		return calleds;
-	}
 
+	public Set<Request> getRequests() {
+		return requests;
+	}
 
 	public Long getId() {
 		return id;
@@ -66,54 +74,61 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 
-	public String getModelo() {
-		return modelo;
+
+	public String getModel() {
+		return model;
 	}
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 
-	public String getNumeroDeSerie() {
-		return numeroDeSerie;
+
+	public String getSerialNumber() {
+		return serialNumber;
 	}
 
-	public void setNumeroDeSerie(String numeroDeSerie) {
-		this.numeroDeSerie = numeroDeSerie;
+
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
 	}
 
-	public String getDescricao() {
-		return descricao;
+
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getDataFabricacao() {
-		return dataFabricacao;
+
+	public String getManufactureDate() {
+		return manufactureDate;
 	}
 
-	public void setDataFabricacao(String dataFabricacao) {
-		this.dataFabricacao = dataFabricacao;
+
+	public void setManufactureDate(String manufactureDate) {
+		this.manufactureDate = manufactureDate;
 	}
 
-	public Instant getDataCadastro() {
-		return dataCadastro;
+
+	public Instant getRegisterDate() {
+		return registerDate;
 	}
 
-	public void setDataCadastro(Instant dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-	
 
-	public Set<Called> getCalled() {
-		return calleds;
+	public void setRegisterDate(Instant registerDate) {
+		this.registerDate = registerDate;
 	}
 
-	public void setCalled(Set<Called> called) {
-		this.calleds = called;
+
+	public void setRequests(Set<Request> requests) {
+		this.requests = requests;
 	}
+
 
 	@Override
 	public int hashCode() {

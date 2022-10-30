@@ -23,13 +23,13 @@ public class JwtUtils {
 	public static String generateToken(Authentication usuario) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Login usuarioSemSenha = new Login();
-		usuarioSemSenha.setNome(usuario.getName());
+		usuarioSemSenha.setName(usuario.getName());
 		if (!usuario.getAuthorities().isEmpty()) {
 			usuarioSemSenha.setAutorizacao(usuario.getAuthorities().iterator().next().getAuthority());
 		}
 		String usuarioJson = mapper.writeValueAsString(usuarioSemSenha);
 		Date agora = new Date();
-		Long hora = 1000L * 60L * 60L; // Uma hora
+		Long hora = 2000L * 120L * 120L; // Uma hora
 		return Jwts.builder().claim("userDetails", usuarioJson).setIssuer("br.gov.sp.fatec")
 				.setSubject(usuario.getName()).setExpiration(new Date(agora.getTime() + hora))
 				.signWith(SignatureAlgorithm.HS512, KEY).compact();
@@ -40,9 +40,9 @@ public class JwtUtils {
 		String credentialsJson = Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody().get("userDetails",
 				String.class);
 		Login usuario = mapper.readValue(credentialsJson, Login.class);
-		UserDetails userDetails = User.builder().username(usuario.getNome()).password("secret")
+		UserDetails userDetails = User.builder().username(usuario.getName()).password("secret")
 				.authorities(usuario.getAutorizacao()).build();
-		return new UsernamePasswordAuthenticationToken(usuario.getNome(), usuario.getSenha(),
+		return new UsernamePasswordAuthenticationToken(usuario.getName(), usuario.getSenha(),
 				userDetails.getAuthorities());
 	}
 

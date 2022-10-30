@@ -17,7 +17,7 @@ public class ProductService {
 	@Autowired
 	private ProductRepository repository;
 
-	@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Product> findAll() {
 		return repository.findAll();
 	}
@@ -36,10 +36,10 @@ public class ProductService {
 	@PreAuthorize("hasRole('ADMIN')")
 	public Product update(Long id, Product obj) {
 		Product newProd = findById(id);
-		newProd.setModelo(obj.getModelo());
-		newProd.setNumeroDeSerie(obj.getNumeroDeSerie());
-		newProd.setDescricao(obj.getDescricao());
-		newProd.setDataFabricacao(obj.getDataFabricacao());
+		newProd.setModel(obj.getModel());
+		newProd.setSerialNumber(obj.getSerialNumber());
+		newProd.setDescription(obj.getDescription());
+		newProd.setManufactureDate(obj.getManufactureDate());
 		return repository.save(newProd);
 }
 
@@ -50,8 +50,8 @@ public class ProductService {
 
 	
 	public Product FromDTO(ProductDTO objDto) {
-		return new Product(objDto.getId(), objDto.getModelo(), objDto.getNumeroDeSerie(), objDto.getDescricao(),
-				objDto.getDataFabricacao(), objDto.getDataCadastro());
+		return new Product(objDto.getId(), objDto.getModel(), objDto.getSerialNumber(), objDto.getDescription(),
+				objDto.getManufactureDate());
 	}
 
 }

@@ -2,7 +2,7 @@ package com.example.demo.security;
 
 public class Login {
 
-    private String nome;
+    private String name;
 
     private String senha;
 
@@ -10,12 +10,12 @@ public class Login {
 
     private String autorizacao;
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSenha() {

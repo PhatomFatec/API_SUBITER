@@ -1,0 +1,12 @@
+subiter_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-vinhedo-1.oraclecloud.com))(connect_data=(service_name=g241943c9c5b6d7_subiter_high.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-vinhedo-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+subiter_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-vinhedo-1.oraclecloud.com))(connect_data=(service_name=g241943c9c5b6d7_subiter_low.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-vinhedo-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+subiter_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-vinhedo-1.oraclecloud.com))(connect_data=(service_name=g241943c9c5b6d7_subiter_medium.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-vinhedo-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+subiter_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-vinhedo-1.oraclecloud.com))(connect_data=(service_name=g241943c9c5b6d7_subiter_tp.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-vinhedo-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+subiter_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-vinhedo-1.oraclecloud.com))(connect_data=(service_name=g241943c9c5b6d7_subiter_tpurgent.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-vinhedo-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+
+
