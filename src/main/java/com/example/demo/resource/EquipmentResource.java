@@ -25,7 +25,7 @@ import io.swagger.annotations.Authorization;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/equipmentments")
+@RequestMapping(value = "/equipments")
 public class EquipmentResource {
 
 	@Autowired

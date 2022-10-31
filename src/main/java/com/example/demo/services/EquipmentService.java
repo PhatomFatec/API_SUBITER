@@ -50,6 +50,6 @@ public class EquipmentService {
 
 	public Equipment FromDTO(EquipmentDTO objDto) {
 		return new Equipment(objDto.getId(), objDto.getDescription(), objDto.getName(), objDto.getSerialNumber(),
-				objDto.getAvailability());
+				objDto.getAvailability(), objDto.getDate());
 	}
 }

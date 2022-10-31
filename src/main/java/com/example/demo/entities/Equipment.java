@@ -1,7 +1,6 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -11,10 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,21 +23,23 @@ public class Equipment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "eq_id")
 	private Long id;
 	
 	@Column(name = "eq_description")
 	private String description;
 	
+	@NotBlank(message = "O campo email não pode estar em branco")
 	@Column(name = "eq_name")
 	private String name;
 	
-	@Column(name = "eq_serial")
+	@NotBlank(message = "O campo email não pode estar em branco")
+	@Column(unique=true, name = "eq_serial")
 	private String serialNumber;
 	
 	@Column(name = "eq_date")
-	private Instant date;
+	private String date;
 	
 	@Column(name = "eq_availability")
 	private Boolean availability;
@@ -49,13 +49,14 @@ public class Equipment implements Serializable {
 	private Set<Schedule> schedules = new HashSet<>();
 
 	public Equipment(Long id, String description, String name, String serialNumber, 
-			Boolean availability) {
+			Boolean availability, String date) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.name = name;
 		this.serialNumber = serialNumber;
 		this.availability = availability;
+		this.date = date;
 
 	}
 
@@ -94,11 +95,11 @@ public class Equipment implements Serializable {
 		this.serialNumber = serialNumber;
 	}
 
-	public Instant getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Instant date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

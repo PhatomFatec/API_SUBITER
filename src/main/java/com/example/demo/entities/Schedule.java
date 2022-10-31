@@ -2,7 +2,6 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -18,11 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="schedule")
@@ -31,7 +27,7 @@ public class Schedule implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "sc_id")
 	private Long id;
 
@@ -42,8 +38,8 @@ public class Schedule implements Serializable {
 	private String appointment;
 
 	@Column(name = "sc_date")
-	@Temporal(TemporalType.DATE)
-	private Date date;
+	//@Temporal(TemporalType.DATE)
+	private String date;
 
 	@Column(name = "sc_address")
 	private String address;
@@ -72,7 +68,7 @@ public class Schedule implements Serializable {
 	public Schedule() {
 	}
 
-	public Schedule(Long id, String serviceProvided, String appointment, Date date, String address, String city,
+	public Schedule(Long id, String serviceProvided, String appointment, String date, String address, String city,
 			String zipcode, String state, Request request) {
 		super();
 		this.id = id;
@@ -84,6 +80,7 @@ public class Schedule implements Serializable {
 		this.zipcode = zipcode;
 		this.state = state;
 		this.request = request;
+		this.registerDate = Instant.now();
 	}
 
 	public Long getId() {
@@ -110,11 +107,11 @@ public class Schedule implements Serializable {
 		this.appointment = appointment;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
