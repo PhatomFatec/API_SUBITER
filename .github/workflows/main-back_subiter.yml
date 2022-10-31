@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'subiter'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_05B97316A36D4E90AA2F1A31BC1014A8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_47243F81BD894FA487D4C469DF79A1F0 }}
           package: '*.jar'
