@@ -13,6 +13,7 @@ public class EquipmentDTO implements Serializable {
 	private String name;
 	private String serialNumber;
 	private Boolean availability;
+	private String date;
 
 	public EquipmentDTO() {
 
@@ -24,6 +25,7 @@ public class EquipmentDTO implements Serializable {
 		this.name = obj.getName();
 		this.serialNumber = obj.getSerialNumber();
 		this.availability = obj.getAvailability();
+		this.date = obj.getDate();
 
 	}
 
@@ -33,6 +35,15 @@ public class EquipmentDTO implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getDescription() {

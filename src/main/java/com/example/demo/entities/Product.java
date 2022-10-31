@@ -24,7 +24,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "prod_id")
 	private Long id;
 	
@@ -59,6 +59,7 @@ public class Product implements Serializable {
 		this.serialNumber = serialNumber;
 		this.description = description;
 		this.manufactureDate = manufactureDate;
+		this.registerDate = Instant.now();
 	}
 
 

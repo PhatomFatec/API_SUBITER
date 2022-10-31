@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -32,7 +31,10 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 	    return new ApiInfoBuilder()
 	            .title("REST API Document - Subiter")
-	            .description("work in progress")
+	            .description("Se autentique em login-resource, altere 'string' "
+	            		+ "de name para o email cadastrado e 'string' de senha para a senha cadastrada."
+	            		+ "Será gerado um token, basta adicioná-lo em 'Authorize' seguido da nomeclatura Bearer. ")
+	            
 	            .termsOfServiceUrl("localhost (por enquanto)")
 	            .version("1.0")
 	            .build();

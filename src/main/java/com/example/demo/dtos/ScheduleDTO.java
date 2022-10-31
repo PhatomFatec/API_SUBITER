@@ -1,7 +1,6 @@
 package com.example.demo.dtos;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.example.demo.entities.Request;
 
@@ -11,7 +10,7 @@ public class ScheduleDTO implements Serializable {
 	private Long id;
 	private String serviceProvided;
 	private String appointment;
-	private Date date;
+	private String date;
 	private String address;
 	private String city;
 	private String zipcode;
@@ -22,7 +21,7 @@ public class ScheduleDTO implements Serializable {
 
 	}
 
-	public ScheduleDTO(Long id, String serviceProvided, String appointment, Date date, String address, String city,
+	public ScheduleDTO(Long id, String serviceProvided, String appointment, String date, String address, String city,
 			String zipcode, String state, Request request) {
 		super();
 		this.id = id;
@@ -60,11 +59,11 @@ public class ScheduleDTO implements Serializable {
 		this.appointment = appointment;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

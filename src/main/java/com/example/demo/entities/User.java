@@ -12,34 +12,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "u_id")
 	private Long id;
 	
-	@Column(name = "u_email")
+	@NotBlank(message = "O campo email não pode estar em branco")
+	@Column(unique=true, name = "u_email")
 	private String email;
 	
+	@NotBlank(message = "O campo password não pode estar em branco")
 	@Column(name = "u_password")
 	private String password;
 	
+	@NotBlank(message = "O campo roles não pode estar em branco")
 	@Column(name = "u_roles")
 	private String roles;
 	
+	@NotBlank(message = "O campo cpf não pode estar em branco")
 	@Column(name = "u_cpf")
 	private String cpf;
 	
 	@Column(name = "u_foneNumber")
 	private String foneNumber;
 	
+	@NotBlank(message = "O campo name não pode estar em branco")
 	@Column(name = "u_name")
 	private String name;
 	
