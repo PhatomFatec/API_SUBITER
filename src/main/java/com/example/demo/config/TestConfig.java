@@ -14,7 +14,7 @@ import com.example.demo.repositories.ScheduleRepository;
 import com.example.demo.repositories.UserRepository;
 
 @Configuration
-@Profile("prod")
+@Profile("test")
 public class TestConfig implements CommandLineRunner {
 
 	@Autowired
