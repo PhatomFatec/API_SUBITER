@@ -28,10 +28,10 @@ export default {
     //faz o get da tabela
     load() {
       var myHeaders = new Headers();
-      var token = localStorage.getItem("Token")
-      console.log(token)
+      var token = localStorage.getItem("Token");
+      // console.log(token)
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization",`${token}`);
+      myHeaders.append("Authorization", `${token}`);
 
       var requestOptions = {
         method: "GET",
@@ -41,10 +41,11 @@ export default {
 
       fetch("https://subiter.herokuapp.com/requests", requestOptions)
         .then((response) => response.text())
-        .then((result) => {console.log(result)
-        this.chamados = JSON.parse(result)})
-        
-    }
+        .then((result) => {
+          // console.log(result);
+          this.chamados = JSON.parse(result);
+        });
+    },
   },
   //executa assim que a tela é carregada
   created() {

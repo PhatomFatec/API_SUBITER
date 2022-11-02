@@ -51,7 +51,7 @@ export default {
 
           localStorage.setItem("User", res.name)
           localStorage.setItem("Role", res.autorizacao)
-          localStorage.setItem("Token", res.token)
+          localStorage.setItem("Token", "Bearer "+res.token)
 
         })
         .catch(error => console.log('error', error));
