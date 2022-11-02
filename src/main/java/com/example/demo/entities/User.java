@@ -58,6 +58,11 @@ public class User implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private Set<Request> requests = new HashSet<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private Set<Comment> comment = new HashSet<>();
+
 
 	public User() {
 	}

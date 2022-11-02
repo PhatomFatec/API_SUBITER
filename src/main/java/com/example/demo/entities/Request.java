@@ -2,7 +2,9 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -59,6 +62,11 @@ public class Request implements Serializable {
 	@JsonIgnore
 	@OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
 	private Schedule schedule;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "request")
+	private Set<Comment> comment = new HashSet<>();
+
 
 	public Request() {
 	}
