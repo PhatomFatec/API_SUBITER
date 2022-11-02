@@ -28,9 +28,10 @@ export default {
     //faz o get da tabela
     load() {
       var myHeaders = new Headers();
-      var token = localStorage.getItem("SavedToken");
+      var token = localStorage.getItem("Token")
+      console.log(token)
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `${token}`);
+      myHeaders.append("Authorization",`${token}`);
 
       var requestOptions = {
         method: "GET",
@@ -38,20 +39,19 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/calleds", requestOptions)
+      fetch("https://subiter.herokuapp.com/requests", requestOptions)
         .then((response) => response.text())
-        .then((result) => {
-          this.chamados = JSON.parse(result);
-        })
-        .catch((error) => console.log("error", error));
-    },
+        .then((result) => {console.log(result)
+        this.chamados = JSON.parse(result)})
+        
+    }
   },
   //executa assim que a tela é carregada
   created() {
     //redireciona para a página de login
-    // if(localStorage.length == 0){
-    //   window.location.replace("/login")
-    // }
+    if (localStorage.length == 0) {
+      window.location.replace("/login");
+    }
     //chama a função que carrega o get da tabela
     this.load();
     //insere botões responsáveis pelas funções do CRUD
@@ -72,7 +72,7 @@ export default {
         `
       );
     }, 1);
-    //remove os botões do CRUD para usuários sem acesso
+    // remove os botões do CRUD para usuários sem acesso
     // setTimeout(function () {
     //   if (
     //     localStorage.getItem("Role") != "ROLE_ADMIN" &&
