@@ -17,6 +17,30 @@ export default {
   props: {
     equipamento: Array,
   },
+    methods:{
+    created(equipamento){
+      console.log(equipamento)
+      console.log("created")
+    }
+  },
+  data(equipamento) {
+    console.log(equipamento);
+    return {
+      search: "",
+      headers: [
+        {
+          text: "Código",
+          align: "start",
+          sortable: false,
+          value: "id",
+        },
+        { text: "Nome do equipamento", value: "name" },
+        { text: "Descrição", value: "description" },
+        { text: "Número de série", value: "serialNumber" },
+        { text: "Disponibilidade", value: "availability" },
+      ],
+    };
+  }
 }
 
 </script>

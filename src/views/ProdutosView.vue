@@ -52,9 +52,9 @@ export default {
     },
     created() {
         //redireciona para a página de login
-        if (localStorage.length == 0) {
-            window.location.replace("/login")
-        }
+        // if (localStorage.length == 0) {
+        //     window.location.replace("/login")
+        // }
         this.load();
         setTimeout(function () {
             var fatherElement =
@@ -73,19 +73,19 @@ export default {
         `
             );
         }, 1);
-        setTimeout(function () {
-            if (localStorage.getItem("Role") != "ROLE_ADMIN") {
-                document.getElementById("btn1").style.display = "none";
-                document.getElementById("btn2").style.display = "none";
-                document.getElementById("btn3").style.display = "none";
+        // setTimeout(function () {
+        //     if (localStorage.getItem("Role") != "ROLE_ADMIN") {
+        //         document.getElementById("btn1").style.display = "none";
+        //         document.getElementById("btn2").style.display = "none";
+        //         document.getElementById("btn3").style.display = "none";
 
-                var styles = `.v-card .v-input{right:10%;}`;
+        //         var styles = `.v-card .v-input{right:10%;}`;
 
-                var styleSheet = document.createElement("style");
-                styleSheet.innerText = styles;
-                document.head.appendChild(styleSheet);
-            }
-        }, 10);
+        //         var styleSheet = document.createElement("style");
+        //         styleSheet.innerText = styles;
+        //         document.head.appendChild(styleSheet);
+        //     }
+        // }, 10);
     }
 }
 </script>

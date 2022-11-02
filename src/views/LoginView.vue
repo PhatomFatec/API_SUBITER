@@ -40,7 +40,7 @@ export default {
         redirect: 'follow'
       };
 
-      fetch("http://localhost:8080/login", requestOptions)
+      fetch("https://subiter.herokuapp.com/login", requestOptions)
         .then(response => response.text())
         .then(result => {
           var res = JSON.parse(result)
