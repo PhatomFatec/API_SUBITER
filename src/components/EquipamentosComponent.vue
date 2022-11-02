@@ -38,6 +38,7 @@ export default {
         { text: "Descrição", value: "description" },
         { text: "Número de série", value: "serialNumber" },
         { text: "Disponibilidade", value: "availability" },
+        { text: "Data de fabricação", value: "date" },
       ],
     };
   }

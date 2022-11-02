@@ -26,11 +26,12 @@ export default {
   },
   methods: {
     //faz o get da tabela
-    load() {
+   load() {
       var myHeaders = new Headers();
-      var token = localStorage.getItem("SavedToken");
+      var token = localStorage.getItem("Token")
+      console.log(token)
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `${token}`);
+      myHeaders.append("Authorization",`${token}`);
 
       var requestOptions = {
         method: "GET",
@@ -38,25 +39,19 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/equipments", requestOptions)
+      fetch("https://subiter.herokuapp.com/equipments", requestOptions)
         .then((response) => response.text())
-        .then((result) => {
-          this.equipamento = JSON.parse(result);
-          console.log(typeof result);
-          console.log("aqui");
-          console.log(JSON.parse(result));
-          console.log("result");
-          console.log(typeof JSON.parse(result));
-        })
-        .catch((error) => console.log("error", error));
-    },
+        .then((result) => {console.log(result)
+        this.equipamentos = JSON.parse(result)})
+        
+    }
   },
   //executa assim que a tela é carregada
   created() {
     //redireciona para a página de login
-    // if(localStorage.length == 0){
-    //   window.location.replace("/login")
-    // }
+    if(localStorage.length == 0){
+      window.location.replace("/login")
+    }
     //chama a função que carrega o get da tabela
     this.load();
     //insere botões responsáveis pelas funções do CRUD

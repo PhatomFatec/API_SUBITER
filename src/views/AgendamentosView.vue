@@ -28,7 +28,8 @@ export default {
     //faz o get da tabela
     load() {
       var myHeaders = new Headers();
-      var token = localStorage.getItem("SavedToken");
+      var token = localStorage.getItem("Token");
+      console.log(token);
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
 
@@ -38,20 +39,20 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/schedule", requestOptions)
+      fetch("https://subiter.herokuapp.com/schedule", requestOptions)
         .then((response) => response.text())
         .then((result) => {
+          console.log(result);
           this.agendamentos = JSON.parse(result);
-        })
-        .catch((error) => console.log("error", error));
+        });
     },
   },
   //executa assim que a tela é carregada
   created() {
     //redireciona para a página de login
-    // if(localStorage.length == 0){
-    //   window.location.replace("/login")
-    // }
+    if(localStorage.length == 0){
+      window.location.replace("/login")
+    }
     //chama a função que carrega o get da tabela
     this.load();
     //insere botões responsáveis pelas funções do CRUD
