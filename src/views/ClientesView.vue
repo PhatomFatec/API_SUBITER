@@ -28,9 +28,10 @@ export default {
     //faz o get da tabela
     load() {
       var myHeaders = new Headers();
-      var token = localStorage.getItem("SavedToken");
+      var token = localStorage.getItem("Token")
+      console.log(token)
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `${token}`);
+      myHeaders.append("Authorization",`${token}`);
 
       var requestOptions = {
         method: "GET",
@@ -38,15 +39,9 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/users", requestOptions)
+      fetch("https://subiter.herokuapp.com/users", requestOptions)
         .then((response) => response.text())
-        .then((result) => {
-          this.clientes = JSON.parse(result);
-          console.log(typeof result);
-          console.log(JSON.parse(result));
-          console.log("result");
-          console.log(typeof JSON.parse(result));
-        })
+        .then((result) => this.clientes = JSON.parse(result))
         .catch((error) => console.log("error", error));
     },
   },
