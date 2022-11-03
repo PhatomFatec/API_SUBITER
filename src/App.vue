@@ -17,8 +17,12 @@ export default {
   },
   methods: {
     closeModal() {
-      var form = document.getElementById("modal");
-      form.style.display = "flex";
+      var modal = document.getElementById("modal");
+      var inputs = modal.querySelectorAll("input, textarea");
+      modal.style.display = "none";
+      inputs.forEach((input) => {
+        input.value = "";
+      });
     },
   }
 };

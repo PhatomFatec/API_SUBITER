@@ -56,6 +56,14 @@ export default {
   name: "FormChamado",
   props: {},
   methods: {
+    closeModal() {
+      var modal = document.getElementById("modal");
+      var inputs = modal.querySelectorAll("input, textarea");
+      modal.style.display = "none";
+      inputs.forEach((input) => {
+        input.value = "";
+      });
+    },
     createCall() {
       var token = localStorage.getItem("Token");
       var titulo = document.getElementById("titulo").value;
@@ -72,7 +80,6 @@ export default {
       while (cont < servicosLista.length) {
           if (servicosLista[cont].model == servico) {
             serv = servicosLista[cont].id
-            console.log(serv)
           }
           cont++;
         }
