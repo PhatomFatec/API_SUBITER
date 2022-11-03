@@ -53,6 +53,6 @@ public class RequestService {
 
 	public Request FromDTO(RequestDTO objDto) {
 		return new Request(objDto.getId(), objDto.getTitle(), objDto.getDescription(), objDto.getImgUrl(),
-				objDto.getStatus(), objDto.getUser());
+				objDto.getStatus(), objDto.getUser(), objDto.getProduct());
 	}
 }

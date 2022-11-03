@@ -71,7 +71,7 @@ public class Request implements Serializable {
 	public Request() {
 	}
 
-	public Request(Long id, String title, String description, String imgUrl, String status, User user) {
+	public Request(Long id, String title, String description, String imgUrl, String status, User user, Product product) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -80,6 +80,7 @@ public class Request implements Serializable {
 		this.status = status;
 		this.requestDate = Instant.now();
 		this.user = user;
+		this.product = product;
 	}
 
 	public Schedule getSchedule() {
