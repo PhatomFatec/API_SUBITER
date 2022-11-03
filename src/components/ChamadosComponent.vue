@@ -33,7 +33,7 @@ export default {
         {
           text: "Código",
           align: "start",
-          sortable: false,
+          sortable: true,
           value: "id",
         },
         { text: "Título do chamado", value: "title" },
