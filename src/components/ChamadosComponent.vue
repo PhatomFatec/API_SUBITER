@@ -26,7 +26,9 @@ export default {
     chamados: Array,
   },
   data(chamados) {
+    console.log("aquimesmo")
     console.log(chamados);
+    console.log("aquimesmo")
     return {
       search: "",
       headers: [
