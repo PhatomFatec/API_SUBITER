@@ -18,25 +18,12 @@
       </svg>
       <h3>Cadastro de Produtos</h3>
       <fieldset>
-        <legend>Nome do produto</legend>
-        <input type="text" placeholder="Exemplo: Embarcação" id="modelo" />
-      </fieldset>
-      <fieldset>
-        <legend>Número de série</legend>
-        <input
-          type="text"
-          placeholder="Exemplo: 11, 12, 13"
-          id="serialnumberProduct"
-        />
+        <legend>Nome do serviço</legend>
+        <input type="text" id="modelo" />
       </fieldset>
       <fieldset>
         <legend>Descrição</legend>
         <textarea type="text" id="descricao" />
-      </fieldset>
-      <hr />
-      <fieldset>
-        <legend>Data de fabricação</legend>
-        <input type="date" id="dataFabricacao" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
@@ -59,17 +46,9 @@ export default {
       });
     },
     createProduct() {
-      console.log("1");
       var modelo = document.getElementById("modelo").value;
-      console.log("2");
-      var numeroDeSerie = document.getElementById("serialnumberProduct").value;
-      console.log("3");
       var descricao = document.getElementById("descricao").value;
-      console.log("4");
-      var dataFabricacao = document.getElementById("dataFabricacao").value;
-      console.log("5");
-      var token = localStorage.getItem("SavedToken");
-      console.log("6");
+      var token = localStorage.getItem("Token");
       // var date = new Date()
       // var dateFormated = date.toLocaleString("pt-BR")
 
@@ -78,10 +57,10 @@ export default {
       myHeaders.append("Authorization", `${token}`);
 
       var raw = JSON.stringify({
-        modelo: modelo,
-        numeroDeSerie: numeroDeSerie,
-        descricao: descricao,
-        dataFabricacao: dataFabricacao,
+        model: modelo,
+        serialNumber: "string",
+        description: descricao,
+        manufactureDate: "string",
       });
 
       var requestOptions = {
@@ -91,7 +70,7 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/products", requestOptions)
+      fetch("https://subiter.herokuapp.com/products", requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));
