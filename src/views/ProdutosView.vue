@@ -27,10 +27,10 @@ export default {
   methods: {
     load() {
       var myHeaders = new Headers();
-      var token = localStorage.getItem("Token")
-      console.log(token)
+      var token = localStorage.getItem("Token");
+      console.log(token);
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization",`${token}`);
+      myHeaders.append("Authorization", `${token}`);
 
       var requestOptions = {
         method: "GET",
@@ -40,11 +40,18 @@ export default {
 
       fetch("https://subiter.herokuapp.com/products", requestOptions)
         .then((response) => response.text())
-        .then((result) => this.produtos = JSON.parse(result))
+        .then((result) => (this.produtos = JSON.parse(result)))
         .catch((error) => console.log("error", error));
     },
   },
   created() {
+    setTimeout(function () {
+      if (localStorage.getItem("Role") != "ROLE_ADMIN") {
+        document.getElementById("btn1").style.display = "none";
+        document.getElementById("btn2").style.display = "none";
+        document.getElementById("btn3").style.display = "none";
+      }
+    }, 10);
     //redireciona para a página de login
     // if (localStorage.length == 0) {
     //     window.location.replace("/login")
