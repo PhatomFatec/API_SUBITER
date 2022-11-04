@@ -8,20 +8,26 @@
       </svg>
       <h3>Deletar Produto</h3>
       <fieldset>
-        <legend>Código do Produto</legend>
-        <input type="number" placeholder="" id="codProduct" />
+        <legend>Serviço</legend>
+        <select id="codServico">
+          <option>Selecione o Serviço</option>
+          <option v-for="serv in servicoList" :key="serv.id">
+            {{ serv.id }} - {{ serv.model }}
+          </option>
+        </select>
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeDelete()">Cancelar</button>
-        <button id="criar" v-on:click="deleteProduct()">Delete</button>
+        <button id="criar" v-on:click="deleteServico()">Delete</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "DeleteProduct",
+  name: "deleteServico", //
   methods: {
     closeDelete() {
       var delet = document.getElementById("delete");
@@ -31,28 +37,52 @@ export default {
         input.value = "";
       });
     },
-    deleteProduct() {
+    deleteServico() {
       //
       var myHeaders = new Headers();
-      var codProduct = document.getElementById("codProduct").value; //
-      var token = localStorage.getItem("Token");  
-      myHeaders.append("Content-Type", "application/json");
+      var codServico = document.getElementById("codServico").value.split(" ")[0];
+      var token = localStorage.getItem("Token");
       myHeaders.append("Authorization", `${token}`);
+
+      var raw = "";
 
       var requestOptions = {
         method: "DELETE",
         headers: myHeaders,
+        body: raw,
         redirect: "follow",
       };
 
-      fetch(
-        `https://subiter.herokuapp.com/products/${codProduct}`, //
-        requestOptions
-      )
+      fetch(`https://subiter.herokuapp.com/products/${codServico}`, requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));
     },
   },
+  data(){
+    return{
+      servicoList: [],
+    }
+  },
+  created(){
+    var myHeaders = new Headers();
+      var token = localStorage.getItem("Token");
+      // console.log(token)
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", `${token}`);
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch("https://subiter.herokuapp.com/products", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          // console.log(result);
+          this.servicoList = JSON.parse(result);
+        });
+  }
 };
 </script>
