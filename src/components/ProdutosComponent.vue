@@ -28,9 +28,7 @@ export default {
     produtos: Array,
   },
   data(produtos) {
-    console.log("aeee")
     console.log(produtos)
-    console.log("aaaaaa")
     return {
       search: "",
       headers: [
