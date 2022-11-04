@@ -1,9 +1,9 @@
 <template>
-  <div class="equipamentos">
+  <div class="equipamento">
     <div class="sub-menu"></div>
     <FormEquipamento @change="load" />
     <DeleteEquipamento @change="load" />
-    <EquipamentoComponent :equipamentos="equipamentos" />
+    <EquipamentoComponent :equipamento="equipamento" />
   </div>
 </template>
 
@@ -26,12 +26,12 @@ export default {
   },
   methods: {
     //faz o get da tabela
-   load() {
+    load() {
       var myHeaders = new Headers();
-      var token = localStorage.getItem("Token")
-      console.log(token)
+      var token = localStorage.getItem("Token");
+      console.log(token);
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization",`${token}`);
+      myHeaders.append("Authorization", `${token}`);
 
       var requestOptions = {
         method: "GET",
@@ -41,16 +41,17 @@ export default {
 
       fetch("https://subiter.herokuapp.com/equipments", requestOptions)
         .then((response) => response.text())
-        .then((result) => {console.log(result)
-        this.equipamentos = JSON.parse(result)})
-        
-    }
+        .then((result) => {
+          console.log('here', result);
+          this.equipamento = JSON.parse(result);
+        });
+    },
   },
   //executa assim que a tela é carregada
   created() {
     //redireciona para a página de login
-    if(localStorage.length == 0){
-      window.location.replace("/login")
+    if (localStorage.length == 0) {
+      window.location.replace("/login");
     }
     //chama a função que carrega o get da tabela
     this.load();
