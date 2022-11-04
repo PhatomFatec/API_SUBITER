@@ -29,10 +29,10 @@
           fill=""
         />
       </svg>
-      <h1>Produtos</h1>
+      <h1>Serviços</h1>
       <hr />
     </router-link>
-    <router-link to="/equipamentos" class="menu" id="menu2"
+    <router-link to="/equipamentos" class="menu" id="menu3"
       ><svg
         width="23"
         height="19"
@@ -48,7 +48,7 @@
       <h1>Equipamentos</h1>
       <hr />
     </router-link>
-    <router-link to="/clientes" class="menu" id="menu3"
+    <router-link to="/clientes" class="menu" id="menu4"
       ><svg
         width="23"
         height="19"
@@ -64,7 +64,7 @@
       <h1>Clientes</h1>
       <hr />
     </router-link>
-    <router-link to="/agendamentos" class="menu" id="menu4"
+    <router-link to="/agendamentos" class="menu" id="menu5"
       ><svg
         width="23"
         height="19"

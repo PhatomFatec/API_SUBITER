@@ -49,9 +49,16 @@ export default {
   },
   //executa assim que a tela é carregada
   created() {
+    setTimeout(function () {
+      if (localStorage.getItem("Role") != "ROLE_ADMIN") {
+        document.getElementById("btn1").style.display = "none";
+        document.getElementById("btn2").style.display = "none";
+        document.getElementById("btn3").style.display = "none";
+      }
+    }, 10);
     //redireciona para a página de login
-    if(localStorage.length == 0){
-      window.location.replace("/login")
+    if (localStorage.length == 0) {
+      window.location.replace("/login");
     }
     //chama a função que carrega o get da tabela
     this.load();
