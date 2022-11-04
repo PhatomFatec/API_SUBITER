@@ -35,7 +35,7 @@ export default {
       //
       var myHeaders = new Headers();
       var codProduct = document.getElementById("codProduct").value; //
-      var token = localStorage.getItem("SavedToken");
+      var token = localStorage.getItem("Token");  
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
 
@@ -46,7 +46,7 @@ export default {
       };
 
       fetch(
-        `https://subiter.azurewebsites.net/products/${codProduct}`, //
+        `https://subiter.herokuapp.com/products/${codProduct}`, //
         requestOptions
       )
         .then((response) => response.text())
