@@ -4,6 +4,7 @@
     <FormChamado @change="load" />
     <DeleteChamado @change="load" />
     <ChamadosComponent :chamados="chamados" />
+    <UpdateChamados @change="load"/>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import ChamadosComponent from "@/components/ChamadosComponent.vue";
 import FormChamado from "@/components/forms/FormChamado.vue";
 import DeleteChamado from "@/components/forms/DeleteChamado.vue";
+import UpdateChamados from "@/components/forms/UpdateChamado.vue"
 
 export default {
   name: "ChamadosView",
@@ -18,6 +20,7 @@ export default {
     ChamadosComponent,
     FormChamado,
     DeleteChamado,
+    UpdateChamados,
   },
   data() {
     return {
@@ -28,10 +31,10 @@ export default {
     //faz o get da tabela
     load() {
       var myHeaders = new Headers();
-      var token = localStorage.getItem("Token")
-      console.log(token)
+      var token = localStorage.getItem("Token");
+      // console.log(token)
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization",`${token}`);
+      myHeaders.append("Authorization", `${token}`);
 
       var requestOptions = {
         method: "GET",
@@ -41,10 +44,11 @@ export default {
 
       fetch("https://subiter.herokuapp.com/requests", requestOptions)
         .then((response) => response.text())
-        .then((result) => {console.log(result)
-        this.chamados = JSON.parse(result)})
-        
-    }
+        .then((result) => {
+          // console.log(result);
+          this.chamados = JSON.parse(result);
+        });
+    },
   },
   //executa assim que a tela é carregada
   created() {
@@ -68,7 +72,7 @@ export default {
         `
         <button id="btn1"  class='subMenuButton creationButton' onclick="var modal = document.getElementById('modal');modal.style.display = 'flex';modal.style.zIndex = '10';"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
         <button id="btn2"  class='subMenuButton deleteButton' onclick="var delet = document.getElementById('delete');delet.style.display = 'flex';delet.style.zIndex = '10';"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>
-        <button id="btn3"  class='subMenuButton editButton' onclick=""><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></button
+        <button id="btn3"  class='subMenuButton editButton' onclick="var update = document.getElementById('update');update.style.display = 'flex';"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></button
         `
       );
     }, 1);
