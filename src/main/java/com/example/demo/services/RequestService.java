@@ -50,6 +50,7 @@ public class RequestService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+	
 
 	public Request FromDTO(RequestDTO objDto) {
 		return new Request(objDto.getId(), objDto.getTitle(), objDto.getDescription(), objDto.getImgUrl(),
