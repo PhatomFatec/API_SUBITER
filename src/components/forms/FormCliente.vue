@@ -108,7 +108,7 @@ export default {
       var email = document.getElementById("emailClient").value;
       var password = document.getElementById("passClient").value;
       var roles = document.getElementById("rolesClient").value;
-      var token = localStorage.getItem("SavedToken");
+      var token = localStorage.getItem("Token");
 
       this.backAllBlue();
 
@@ -163,9 +163,9 @@ export default {
           password: password,
           roles: roles,
           cpf: cpf,
-          telefone: tel,
-          nome: nome,
-          razaoSocial: razaoSocial,
+          foneNumber: tel,
+          name: nome,
+          corporateName: razaoSocial,
           cnpj: cnpj,
         });
 
@@ -176,7 +176,7 @@ export default {
           redirect: "follow",
         };
 
-        fetch("https://subiter.azurewebsites.net/users", requestOptions)
+        fetch("https://subiter.herokuapp.com/users", requestOptions)
           .then((response) => response.text())
           .then((result) => console.log(result))
           .catch((error) => console.log("error", error));
