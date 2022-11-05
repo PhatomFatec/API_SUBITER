@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: "DeleteProduct", //
+  name: "DeleteChamado", //
   methods: {
     closeDelete() {
       var delet = document.getElementById("delete");

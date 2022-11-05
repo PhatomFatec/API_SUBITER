@@ -28,9 +28,7 @@ export default {
     produtos: Array,
   },
   data(produtos) {
-    console.log("aeee")
     console.log(produtos)
-    console.log("aaaaaa")
     return {
       search: "",
       headers: [
@@ -40,12 +38,11 @@ export default {
           sortable: false,
           value: "id",
         },
-        { text: "Nome do Produto", value: "modelo" },
+        { text: "Nome do Produto", value: "model" },
         { text: "Número de série", value: "serialNumber" },
         { text: "Descrição", value: "description" },
         { text: "Data de Fabricação", value: "manufactureDate" },
         { text: "Data de Cadastro", value: "registerDate" },
-        { text: "Modelo", value: "model" },
       ],
     };
   },
