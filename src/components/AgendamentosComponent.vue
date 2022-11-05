@@ -30,7 +30,7 @@ export default {
         },
         { text: "Tipo de Serviço", value: "serviceProvided" },
         { text: "Horario", value: "appointment" },
-        { text: "Data", value: "data" },
+        { text: "Data", value: "date" },
         { text: "Endereço", value: "address" },
         { text: "Cidade", value: "city" },
         { text: "Estado", value: "state" },
