@@ -39,7 +39,7 @@
       </fieldset>
       <fieldset id="fieldEmail">
         <legend id="legendEmail">E-mail</legend>
-        <input type="email" placeholder="" id="emailClient" />
+        <input type="email" required placeholder="" id="emailClient" />
       </fieldset>
       <fieldset id="fieldSenha">
         <legend id="legendSenha">Senha</legend>
@@ -112,6 +112,31 @@ export default {
 
       this.backAllBlue();
 
+      function isValidCPF(cpf) {
+        if (cpf.length == 11) {
+            return true;
+        } else
+            return false;
+      }
+      
+      function validaCNPJ (cnpj) {
+        if (cnpj.length >= 14) {
+            return true;
+        } else
+            return false;
+      }
+
+      function validaTel (tel) {
+        if (tel.length == 11 && tel[2] == '9') {
+            return true;
+        } else
+            return false;
+      } 
+ 
+    var telValido = validaTel(tel)
+    var cnpjValido = validaCNPJ(cnpj)
+    var cpfValido = isValidCPF(cpf)
+
       function turnFieldRed(x) {
         document.getElementById(x).style.borderColor = "red";
         document.getElementById(x).style.background = "#ff00000f";
@@ -124,35 +149,60 @@ export default {
         turnLegendRed(l);
       }
 
+
       if (nome.trim() == "") {
         turnRed("fieldNome", "legendNome", "nomeClient");
       }
       if (cpf.trim() == "") {
         turnRed("fieldCpf", "legendCpf", "cpfClient");
-      }
+      } else if (cpfValido == false) {
+          console.log("falso")
+          document.getElementById("telClient").value = ""
+          document.getElementById("telClient").placeholder = "Digite um CPF valido!"
+          turnRed("fieldCpf", "legendCpf", "cpfClient");     
+        } 
+
       if (tel.trim() == "") {
         turnRed("fieldTelefone", "legendTelefone", "telClient");
-      }
+      } else if (telValido == false) {
+          console.log("falso")
+          document.getElementById("telClient").value = ""
+          document.getElementById("telClient").placeholder = "Digite um Telefone valido!"
+          turnRed("fieldTelefone", "legendTelefone", "telClient");
+
+        } 
       if (razaoSocial.trim() == "") {
         turnRed("fieldRazaoSocial", "legendRazaoSocial", "socialreasonClient");
       }
       if (cnpj.trim() == "") {
         turnRed("fieldCnpj", "legendCnpj", "cnpjClient");
-      }
+      } else if (cnpjValido == false) {
+          console.log("falso")
+          document.getElementById("cnpjClient").value = ""
+          document.getElementById("cnpjClient").placeholder = "Digite um CNPJ valido!"
+          turnRed("fieldCnpj", "legendCnpj", "cnpjClient");
+        } 
+
       if (email.trim() == "") {
         turnRed("fieldEmail", "legendEmail", "emailClient");
+      } else if (email.includes('@') == false) {
+        document.getElementById("emailClient").value = ""
+        document.getElementById("emailClient").placeholder = "Digite um email valido!"
+        turnRed("fieldEmail", "legendEmail", "emailClient");
+        var emailValido = false
+        return emailValido
       }
       if (password.trim() == "") {
         turnRed("fieldSenha", "legendSenha", "passClient");
       }
       if (
         nome.trim() != "" &&
-        cpf.trim() != "" &&
-        tel.trim() != "" &&
+        cpf.trim() != "" && cpfValido != false &&
+        tel.trim() != "" && telValido != false &&
         razaoSocial.trim() != "" &&
-        cnpj.trim() != "" &&
-        email.trim() != "" &&
-        password.trim() != ""
+        cnpj.trim() != "" && cnpjValido != false &&
+        email.trim() != "" && emailValido != false &&
+        password.trim() != "" 
       ) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -188,6 +238,9 @@ export default {
           input.value = "";
         });
       }
+
+      
+      
     },
     //CREATE CLIENT END **************************************************************
   },

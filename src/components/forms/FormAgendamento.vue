@@ -18,26 +18,61 @@
       </svg>
       <h3>Cadastro de Agendamento</h3>
       <fieldset>
-        <legend>Serviço a ser prestado</legend>
-        <textarea type="text" placeholder="" id="servicoPrestado" />
-      </fieldset>
-      <fieldset>
-        <legend>Horário</legend>
-        <textarea type="time" placeholder="" id="horario" />
-      </fieldset>
-      <fieldset>
-        <legend>Data</legend>
-        <input type="datetime-local" id="aopa"
-       name="meeting-time" value="2018-06-12T19:30"
-       >
+        <legend>Chamado</legend>
+        <select name="" id="chamadoAgend">
+          <option>---</option>
+          <option v-for="cham in chamadosList" :key="cham.id">
+            {{ cham.id }} - {{cham.title}}
+          </option>
+        </select>
       </fieldset>
       <fieldset>
         <legend>CEP</legend>
-        <textarea type="text" placeholder="" id="cepSchedule" />
+        <input type="number" name="" id="cepAgend" />
+      </fieldset>
+      <fieldset>
+        <legend>Data</legend>
+        <input type="date" id="dataAgend" name="meeting-time" />
       </fieldset>
       <fieldset>
         <legend>Estado</legend>
-        <textarea type="text" placeholder="" id="stateSchedule" />
+        <select id="estadoAgend">
+          <option>AC</option>
+          <option>AL</option>
+          <option>AP</option>
+          <option>AM</option>
+          <option>BA</option>
+          <option>CE</option>
+          <option>DF</option>
+          <option>ES</option>
+          <option>GO</option>
+          <option>MT</option>
+          <option>MS</option>
+          <option>MG</option>
+          <option>PA</option>
+          <option>PB</option>
+          <option>PR</option>
+          <option>PE</option>
+          <option>PE</option>
+          <option>PI</option>
+          <option>RJ</option>
+          <option>RN</option>
+          <option>RS</option>
+          <option>RO</option>
+          <option>RR</option>
+          <option>SC</option>
+          <option>SP</option>
+          <option>SE</option>
+          <option>TO</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Cidade</legend>
+        <input type="text" name="" id="cidadeAgend" />
+      </fieldset>
+      <fieldset>
+        <legend>Endereço</legend>
+        <input type="text" name="" id="enderecoAgend" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
@@ -62,29 +97,67 @@ export default {
       });
     },
     createSchedule() {
-      //   var id = document.getElementById("1").value;
-      //   var horario = document.getElementById("2").value;
-      // var endereco = document.getElementById("addressSchedule").value;
-      // var cidade = document.getElementById("citySchedule").value;
-      // var cep = document.getElementById("cepSchedule").value;
-      // var estado = document.getElementById("stateSchedule").value;
+      var token = localStorage.getItem("Token");
+      var enderecoAgend = document.getElementById("enderecoAgend").value;
+      var cidadeAgend = document.getElementById("cidadeAgend").value;
+      var dataAgend = document.getElementById("dataAgend").value;
+      var estadoAgend = document.getElementById("estadoAgend").value;
+      var cepAgend = document.getElementById("cepAgend").value;
+      var chamadoAgend = document.getElementById("chamadoAgend").value.split(" ")[0];
 
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", `${token}`);
 
-      // axios
-      //   .post("/schedule", {
-      //     //   id: id,
-      //     // horario: fullTime,
-      //     endereco: endereco,
-      //     cidade: cidade,
-      //     cep: cep,
-      //     estado: estado,
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     this.$emit("change");
-      //   })
-      //   .catch((error) => console.log(error));
+      var raw = JSON.stringify({
+        address: enderecoAgend,
+        city: cidadeAgend,
+        date: dataAgend,
+        serviceProvided: "string",
+        state: estadoAgend,
+        zipcode: cepAgend,
+        appointment: "string",
+        request: {
+          id: chamadoAgend
+        },
+      });
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      fetch("https://subiter.herokuapp.com/schedule", requestOptions)
+        .then((response) => response.text())
+        .catch((error) => console.log("error", error));
     },
+  },
+  data() {
+    return {
+      chamadosList: [],
+    };
+  },
+  created() {
+    var myHeaders = new Headers();
+    var token = localStorage.getItem("Token");
+    // console.log(token)
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `${token}`);
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("https://subiter.herokuapp.com/requests", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        // console.log(result);
+        this.chamadosList = JSON.parse(result);
+      });
   },
 };
 </script>
