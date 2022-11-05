@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="request")
+@Table(name = "request")
 public class Request implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,22 +32,21 @@ public class Request implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "req_id")
 	private Long id;
-	
-	@Column(name ="req_title")
+
+	@Column(name = "req_title")
 	private String title;
-	
-	@Column(name ="req_description")
+
+	@Column(name = "req_description")
 	private String description;
-	
-	@Column(name ="req_imgurl")
+
+	@Column(name = "req_imgurl")
 	private String imgUrl;
-	
+
 	@NotBlank(message = "O campo status não pode estar em branco")
-	@Column(name ="req_status")
+	@Column(name = "req_status")
 	private String status;
-	
-	
-	@Column(name ="req_date")
+
+	@Column(name = "req_date")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private Instant requestDate;
 
@@ -62,16 +61,20 @@ public class Request implements Serializable {
 	@JsonIgnore
 	@OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
 	private Schedule schedule;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "request")
 	private Set<Comment> comment = new HashSet<>();
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
+	private Set<Image> image = new HashSet<>();
 
 	public Request() {
 	}
 
-	public Request(Long id, String title, String description, String imgUrl, String status, User user, Product product) {
+	public Request(Long id, String title, String description, String imgUrl, String status, User user,
+			Product product) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -81,6 +84,15 @@ public class Request implements Serializable {
 		this.requestDate = Instant.now();
 		this.user = user;
 		this.product = product;
+
+	}
+
+	public Set<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(Set<Comment> comment) {
+		this.comment = comment;
 	}
 
 	public Schedule getSchedule() {
