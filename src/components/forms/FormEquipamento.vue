@@ -19,13 +19,12 @@
       <h3>Cadastro de Equipamentos</h3>
       <fieldset>
         <legend>Nome do equipamento</legend>
-        <input type="text" placeholder="Exemplo: Embarcação" id="modelo" />
+        <input type="text" id="modelo" />
       </fieldset>
       <fieldset>
         <legend>Número de série</legend>
         <input
           type="text"
-          placeholder="Exemplo: 11, 12, 13"
           id="serialnumberEquipamento"
         />
       </fieldset>
@@ -33,11 +32,10 @@
         <legend>Descrição</legend>
         <textarea type="text" id="descricao" />
       </fieldset>
-      <hr />
-      <!-- <fieldset>
+      <fieldset>
         <legend>Data de fabricação</legend>
         <input type="date" id="dataFabricacao" />
-      </fieldset> -->
+      </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
         <button id="criar" v-on:click="createEquipamento()">Criar</button>
@@ -59,32 +57,22 @@ export default {
       });
     },
     createEquipamento() {
-      console.log("1");
       var modelo = document.getElementById("modelo").value;
-      console.log("2");
       var numeroDeSerie = document.getElementById("serialnumberEquipamento").value;
-      console.log("3");
       var descricao = document.getElementById("descricao").value;
-      console.log("4");
-      // var dataFabricacao = document.getElementById("dataFabricacao").value;
-      // console.log("5");
-      var token = localStorage.getItem("SavedToken");
-      console.log("6");
-      
-      
-      // var date = new Date()
-      // var dateFormated = date.toLocaleString("pt-BR")
+      var dataFabricacao = document.getElementById("dataFabricacao").value;
+      var token = localStorage.getItem("Token");
 
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
-      console.log("7");
 
       var raw = JSON.stringify({
-        nome: modelo,
-        numeroDeSerie: numeroDeSerie,
-        descricao: descricao,
-        // dataFabricacao: dataFabricacao,
+        availability: true,
+        name: modelo,
+        serialNumber: numeroDeSerie,
+        description: descricao,
+        date: dataFabricacao,
       });
 
       var requestOptions = {
@@ -94,12 +82,10 @@ export default {
         redirect: "follow",
       };
 
-      fetch("https://subiter.azurewebsites.net/equipments", requestOptions)
+      fetch("https://subiter.herokuapp.com/equipments", requestOptions)
         .then((response) => response.text())
-        .then((result) => {console.log(result); console.log("funcionou")})
-        .catch((error) => {
-          console.log("ta errado aqui")
-          console.log("error", error)});
+        .then((result) => {console.log(result)})
+        .catch((error) => {console.log(error)});
 
       var modal = document.getElementById("modal");
       var inputs = modal.querySelectorAll("input, textarea");
