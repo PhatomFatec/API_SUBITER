@@ -54,15 +54,16 @@ export default {
   props: {
     clientes: Array,
   },
-  closeUpdate() {
-    var modal = document.getElementById("update");
-    var inputs = modal.querySelectorAll("input, textarea");
-    modal.style.display = "none";
-    inputs.forEach((input) => {
-      input.value = "";
-    });
-  },
+
   methods: {
+    closeUpdate() {
+      var modal = document.getElementById("update");
+      var inputs = modal.querySelectorAll("input, textarea");
+      modal.style.display = "none";
+      inputs.forEach((input) => {
+        input.value = "";
+      });
+    },
     atualiza() {
       var codClienteUpdate = document
         .getElementById("codClienteUpdate")

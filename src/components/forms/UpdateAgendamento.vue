@@ -19,15 +19,15 @@
       <h3>Atualizar Agendamento</h3>
       <fieldset>
         <legend>Cliente</legend>
-        <select @change="atualiza()" id="codClienteUpdate">
+        <select @change="atualiza()" id="codAgendamentoUpdate">
           <option>Selecione o Cliente</option>
-          <option v-for="cli in clienteList" :key="cli.id">
-            {{ cli.id }} - {{ cli.name }}
+          <option v-for="cli in agendamentoList" :key="cli.id">
+            {{ cli.id }} - {{ cli.serviceProvided }}
           </option>
         </select>
       </fieldset>
       <fieldset>
-        <input type="date" name="" id="dateUpdate">
+        <input type="date" name="" id="dateUpdate" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeUpdate()">Cancelar</button>
@@ -45,79 +45,74 @@ export default {
   props: {
     clientes: Array,
   },
-  closeUpdate() {
-    var modal = document.getElementById("update");
-    var inputs = modal.querySelectorAll("input, textarea");
-    modal.style.display = "none";
-    inputs.forEach((input) => {
-      input.value = "";
-    });
-  },
   methods: {
+    closeUpdate() {
+      var modal = document.getElementById("update");
+      var inputs = modal.querySelectorAll("input, textarea");
+      modal.style.display = "none";
+      inputs.forEach((input) => {
+        input.value = "";
+      });
+    },
     atualiza() {
-      var codClienteUpdate = document
-        .getElementById("codClienteUpdate")
+      var codAgendamentoUpdate = document
+        .getElementById("codAgendamentoUpdate")
         .value.split(" ")[0];
 
       var cont = 0;
-      while (cont < this.clienteList.length) {
-        if (this.clienteList[cont].id == codClienteUpdate) {
-          document.getElementById("clienteNomeUpdate").value =
-            this.clienteList[cont].name;
-          document.getElementById("emailUpdate").value =
-            this.clienteList[cont].email;
-          document.getElementById("fonenumberUpdate").value =
-            this.clienteList[cont].foneNumber;
+      while (cont < this.agendamentoList.length) {
+        if (this.agendamentoList[cont].id == codAgendamentoUpdate) {
+          document.getElementById("dateUpdate").value =
+            this.agendamentoList[cont].date;
         }
-        if (codClienteUpdate == "Selecione") {
-          document.getElementById("clienteNomeUpdate").value = "";
-          document.getElementById("emailUpdate").value = "";
-          document.getElementById("fonenumberUpdate").value = "";
+        if (codAgendamentoUpdate == "Selecione") {
+          document.getElementById("dateUpdate").value = "";
         }
         cont++;
       }
     },
     UpdateCliente() {
-      var passwordCliente = null;
-      var cnpjU = null;
-      var corporateNameU = null;
-      var cpfU = null;
-      var rolesU = null;
+      var enderecoAgend = null;
+      var cidadeAgend = null;
+      var serviceProvided = null;
+      var estadoAgend = null;
+      var cepAgend = null;
+      var chamadoAgend = null;
 
       var myHeaders = new Headers();
       var token = localStorage.getItem("Token");
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
 
-      var codClienteUpdate = document
-        .getElementById("codClienteUpdate")
+      var codAgendamentoUpdate = document
+        .getElementById("codAgendamentoUpdate")
         .value.split(" ")[0];
-      var clienteNomeUpdate =
-        document.getElementById("clienteNomeUpdate").value;
-      var emailUpdate = document.getElementById("emailUpdate").value;
-      var fonenumberUpdate = document.getElementById("fonenumberUpdate").value;
+      var dataAtualizada = document.getElementById("dateUpdate").value;
 
       var cont = 0;
-      while (cont < this.clienteList.length) {
-        if (this.clienteList[cont].id == codClienteUpdate) {
-          passwordCliente = this.clienteList[cont].password;
-          cnpjU = this.clienteList[cont].cnpj;
-          corporateNameU = this.clienteList[cont].corporateName;
-          cpfU = this.clienteList[cont].cpf;
-          rolesU = this.clienteList[cont].roles;
+      while (cont < this.agendamentoList.length) {
+        if (this.agendamentoList[cont].id == codAgendamentoUpdate) {
+          enderecoAgend = this.agendamentoList[cont].address;
+          cidadeAgend = this.agendamentoList[cont].city;
+          serviceProvided = this.agendamentoList[cont].serviceProvided;
+          estadoAgend = this.agendamentoList[cont].state;
+          cepAgend = this.agendamentoList[cont].zipcode;
+          chamadoAgend = this.agendamentoList[cont].request.id;
         }
         cont++;
       }
 
       var raw = JSON.stringify({
-        name: clienteNomeUpdate,
-        email: emailUpdate,
-        foneNumber: fonenumberUpdate,
-        cnpj: cnpjU,
-        corporateName: corporateNameU,
-        cpf: cpfU,
-        password: passwordCliente,
-        roles: rolesU,
+        address: enderecoAgend,
+        city: cidadeAgend,
+        date: dataAtualizada,
+        serviceProvided: serviceProvided,
+        state: estadoAgend,
+        zipcode: cepAgend,
+        appointment: "string",
+        request: {
+          id: chamadoAgend,
+        },
       });
 
       var requestOptions = {
@@ -128,7 +123,7 @@ export default {
       };
 
       fetch(
-        `https://subiter.herokuapp.com/users/${codClienteUpdate}`,
+        `https://subiter.herokuapp.com/schedule/${codAgendamentoUpdate}`,
         requestOptions
       )
         .then((response) => response.text())
@@ -138,7 +133,7 @@ export default {
   },
   data() {
     return {
-      clienteList: [],
+      agendamentoList: [],
     };
   },
   created() {
@@ -154,11 +149,11 @@ export default {
       redirect: "follow",
     };
 
-    fetch("https://subiter.herokuapp.com/users", requestOptions)
+    fetch("https://subiter.herokuapp.com/schedule", requestOptions)
       .then((response) => response.text())
       .then((result) => {
         // console.log(result);
-        this.clienteList = JSON.parse(result);
+        this.agendamentoList = JSON.parse(result);
       });
   },
 };
