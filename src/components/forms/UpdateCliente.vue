@@ -30,12 +30,12 @@
         <legend>Usuário cadastrado</legend>
         <input type="text" id="clienteNomeUpdate" />
       </fieldset>
-      <fieldset>
-        <legend>E-mail</legend>
-        <input type="text" id="emailUpdate" />
+      <fieldset id="fieldEmail">
+        <legend id="legendEmail">E-mail</legend>
+        <input type="text" id="emailUpdate" required/>
       </fieldset>
-      <fieldset>
-        <legend>Telefone</legend>
+      <fieldset id="fieldTelefone">
+        <legend id="legendTelefone">Telefone</legend>
         <input type="text" id="fonenumberUpdate" />
       </fieldset>
       <div class="buttons">
@@ -88,24 +88,43 @@ export default {
       }
     },
     UpdateCliente() {
+      
+      var codClienteUpdate = document.getElementById("codClienteUpdate").value.split(" ")[0];
+      var clienteNomeUpdate = document.getElementById("clienteNomeUpdate").value;
+      var emailUpdate = document.getElementById("emailUpdate").value;
+      var fonenumberUpdate = document.getElementById("fonenumberUpdate").value;
+      //var telValido = validaTel(fonenumberUpdate)
+
       var passwordCliente = null;
       var cnpjU = null;
       var corporateNameU = null;
       var cpfU = null;
       var rolesU = null;
-
+      
       var myHeaders = new Headers();
       var token = localStorage.getItem("Token");
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
 
-      var codClienteUpdate = document
-        .getElementById("codClienteUpdate")
-        .value.split(" ")[0];
-      var clienteNomeUpdate =
-        document.getElementById("clienteNomeUpdate").value;
-      var emailUpdate = document.getElementById("emailUpdate").value;
-      var fonenumberUpdate = document.getElementById("fonenumberUpdate").value;
+      function validaTel (tel) {
+        if (tel.length == 11 && tel[2] == '9') {
+            return true;
+        } else
+            return false;
+      } 
+
+      let telefoneValido = validaTel(fonenumberUpdate)
+
+      if (telefoneValido == false || fonenumberUpdate == "") {
+        document.getElementById("fonenumberUpdate").value = ""
+        document.getElementById("fonenumberUpdate").placeholder = "Digite um Telefone valido!"
+      }
+      if (emailUpdate == "" || emailUpdate.includes('@') == false) {
+        document.getElementById("emailUpdate").value = ""
+        document.getElementById("emailUpdate").placeholder = "Digite um Email valido!"
+        var emailValido = false
+      }
+
 
       var cont = 0;
       while (cont < this.clienteList.length) {
@@ -119,34 +138,38 @@ export default {
         cont++;
       }
 
-      var raw = JSON.stringify({
-        name: clienteNomeUpdate,
-        email: emailUpdate,
-        foneNumber: fonenumberUpdate,
-        cnpj: cnpjU,
-        corporateName: corporateNameU,
-        cpf: cpfU,
-        password: passwordCliente,
-        roles: rolesU,
-      });
+      if (telefoneValido != false && emailValido != false ) {
+        var raw = JSON.stringify({
+          name: clienteNomeUpdate,
+          email: emailUpdate,
+          foneNumber: fonenumberUpdate,
+          cnpj: cnpjU,
+          corporateName: corporateNameU,
+          cpf: cpfU,
+          password: passwordCliente,
+          roles: rolesU,
+        });
 
-      var requestOptions = {
-        method: "PUT",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
+        var requestOptions = {
+          method: "PUT",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
 
-      fetch(
-        `https://subiter.herokuapp.com/users/${codClienteUpdate}`,
-        requestOptions
-      )
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .then(this.closeUpdate())
-        .catch((error) => console.log("error", error));
+        fetch(
+          `https://subiter.herokuapp.com/users/${codClienteUpdate}`,
+          requestOptions
+        )
+          .then((response) => response.text())
+          .then((result) => console.log(result))
+          .then(this.closeUpdate())
+          .catch((error) => console.log("error", error));
+      }
+      },
     },
-  },
+
+
   data() {
     return {
       clienteList: [],
