@@ -4,6 +4,7 @@
     <FormAgendamento @change="load" />
     <DeleteAgendamento @change="load" />
     <AgendamentosComponent :agendamentos="agendamentos" />
+    <UpdateAgendamento @change="load" />
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import AgendamentosComponent from "@/components/AgendamentosComponent.vue";
 import FormAgendamento from "@/components/forms/FormAgendamento.vue";
 import DeleteAgendamento from "@/components/forms/DeleteAgendamento.vue";
+import UpdateAgendamento from "@/components/forms/UpdateAgendamento.vue";
 
 export default {
   name: "AgendamentosView",
@@ -18,6 +20,7 @@ export default {
     AgendamentosComponent,
     FormAgendamento,
     DeleteAgendamento,
+    UpdateAgendamento
   },
   data() {
     return {
@@ -76,7 +79,7 @@ export default {
         `
         <button id="btn1"  class='subMenuButton creationButton' onclick="var modal = document.getElementById('modal');modal.style.display = 'flex';modal.style.zIndex = '10';"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
         <button id="btn2"  class='subMenuButton deleteButton' onclick="var delet = document.getElementById('delete');delet.style.display = 'flex';delet.style.zIndex = '10';"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>
-        <button id="btn3"  class='subMenuButton editButton' onclick=""><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></button
+        <button id="btn3"  class='subMenuButton editButton' onclick="var update = document.getElementById('update');update.style.display = 'flex'; update.style.zIndex = '10';"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></button
         `
       );
     }, 1);
