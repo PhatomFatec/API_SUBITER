@@ -16,32 +16,40 @@
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
-      <h3>Atualizar Produto</h3>
+      <h3>Atualizar Equipamento</h3>
       <fieldset>
-        <legend>Serviço</legend>
-        <select @change="atualiza()" id="codProdutoUpdate">
-          <option>Selecione o Serviço</option>
-          <option v-for="serv in servicoList" :key="serv.id">
-            {{ serv.id }} - {{ serv.model }}
+        <legend>Equipamentos</legend>
+        <select @change="atualiza()" id="codequiUpdate">
+          <option>Selecione o Equipamento</option>
+          <option v-for="equi in equipamentList" :key="equi.id">
+            {{ equi.id }} - {{ equi.name }}
           </option>
         </select>
       </fieldset>
       <fieldset>
-        <legend>Serviço cadastrado</legend>
-        <input type="text" id="servicoNomeUpdate" />
+        <legend>Nome do Equipamento</legend>
+        <input type="text" id="equiNomeUpdate" />
       </fieldset>
       <fieldset>
-        <legend>Descrição do Serviço</legend>
+        <legend>Descrição</legend>
         <textarea
-          name="servicoDesc"
+          name="equiDesc"
           id="descricaoUpdate"
           cols="10"
           rows="5"
         ></textarea>
       </fieldset>
+      <fieldset>
+        <legend>Número de Série</legend>
+        <input type="text" id="ndsUpdate">
+      </fieldset>
+      <fieldset>
+        <legend>Data de Fabricação</legend>
+      <input type="text" id="fabdateUpdate">
+      </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeUpdate()">Cancelar</button>
-        <button id="criar" v-on:click="updateProduto()">Update</button>
+        <button id="criar" v-on:click="updateEquipamento()">Update</button>
       </div>
     </div>
   </div>
@@ -51,9 +59,9 @@
 <script>
 //import axios from 'axios'
 export default {
-  name: "UpdateProduto",
+  name: "updateEquipamento",
   props: {
-    produtos: Array,
+    equipamento: Array,
   },
   closeUpdate() {
     var modal = document.getElementById("update");
@@ -65,41 +73,51 @@ export default {
   },
   methods: {
     atualiza() {
-      var codProdutoUpdate = document
-        .getElementById("codProdutoUpdate")
+      var codequiUpdate = document
+        .getElementById("codequiUpdate")
         .value.split(" ")[0];
 
       var cont = 0;
-      while (cont < this.servicoList.length) {
-        if (this.servicoList[cont].id == codProdutoUpdate) {
-          document.getElementById("servicoNomeUpdate").value =
-            this.servicoList[cont].model;
+      while (cont < this.equipamentList.length) {
+        if (this.equipamentList[cont].id == codequiUpdate) {
+          document.getElementById("equiNomeUpdate").value =
+            this.equipamentList[cont].name;
           document.getElementById("descricaoUpdate").value =
-            this.servicoList[cont].description;
+            this.equipamentList[cont].description;
+          document.getElementById("ndsUpdate").value =
+            this.equipamentList[cont].serialNumber;
+          document.getElementById("fabdateUpdate").value =
+            this.equipamentList[cont].date;
         }
-        if (codProdutoUpdate == "Selecione") {
-          document.getElementById("servicoNomeUpdate").value = "";
+        if (codequiUpdate == "Selecione") {
+          document.getElementById("equiNomeUpdate").value = "";
           document.getElementById("descricaoUpdate").value = "";
+          document.getElementById("ndsUpdate").value = "";
+          document.getElementById("fabdateUpdate").value = "";
         }
         cont++;
       }
     },
-    updateProduto() {
+    updateEquipamento() {
       var myHeaders = new Headers();
       var token = localStorage.getItem("Token");
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
 
-      var codProdutoUpdate = document
-        .getElementById("codProdutoUpdate")
+      var codequiUpdate = document
+        .getElementById("codequiUpdate")
         .value.split(" ")[0];
-      var servicoNomeUpdate =
-        document.getElementById("servicoNomeUpdate").value;
+      var equiNomeUpdate = document.getElementById("equiNomeUpdate").value;
       var descricaoUpdate = document.getElementById("descricaoUpdate").value;
+      var ndsUpdate = document.getElementById("ndsUpdate").value;
+      var fabdateUpdate = document.getElementById("fabdateUpdate").value;
 
       var raw = JSON.stringify({
-        model: servicoNomeUpdate,
+        name: equiNomeUpdate,
         description: descricaoUpdate,
+        serialNumber: ndsUpdate,
+        date: fabdateUpdate,
+        availability: true,
       });
 
       var requestOptions = {
@@ -110,7 +128,7 @@ export default {
       };
 
       fetch(
-        `https://subiter.herokuapp.com/products/${codProdutoUpdate}`,
+        `https://subiter.herokuapp.com/equipments/${codequiUpdate}`,
         requestOptions
       )
         .then((response) => response.text())
@@ -120,7 +138,7 @@ export default {
   },
   data() {
     return {
-      servicoList: [],
+      equipamentList: [],
     };
   },
   created() {
@@ -136,11 +154,11 @@ export default {
       redirect: "follow",
     };
 
-    fetch("https://subiter.herokuapp.com/products", requestOptions)
+    fetch("https://subiter.herokuapp.com/equipments", requestOptions)
       .then((response) => response.text())
       .then((result) => {
         // console.log(result);
-        this.servicoList = JSON.parse(result);
+        this.equipamentList = JSON.parse(result);
       });
   },
 };

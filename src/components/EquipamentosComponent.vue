@@ -26,9 +26,7 @@ export default {
     equipamento: Array,
   },
   data(equipamento) {
-    console.log("aquimesmo");
     console.log(equipamento);
-    console.log("aquimesmo");
     return {
       search: "",
       headers: [
