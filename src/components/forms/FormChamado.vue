@@ -18,26 +18,26 @@
       </svg>
       <h3>Cadastro de Chamado</h3>
 
-      <fieldset>
-        <legend>Título do Chamado</legend>
+      <fieldset id="fieldTitulo">
+        <legend id="legendTitulo">Título do Chamado</legend>
         <input type="text" placeholder="" id="titulo" />
       </fieldset>
 
-      <fieldset>
-        <legend>Descrição</legend>
+      <fieldset id="fieldDescricao">
+        <legend id="legendDescricao">Descrição</legend>
         <textarea type="text" id="descricao" />
       </fieldset>
 
-      <fieldset>
-        <legend>Serviço</legend>
+      <fieldset id="fieldServico">
+        <legend id="legendServico">Serviço</legend>
         <select id="servico">
           <option v-for="produto in produtos" :key="produto.id">
             {{ produto.model }}
           </option>
         </select>
       </fieldset>
-      <fieldset>
-        <legend>Imagem</legend>
+      <fieldset id="fieldImagem">
+        <legend id="legendImagem">Imagem</legend>
         <input id="imagem" type="file" />
       </fieldset>
 
@@ -71,6 +71,42 @@ export default {
       var servico = document.getElementById("servico").value
       var imagem = document.getElementById("imagem").value;
       var usuario = localStorage.getItem("Id");
+
+      function turnFieldRed(x) {
+        document.getElementById(x).style.borderColor = "red";
+        document.getElementById(x).style.background = "#ff00000f";
+      }
+      function turnLegendRed(x) {
+        document.getElementById(x).style.color = "red";
+      }
+      function turnRed(f, l) {
+        turnFieldRed(f);
+        turnLegendRed(l);
+      }
+
+      if (titulo.trim() == "") {
+        turnRed("fieldTitulo", "legendTitulo", "modelo");
+      }
+
+      if (descricao.trim() == "") {
+        turnRed("fieldDescricao", "legendDescricao", "descricao");
+      }
+
+      if (servico.trim() == "Serviço") {
+        turnRed("fieldServico", "legendServico", "servico");
+      }
+
+      if (imagem.trim() == "") {
+        turnRed("fieldImagem", "legendImagem", "imagem");
+      }
+
+      if ( //verificações antes do post
+        titulo.trim() != "" &&
+        descricao.trim() != "" &&
+        servico.trim() != "" &&
+        imagem.trim() != "" 
+        ) {
+
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
@@ -116,6 +152,7 @@ export default {
       inputs.forEach((input) => {
         input.value = "";
       });
+    }
     },
   },
   data() {

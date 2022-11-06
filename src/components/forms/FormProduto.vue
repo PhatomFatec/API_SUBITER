@@ -17,12 +17,12 @@
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
       <h3>Cadastro de Produtos</h3>
-      <fieldset>
-        <legend>Nome do serviço</legend>
+      <fieldset id="fieldNome">
+        <legend id="legendNome">Nome do serviço</legend>
         <input type="text" id="modelo" />
       </fieldset>
-      <fieldset>
-        <legend>Descrição</legend>
+      <fieldset id="fieldDescricao">
+        <legend id="legendDescricao">Descrição</legend>
         <textarea type="text" id="descricao" />
       </fieldset>
       <div class="buttons">
@@ -52,35 +52,62 @@ export default {
       // var date = new Date()
       // var dateFormated = date.toLocaleString("pt-BR")
 
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `${token}`);
+      function turnFieldRed(x) {
+        document.getElementById(x).style.borderColor = "red";
+        document.getElementById(x).style.background = "#ff00000f";
+      }
+      function turnLegendRed(x) {
+        document.getElementById(x).style.color = "red";
+      }
+      function turnRed(f, l) {
+        turnFieldRed(f);
+        turnLegendRed(l);
+      }
 
-      var raw = JSON.stringify({
-        model: modelo,
-        serialNumber: "string",
-        description: descricao,
-        manufactureDate: "string",
-      });
+      if (modelo.trim() == "") {
+        turnRed("fieldNome", "legendNome", "modelo");
+      }
 
-      var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
+      if (descricao.trim() == "") {
+        turnRed("fieldDescricao", "legendDescricao", "descricao");
+      }
 
-      fetch("https://subiter.herokuapp.com/products", requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
 
-      var modal = document.getElementById("modal");
-      var inputs = modal.querySelectorAll("input, textarea");
-      modal.style.display = "none";
-      inputs.forEach((input) => {
-        input.value = "";
-      });
+      if ( //verificações antes do post
+        modelo.trim() != "" &&
+        descricao.trim() != "" 
+        ) {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `${token}`);
+
+        var raw = JSON.stringify({
+          model: modelo,
+          serialNumber: "string",
+          description: descricao,
+          manufactureDate: "string",
+        });
+
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        fetch("https://subiter.herokuapp.com/products", requestOptions)
+          .then((response) => response.text())
+          .then((result) => console.log(result))
+          .catch((error) => console.log("error", error));
+
+        var modal = document.getElementById("modal");
+        var inputs = modal.querySelectorAll("input, textarea");
+        modal.style.display = "none";
+        inputs.forEach((input) => {
+          input.value = "";
+        });
+    }
     },
   },
 };
