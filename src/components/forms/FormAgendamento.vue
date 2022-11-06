@@ -22,7 +22,7 @@
         <select name="" id="chamadoAgend">
           <option>---</option>
           <option v-for="cham in chamadosList" :key="cham.id">
-            {{ cham.id }} - {{cham.title}}
+            {{ cham.id }} - {{ cham.title }}
           </option>
         </select>
       </fieldset>
@@ -103,7 +103,9 @@ export default {
       var dataAgend = document.getElementById("dataAgend").value;
       var estadoAgend = document.getElementById("estadoAgend").value;
       var cepAgend = document.getElementById("cepAgend").value;
-      var chamadoAgend = document.getElementById("chamadoAgend").value.split(" ")[0];
+      var chamadoAgend = document
+        .getElementById("chamadoAgend")
+        .value.split(" ")[0];
 
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -111,15 +113,16 @@ export default {
 
       var raw = JSON.stringify({
         address: enderecoAgend,
+        appointment: "string",
         city: cidadeAgend,
         date: dataAgend,
+        id: 0,
         serviceProvided: "string",
         state: estadoAgend,
         zipcode: cepAgend,
-        appointment: "string",
-        request: {
+        request:{
           id: chamadoAgend
-        },
+        }
       });
 
       var requestOptions = {
