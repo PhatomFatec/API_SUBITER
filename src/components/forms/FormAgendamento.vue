@@ -17,8 +17,8 @@
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
       <h3>Cadastro de Agendamento</h3>
-      <fieldset>
-        <legend>Chamado</legend>
+      <fieldset id="fieldChamado">
+        <legend id="legendChamado">Chamado</legend>
         <select name="" id="chamadoAgend">
           <option>---</option>
           <option v-for="cham in chamadosList" :key="cham.id">
@@ -26,16 +26,16 @@
           </option>
         </select>
       </fieldset>
-      <fieldset>
-        <legend>CEP</legend>
+      <fieldset id="fieldCep">
+        <legend id="legendCep">CEP</legend>
         <input type="number" name="" id="cepAgend" />
       </fieldset>
-      <fieldset>
-        <legend>Data</legend>
+      <fieldset id="fieldData">
+        <legend id="legendData">Data</legend>
         <input type="date" id="dataAgend" name="meeting-time" />
       </fieldset>
-      <fieldset>
-        <legend>Estado</legend>
+      <fieldset id="fieldEstado">
+        <legend id="legendEstado">Estado</legend>
         <select id="estadoAgend">
           <option>AC</option>
           <option>AL</option>
@@ -66,12 +66,12 @@
           <option>TO</option>
         </select>
       </fieldset>
-      <fieldset>
-        <legend>Cidade</legend>
+      <fieldset id="fieldCidade">
+        <legend id="legendCidade">Cidade</legend>
         <input type="text" name="" id="cidadeAgend" />
       </fieldset>
-      <fieldset>
-        <legend>Endereço</legend>
+      <fieldset id="fieldEndereco">
+        <legend id="legendEndereco">Endereço</legend>
         <input type="text" name="" id="enderecoAgend" />
       </fieldset>
       <div class="buttons">
@@ -103,9 +103,53 @@ export default {
       var dataAgend = document.getElementById("dataAgend").value;
       var estadoAgend = document.getElementById("estadoAgend").value;
       var cepAgend = document.getElementById("cepAgend").value;
-      var chamadoAgend = document
-        .getElementById("chamadoAgend")
-        .value.split(" ")[0];
+      var chamadoAgend = document.getElementById("chamadoAgend").value.split(" ")[0];
+
+      function turnFieldRed(x) {
+        document.getElementById(x).style.borderColor = "red";
+        document.getElementById(x).style.background = "#ff00000f";
+      }
+      function turnLegendRed(x) {
+        document.getElementById(x).style.color = "red";
+      }
+      function turnRed(f, l) {
+        turnFieldRed(f);
+        turnLegendRed(l);
+      }
+
+      if (chamadoAgend == "---") {
+        turnRed("fieldChamado", "legendChamado", "chamadoAgend");
+      }
+      
+      if (cepAgend.trim() == "") {
+        turnRed("fieldCep", "legendCep", "cepAgend");
+      }
+      
+      if (dataAgend.trim() == "") {
+        turnRed("fieldData", "legendData", "dataAgend");
+      }
+      
+      if (estadoAgend.trim() == "") {
+        turnRed("fieldEstado", "legendEstado", "estadoAgend");
+      }
+
+      if (cidadeAgend.trim() == "") {
+        turnRed("fieldCidade", "legendCidade", "cidadeAgend");
+      }
+
+      if (enderecoAgend.trim() == "") {
+        turnRed("fieldEndereco", "legendEndereco", "enderecoAgend");
+      }
+
+      if (
+        //verificações antes do post
+        chamadoAgend.trim() != "" &&
+        cepAgend.trim() != "" &&
+        dataAgend.trim() != "" &&
+        estadoAgend.trim() != "" && 
+        cidadeAgend.trim() != "" && 
+        enderecoAgend.trim() != ""  
+      ) {
 
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -136,6 +180,7 @@ export default {
         .then((response) => response.text())
         .then(this.closeModal())
         .catch((error) => console.log("error", error));
+    }
     },
   },
   data() {

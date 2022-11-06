@@ -28,7 +28,7 @@
         <textarea type="text" id="descricao" />
       </fieldset>
 
-     <fieldset id="fieldServico">
+      <fieldset id="fieldServico">
         <legend id="legendServico">Serviço</legend>
         <select id="servico">
           <option v-for="produto in produtos" :key="produto.id">
@@ -153,6 +153,41 @@ export default {
         inputs.forEach((input) => {
           input.value = "";
         });
+
+        // get do ultmo chamado -> settimeout 3s
+        // criar uma comparação pelos campos encontrados do último request
+        setTimeout(function () {
+          var id = usuario.id;
+          var requestOptions2 = {
+            method: "GET",
+            headers: myHeaders,
+            redirect: "follow",
+          };
+          fetch(`https://subiter.herokuapp.com/requests/${id}`, requestOptions2) // mudar endpoint
+            .then((response) => response.text())
+            .catch((error) => console.log("error", error));
+        }, 3000);
+
+        setTimeout(function () {
+          var raw2 = JSON.stringify({
+            imgUrl: imagem,
+          });
+          var requestOptions2 = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw2,
+            redirect: "follow",
+          };
+          fetch(
+            "https://subiter.herokuapp.com/requests/upload",
+            requestOptions2
+          ) // mudar endpoint
+            .then((response) => response.text())
+            // .then((result) => console.log(result))
+            .catch((error) => console.log("error", error));
+          // var modal = document.getElementById("modal");
+          // var inputs = modal.querySelectorAll("input, textarea");
+        }, 6000);
       }
     },
   },
