@@ -38,10 +38,8 @@ export default {
           sortable: false,
           value: "id",
         },
-        { text: "Nome do Produto", value: "model" },
-        { text: "Número de série", value: "serialNumber" },
+        { text: "Nome do Serviço", value: "model" },
         { text: "Descrição", value: "description" },
-        { text: "Data de Fabricação", value: "manufactureDate" },
         { text: "Data de Cadastro", value: "registerDate" },
       ],
     };
