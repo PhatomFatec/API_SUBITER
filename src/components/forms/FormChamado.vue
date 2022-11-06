@@ -18,26 +18,26 @@
       </svg>
       <h3>Cadastro de Chamado</h3>
 
-      <fieldset>
-        <legend>Título do Chamado</legend>
+      <fieldset id="fieldTitulo">
+        <legend id="legendTitulo">Título do Chamado</legend>
         <input type="text" placeholder="" id="titulo" />
       </fieldset>
 
-      <fieldset>
-        <legend>Descrição</legend>
+      <fieldset id="fieldDescricao">
+        <legend id="legendDescricao">Descrição</legend>
         <textarea type="text" id="descricao" />
       </fieldset>
 
-      <fieldset>
-        <legend>Serviço</legend>
+     <fieldset id="fieldServico">
+        <legend id="legendServico">Serviço</legend>
         <select id="servico">
           <option v-for="produto in produtos" :key="produto.id">
             {{ produto.model }}
           </option>
         </select>
       </fieldset>
-      <fieldset>
-        <legend>Imagem</legend>
+      <fieldset id="fieldImagem">
+        <legend id="legendImagem">Imagem</legend>
         <input id="imagem" type="file" />
       </fieldset>
 
@@ -68,54 +68,92 @@ export default {
       var token = localStorage.getItem("Token");
       var titulo = document.getElementById("titulo").value;
       var descricao = document.getElementById("descricao").value;
-      var servico = document.getElementById("servico").value
+      var servico = document.getElementById("servico").value;
       var imagem = document.getElementById("imagem").value;
       var usuario = localStorage.getItem("Id");
       var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `${token}`);
-      var servicosLista = this.produtos
-      var serv = null
-      var cont = 0
-      while (cont < servicosLista.length) {
+
+      function turnFieldRed(x) {
+        document.getElementById(x).style.borderColor = "red";
+        document.getElementById(x).style.background = "#ff00000f";
+      }
+      function turnLegendRed(x) {
+        document.getElementById(x).style.color = "red";
+      }
+      function turnRed(f, l) {
+        turnFieldRed(f);
+        turnLegendRed(l);
+      }
+
+      if (titulo.trim() == "") {
+        turnRed("fieldTitulo", "legendTitulo", "modelo");
+      }
+
+      if (descricao.trim() == "") {
+        turnRed("fieldDescricao", "legendDescricao", "descricao");
+      }
+
+      if (servico.trim() == "Serviço") {
+        turnRed("fieldServico", "legendServico", "servico");
+      }
+
+      if (imagem.trim() == "") {
+        turnRed("fieldImagem", "legendImagem", "imagem");
+      }
+
+      if (
+        //verificações antes do post
+        titulo.trim() != "" &&
+        descricao.trim() != "" &&
+        servico.trim() != "" &&
+        imagem.trim() != ""
+      ) {
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `${token}`);
+        var servicosLista = this.produtos;
+        var serv = null;
+        var cont = 0;
+        while (cont < servicosLista.length) {
           if (servicosLista[cont].model == servico) {
-            serv = servicosLista[cont].id
+            serv = servicosLista[cont].id;
           }
           cont++;
         }
 
+        var raw = JSON.stringify({
+          title: titulo,
+          description: descricao,
+          imgUrl: imagem,
+          status: "Pendente",
+          product: {
+            id: serv,
+          },
+          user: {
+            id: usuario,
+          },
+        });
 
-      var raw = JSON.stringify({
-        title: titulo,
-        description: descricao,
-        imgUrl: imagem,
-        status: "Pendente",
-        product: {
-          id: serv
-        },
-        user: {
-          id: usuario
-        },
-      });
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
 
-      var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
+        fetch("https://subiter.herokuapp.com/requests", requestOptions)
+          .then((response) => response.text())
+          // .then((result) => console.log(result))
+          .then(this.closeModal())
+          .then(this.$emit("change"))
+          .catch((error) => console.log("error", error));
 
-      fetch("https://subiter.herokuapp.com/requests", requestOptions)
-        .then((response) => response.text())
-        // .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
-
-      var modal = document.getElementById("modal");
-      var inputs = modal.querySelectorAll("input, textarea");
-      modal.style.display = "none";
-      inputs.forEach((input) => {
-        input.value = "";
-      });
+        var modal = document.getElementById("modal");
+        var inputs = modal.querySelectorAll("input, textarea");
+        modal.style.display = "none";
+        inputs.forEach((input) => {
+          input.value = "";
+        });
+      }
     },
   },
   data() {

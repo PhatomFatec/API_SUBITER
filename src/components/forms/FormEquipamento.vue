@@ -17,23 +17,23 @@
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
       <h3>Cadastro de Equipamentos</h3>
-      <fieldset>
-        <legend>Nome do equipamento</legend>
-        <input type="text" id="modelo" />
+      <fieldset id="fieldNome">
+        <legend id="legendNome">Nome do equipamento</legend>
+        <input type="text" id="modelo" >
       </fieldset>
-      <fieldset>
-        <legend>Número de série</legend>
+      <fieldset id="fieldNumeroSerie">
+        <legend id="legendNumeroSerie">Número de série</legend>
         <input
           type="text"
           id="serialnumberEquipamento"
         />
       </fieldset>
-      <fieldset>
-        <legend>Descrição</legend>
+      <fieldset id="fieldDescricao">
+        <legend id="legendDescricao">Descrição</legend>
         <textarea type="text" id="descricao" />
       </fieldset>
-      <fieldset>
-        <legend>Data de fabricação</legend>
+      <fieldset id="fieldData">
+        <legend id="legendData">Data de fabricação</legend>
         <input type="date" id="dataFabricacao" />
       </fieldset>
       <div class="buttons">
@@ -63,6 +63,41 @@ export default {
       var dataFabricacao = document.getElementById("dataFabricacao").value;
       var token = localStorage.getItem("Token");
 
+      function turnFieldRed(x) {
+        document.getElementById(x).style.borderColor = "red";
+        document.getElementById(x).style.background = "#ff00000f";
+      }
+      function turnLegendRed(x) {
+        document.getElementById(x).style.color = "red";
+      }
+      function turnRed(f, l) {
+        turnFieldRed(f);
+        turnLegendRed(l);
+      }
+
+      if (modelo.trim() == "") {
+        turnRed("fieldNome", "legendNome", "modelo");
+      }
+
+      if (numeroDeSerie.trim() == "") {
+        turnRed("fieldNumeroSerie", "legendNumeroSerie", "serialnumberEquipamento");
+      }
+
+      if (descricao.trim() == "") {
+        turnRed("fieldDescricao", "legendDescricao", "descricao");
+      }
+
+      if (dataFabricacao.trim() == "") {
+        turnRed("fieldData", "legendData", "date");
+      }
+
+      if ( //verificações antes do post
+              modelo.trim() != "" &&
+              numeroDeSerie.trim() != "" && 
+              descricao.trim() != "" && 
+              dataFabricacao.trim() != ""
+            ) {
+
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
@@ -85,6 +120,7 @@ export default {
       fetch("https://subiter.herokuapp.com/equipments", requestOptions)
         .then((response) => response.text())
         .then((result) => {console.log(result)})
+        .then(this.closeModal())
         .catch((error) => {console.log(error)});
 
       var modal = document.getElementById("modal");
@@ -93,6 +129,8 @@ export default {
       inputs.forEach((input) => {
         input.value = "";
       });
+
+    }
     },
   },
 };

@@ -131,6 +131,7 @@ export default {
 
       fetch("https://subiter.herokuapp.com/schedule", requestOptions)
         .then((response) => response.text())
+        .then(this.closeModal())
         .catch((error) => console.log("error", error));
     },
   },

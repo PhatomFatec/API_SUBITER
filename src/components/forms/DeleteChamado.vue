@@ -64,7 +64,8 @@ export default {
 
       fetch(`https://subiter.herokuapp.com/requests/${codChamado}`, requestOptions)
         .then((response) => response.text())
-        .then((result) => console.log(result))
+        .then(this.closeDelete())
+        .then(this.$emit("change"))
         .catch((error) => console.log("error", error));
     },
   },

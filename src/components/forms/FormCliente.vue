@@ -157,8 +157,8 @@ export default {
         turnRed("fieldCpf", "legendCpf", "cpfClient");
       } else if (cpfValido == false) {
           console.log("falso")
-          document.getElementById("telClient").value = ""
-          document.getElementById("telClient").placeholder = "Digite um CPF valido!"
+          document.getElementById("cpfClient").value = ""
+          document.getElementById("cpfClient").placeholder = "Digite um CPF valido!"
           turnRed("fieldCpf", "legendCpf", "cpfClient");     
         } 
 
@@ -194,8 +194,14 @@ export default {
       }
       if (password.trim() == "") {
         turnRed("fieldSenha", "legendSenha", "passClient");
+      } else if (password.length <= 8) {
+        document.getElementById("passClient").value = ""
+        document.getElementById("passClient").placeholder = "Digite uma Senha valida! (min: 8 caracteres)"
+        turnRed("fieldSenha", "legendSenha", "passClient");
       }
-      if (
+
+
+      if ( //verificações antes do post
         nome.trim() != "" &&
         cpf.trim() != "" && cpfValido != false &&
         tel.trim() != "" && telValido != false &&
@@ -229,6 +235,7 @@ export default {
         fetch("https://subiter.herokuapp.com/users", requestOptions)
           .then((response) => response.text())
           .then((result) => console.log(result))
+          .then(this.closeModal())
           .catch((error) => console.log("error", error));
 
         var modal = document.getElementById("modal");

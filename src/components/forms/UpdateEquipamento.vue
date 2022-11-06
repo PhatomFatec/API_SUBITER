@@ -41,11 +41,11 @@
       </fieldset>
       <fieldset>
         <legend>Número de Série</legend>
-        <input type="text" id="ndsUpdate">
+        <input type="text" id="ndsUpdate" />
       </fieldset>
       <fieldset>
         <legend>Data de Fabricação</legend>
-      <input type="text" id="fabdateUpdate">
+        <input type="text" id="fabdateUpdate" />
       </fieldset>
       <div class="buttons">
         <button id="cancelar" v-on:click="closeUpdate()">Cancelar</button>
@@ -63,15 +63,15 @@ export default {
   props: {
     equipamento: Array,
   },
-  closeUpdate() {
-    var modal = document.getElementById("update");
-    var inputs = modal.querySelectorAll("input, textarea");
-    modal.style.display = "none";
-    inputs.forEach((input) => {
-      input.value = "";
-    });
-  },
   methods: {
+    closeUpdate() {
+      var modal = document.getElementById("update");
+      var inputs = modal.querySelectorAll("input, textarea");
+      modal.style.display = "none";
+      inputs.forEach((input) => {
+        input.value = "";
+      });
+    },
     atualiza() {
       var codequiUpdate = document
         .getElementById("codequiUpdate")
@@ -133,6 +133,7 @@ export default {
       )
         .then((response) => response.text())
         .then((result) => console.log(result))
+        .then(this.closeUpdate())
         .catch((error) => console.log("error", error));
     },
   },

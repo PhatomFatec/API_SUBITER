@@ -55,15 +55,15 @@ export default {
   props: {
     produtos: Array,
   },
-  closeUpdate() {
-    var modal = document.getElementById("update");
-    var inputs = modal.querySelectorAll("input, textarea");
-    modal.style.display = "none";
-    inputs.forEach((input) => {
-      input.value = "";
-    });
-  },
   methods: {
+    closeUpdate() {
+      var modal = document.getElementById("update");
+      var inputs = modal.querySelectorAll("input, textarea");
+      modal.style.display = "none";
+      inputs.forEach((input) => {
+        input.value = "";
+      });
+    },
     atualiza() {
       var codProdutoUpdate = document
         .getElementById("codProdutoUpdate")
@@ -114,6 +114,7 @@ export default {
         requestOptions
       )
         .then((response) => response.text())
+        .then(this.closeUpdate())
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));
     },

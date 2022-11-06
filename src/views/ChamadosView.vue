@@ -3,7 +3,7 @@
     <div class="sub-menu"></div>
     <FormChamado @change="load" />
     <DeleteChamado @change="load" />
-    <ChamadosComponent :chamados="chamados" />
+    <ChamadosComponent @change="load" :chamados="chamados" />
     <UpdateChamados @change="load"/>
   </div>
 </template>
