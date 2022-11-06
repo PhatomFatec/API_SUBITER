@@ -2,6 +2,7 @@
   <div id="app">
     <NavbarComponent />
     <MenuComponent />
+    <ChatComponent />
     <router-view />
   </div>
 </template>
@@ -9,11 +10,13 @@
 <script>
 import NavbarComponent from "./components/NavbarComponent.vue";
 import MenuComponent from "./components/MenuComponent.vue";
+import ChatComponent from "./components/chat/ChatComponent.vue"
 export default {
   name: "App",
   components: {
     NavbarComponent,
     MenuComponent,
+    ChatComponent,
   },
   created() {
     setTimeout(function () {
