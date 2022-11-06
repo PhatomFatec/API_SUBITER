@@ -133,6 +133,7 @@ export default {
       )
         .then((response) => response.text())
         .then((result) => console.log(result))
+        .then(this.closeUpdate())
         .catch((error) => console.log("error", error));
     },
   },

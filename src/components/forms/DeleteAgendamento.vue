@@ -69,7 +69,7 @@ export default {
         requestOptions
       )
         .then((response) => response.text())
-        .then((result) => console.log(result))
+        .then(this.closeDelete())
         .catch((error) => console.log("error", error));
     },
   },

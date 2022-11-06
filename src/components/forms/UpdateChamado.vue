@@ -150,6 +150,7 @@ export default {
       fetch(`https://subiter.herokuapp.com/requests/${codCham}`, requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
+        .then(this.closeUpdate())
         .catch((error) => console.log("error", error));
     },
   },
