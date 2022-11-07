@@ -19,14 +19,14 @@ export default {
     ChatComponent,
   },
   created() {
-    // setTimeout(function () {
-    //   if (localStorage.getItem("Role") != "ROLE_ADMIN") {
-    //     document.getElementById("menu2").style.display = "none";
-    //     document.getElementById("menu3").style.display = "none";
-    //     document.getElementById("menu4").style.display = "none";
-    //     document.getElementById("menu5").style.display = "none";
-    //   }
-    // }, 1);
+    setTimeout(function () {
+      if (localStorage.getItem("Role") != "ROLE_ADMIN") {
+        document.getElementById("menu2").style.display = "none";
+        document.getElementById("menu3").style.display = "none";
+        document.getElementById("menu4").style.display = "none";
+        document.getElementById("menu5").style.display = "none";
+      }
+    }, 1);
   },
 };
 </script>
