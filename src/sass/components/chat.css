@@ -12,4 +12,91 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 20;
+}
+
+.chatField {
+  background: rgb(237, 237, 237);
+  width: 300px;
+  height: 0px;
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  transition: height 1s;
+  z-index: 25;
+  border: solid 1px rgb(215, 215, 215);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.chatField .choseRequest {
+  background: #0257fd;
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  display: flex;
+}
+.chatField .choseRequest select {
+  color: #fff;
+  width: 85%;
+  height: 100%;
+  outline: none;
+  padding-left: 10px;
+  font-weight: 600;
+}
+.chatField .choseRequest select option {
+  color: #000;
+}
+.chatField .choseRequest .fechaChat {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.chatField .mensagens {
+  height: 320px;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  padding-left: 10px;
+}
+.chatField .mensagens .mensagem {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  background: rgb(176, 214, 255);
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+}
+.chatField .mensagens .mensagem .nome {
+  color: #0257fd;
+  font-size: small;
+}
+.chatField .caixaTexto {
+  width: 100%;
+  height: 40px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chatField .caixaTexto input {
+  width: 85%;
+  height: 100%;
+  outline: none;
+  padding-left: 10px;
+}
+.chatField .caixaTexto .iconSend {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(176, 176, 176);
+}
+.chatField .caixaTexto .iconSend svg {
+  cursor: pointer;
 }/*# sourceMappingURL=chat.css.map */
