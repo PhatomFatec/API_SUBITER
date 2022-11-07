@@ -17,12 +17,12 @@ public class ProductService {
 	@Autowired
 	private ProductRepository repository;
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("isAuthenticated()")
 	public List<Product> findAll() {
 		return repository.findAll();
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("isAuthenticated()")
 	public Product findById(Long id) {
 		Optional<Product> obj = repository.findById(id);
 		return obj.get();
