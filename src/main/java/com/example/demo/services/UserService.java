@@ -24,7 +24,7 @@ public class UserService implements SegurancaService {
 	private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	@Override
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("isAuthenticated()")
 	public List<User> findAll() {
 		return repository.findAll();
 	}
