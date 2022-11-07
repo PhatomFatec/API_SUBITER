@@ -77,22 +77,21 @@ export default {
       );
     }, 1);
     // remove os botões do CRUD para usuários sem acesso
-    // setTimeout(function () {
-    //   if (
-    //     localStorage.getItem("Role") != "ROLE_ADMIN" &&
-    //     localStorage.getItem("Role") != "ROLE_CLIENT"
-    //   ) {
-    //     document.getElementById("btn1").style.display = "none";
-    //     document.getElementById("btn2").style.display = "none";
-    //     document.getElementById("btn3").style.display = "none";
+    setTimeout(function () {
+      if (
+        localStorage.getItem("Role") != "ROLE_ADMIN" 
+      ) {
+        // document.getElementById("btn1").style.display = "none";
+        document.getElementById("btn2").style.display = "none";
+        document.getElementById("btn3").style.display = "none";
 
-    //     var styles = `.v-card .v-input{right:10%;}`;
+        var styles = `.v-card .v-input{right:calc(10% + 50px);}`;
 
-    //     var styleSheet = document.createElement("style");
-    //     styleSheet.innerText = styles;
-    //     document.head.appendChild(styleSheet);
-    //   }
-    // }, 10);
+        var styleSheet = document.createElement("style");
+        styleSheet.innerText = styles;
+        document.head.appendChild(styleSheet);
+      }
+    }, 10);
   },
 };
 </script>

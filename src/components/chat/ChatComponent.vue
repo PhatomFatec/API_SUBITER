@@ -88,7 +88,7 @@ export default {
     fechaChat() {
       document.getElementById("chatField").style.height = "0px";
     },
-    abreChat(){
+    abreChat() {
       document.getElementById("chatField").style.height = "400px";
     },
     atualizaChat() {
@@ -117,16 +117,19 @@ export default {
             if (this.chatComentarios[cont].request.id == requestIdChat) {
               this.chatComentariosAtual.push(this.chatComentarios[cont]);
               console.log(this.chatComentariosAtual);
+              this.chatComentariosAtual.sort(function (a, b) {
+                return a.id - b.id;
+              });
             }
             cont++;
           }
         });
     },
-    enviaMensagem(){
+    enviaMensagem() {
       var requestIdChat = document
-            .getElementById("requestIdChat")
-            .value.split(" ")[0];
-      var textoMensagem = document.getElementById("textoMensagem").value
+        .getElementById("requestIdChat")
+        .value.split(" ")[0];
+      var textoMensagem = document.getElementById("textoMensagem").value;
       var token = localStorage.getItem("Token");
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -134,12 +137,12 @@ export default {
 
       var raw = JSON.stringify({
         comment: textoMensagem,
-        request:{
-          id: requestIdChat
+        request: {
+          id: requestIdChat,
         },
-        user:{
-          id: localStorage.getItem("Id")
-        }
+        user: {
+          id: localStorage.getItem("Id"),
+        },
       });
 
       var requestOptions = {
@@ -152,9 +155,9 @@ export default {
       fetch("https://subiter.herokuapp.com/comments", requestOptions)
         .then((response) => response.text())
         .then(this.atualizaChat)
-        .then(document.getElementById("textoMensagem").value = "")
+        .then((document.getElementById("textoMensagem").value = ""))
         .catch((error) => console.log("error", error));
-    }
+    },
   },
   created() {
     var myHeaders = new Headers();
