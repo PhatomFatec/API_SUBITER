@@ -79,7 +79,7 @@ export default {
     // remove os botões do CRUD para usuários sem acesso
     setTimeout(function () {
       if (
-        localStorage.getItem("Role") != "ROLE_ADMIN" 
+        localStorage.getItem("Role") != "ROLE_ADMIN" && localStorage.getItem("Role") != "ROLE_SUPPORT"
       ) {
         // document.getElementById("btn1").style.display = "none";
         document.getElementById("btn2").style.display = "none";
