@@ -20,11 +20,16 @@ export default {
   },
   created() {
     setTimeout(function () {
-      if (localStorage.getItem("Role") != "ROLE_ADMIN") {
+      if (localStorage.getItem("Role") == "ROLE_CLIENT") {
         document.getElementById("menu2").style.display = "none";
         document.getElementById("menu3").style.display = "none";
         document.getElementById("menu4").style.display = "none";
         document.getElementById("menu5").style.display = "none";
+      }
+      if (localStorage.getItem("Role") == "ROLE_SUPPORT") {
+        document.getElementById("menu2").style.display = "none";
+        document.getElementById("menu3").style.display = "none";
+        document.getElementById("menu4").style.display = "none";
       }
     }, 1);
   },
