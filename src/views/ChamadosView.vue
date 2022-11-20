@@ -5,6 +5,7 @@
     <DeleteChamado @change="load" />
     <ChamadosComponent @change="load" :chamados="chamados" />
     <UpdateChamados @change="load"/>
+    <AlertComponent titulo="Chamado" acao="cadastrado"/>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import ChamadosComponent from "@/components/ChamadosComponent.vue";
 import FormChamado from "@/components/forms/FormChamado.vue";
 import DeleteChamado from "@/components/forms/DeleteChamado.vue";
 import UpdateChamados from "@/components/forms/UpdateChamado.vue"
+import AlertComponent from "@/components/alerts/AlertsComponent.vue"
 
 export default {
   name: "ChamadosView",
@@ -21,6 +23,7 @@ export default {
     FormChamado,
     DeleteChamado,
     UpdateChamados,
+    AlertComponent
   },
   data() {
     return {

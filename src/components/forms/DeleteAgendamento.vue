@@ -68,8 +68,10 @@ export default {
         `https://subiter.herokuapp.com/schedule/${codAgendamento}`,
         requestOptions
       )
-        .then((response) => response.text())
-        .then(this.closeDelete())
+        .then((response) => {
+          response.text()
+          this.closeDelete()
+          })
         .catch((error) => console.log("error", error));
     },
   },

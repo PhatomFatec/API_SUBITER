@@ -56,6 +56,22 @@ export default {
   name: "FormChamado",
   props: {},
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeModal() {
       var modal = document.getElementById("modal");
       var inputs = modal.querySelectorAll("input, textarea");
@@ -141,10 +157,13 @@ export default {
         };
 
         fetch("https://subiter.herokuapp.com/requests", requestOptions)
-          .then((response) => response.text())
+          .then((response) => {
+            response.text();
+            this.closeModal();
+            this.$emit("change");
+            this.cadastra();
+          })
           // .then((result) => console.log(result))
-          .then(this.closeModal())
-          .then(this.$emit("change"))
           .catch((error) => console.log("error", error));
 
         var modal = document.getElementById("modal");

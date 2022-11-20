@@ -5,6 +5,7 @@
     <DeleteAgendamento @change="load" />
     <AgendamentosComponent :agendamentos="agendamentos" />
     <UpdateAgendamento @change="load" />
+    <AlertComponent titulo="Agendamento" acao="realizado"/>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import AgendamentosComponent from "@/components/AgendamentosComponent.vue";
 import FormAgendamento from "@/components/forms/FormAgendamento.vue";
 import DeleteAgendamento from "@/components/forms/DeleteAgendamento.vue";
 import UpdateAgendamento from "@/components/forms/UpdateAgendamento.vue";
+import AlertComponent from "@/components/alerts/AlertsComponent.vue"
 
 export default {
   name: "AgendamentosView",
@@ -20,7 +22,8 @@ export default {
     AgendamentosComponent,
     FormAgendamento,
     DeleteAgendamento,
-    UpdateAgendamento
+    UpdateAgendamento,
+    AlertComponent
   },
   data() {
     return {
