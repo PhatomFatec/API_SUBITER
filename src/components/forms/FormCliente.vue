@@ -233,9 +233,10 @@ export default {
         };
 
         fetch("https://subiter.herokuapp.com/users", requestOptions)
-          .then((response) => response.text())
-          .then((result) => console.log(result))
-          .then(this.closeModal())
+          .then((response) => {
+            response.text()
+            this.closeModal()
+            })
           .catch((error) => console.log("error", error));
 
         var modal = document.getElementById("modal");

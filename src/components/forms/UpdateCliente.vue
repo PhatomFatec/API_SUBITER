@@ -161,9 +161,10 @@ export default {
           `https://subiter.herokuapp.com/users/${codClienteUpdate}`,
           requestOptions
         )
-          .then((response) => response.text())
-          .then((result) => console.log(result))
-          .then(this.closeUpdate())
+          .then((response) => {
+            response.text()
+            this.closeUpdate()
+            })
           .catch((error) => console.log("error", error));
       }
       },

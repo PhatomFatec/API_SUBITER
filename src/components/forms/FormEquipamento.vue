@@ -118,9 +118,10 @@ export default {
       };
 
       fetch("https://subiter.herokuapp.com/equipments", requestOptions)
-        .then((response) => response.text())
-        .then((result) => {console.log(result)})
-        .then(this.closeModal())
+        .then((response) => {
+          response.text()
+          this.closeModal()
+          })
         .catch((error) => {console.log(error)});
 
       var modal = document.getElementById("modal");

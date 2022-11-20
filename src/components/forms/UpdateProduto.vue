@@ -113,9 +113,10 @@ export default {
         `https://subiter.herokuapp.com/products/${codProdutoUpdate}`,
         requestOptions
       )
-        .then((response) => response.text())
-        .then(this.closeUpdate())
-        .then((result) => console.log(result))
+        .then((response) => {
+          response.text()
+          this.closeUpdate()
+          })
         .catch((error) => console.log("error", error));
     },
   },
