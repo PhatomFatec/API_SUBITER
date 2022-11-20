@@ -50,7 +50,7 @@
             }
         }
 
-        .fechaChat{
+        .fechaChat {
             width: 15%;
             display: flex;
             align-items: center;
@@ -68,19 +68,24 @@
         padding: 10px;
         overflow-y: scroll;
 
-        .mensagem{
+        .mensagem {
             width: max-content;
             background: rgb(176, 214, 255);
             margin-bottom: 10px;
             padding: 5px;
             border-radius: 5px;
             position: relative;
+            max-width: 80% !important;
 
-            .nome{
+            .nome {
                 color: #0257fd;
                 font-size: small;
+                display: flex;
+                div {
+                    color: grey;
+                }
             }
-            
+
             // &::before{
             //     content: "";
             //     width: 10px;

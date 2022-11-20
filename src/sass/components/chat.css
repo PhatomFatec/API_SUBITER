@@ -72,10 +72,15 @@
   padding: 5px;
   border-radius: 5px;
   position: relative;
+  max-width: 80% !important;
 }
 .chatField .mensagens .mensagem .nome {
   color: #0257fd;
   font-size: small;
+  display: flex;
+}
+.chatField .mensagens .mensagem .nome div {
+  color: grey;
 }
 .chatField .caixaTexto {
   width: 100%;
