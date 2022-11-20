@@ -46,7 +46,12 @@
       </div>
       <div class="mensagens" id="mensagens">
         <div class="mensagem" v-for="m in chatComentariosAtual" :key="m.id">
-          <div class="nome">{{ m.user.name }}</div>
+          <div class="nome">
+            {{ m.user.name }} 
+            <div v-if="m.user.roles === 'ROLE_ADMIN'">&nbsp; Admin</div>
+            <div v-else-if="m.user.roles === 'ROLE_SUPPORT'">&nbsp; Suporte</div>
+            <div v-else-if="m.user.roles === 'ROLE_CLIENT'">&nbsp; Cliente</div>
+          </div>
           <div class="texto">{{ m.comment }}</div>
         </div>
       </div>
