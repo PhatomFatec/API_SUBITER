@@ -180,6 +180,7 @@ export default {
         .then((response) => {
           response.text()
           this.closeModal()
+          this.$emit("change");
           })
         .catch((error) => console.log("error", error));
     }

@@ -164,6 +164,7 @@ export default {
           .then((response) => {
             response.text()
             this.closeUpdate()
+            this.$emit("change");
             })
           .catch((error) => console.log("error", error));
       }

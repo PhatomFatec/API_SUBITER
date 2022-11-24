@@ -71,6 +71,7 @@ export default {
         .then((response) => {
           response.text()
           this.closeDelete()
+          this.$emit("change");
           })
         .catch((error) => console.log("error", error));
     },

@@ -48,7 +48,6 @@ export default {
       fetch("https://subiter.herokuapp.com/requests", requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          // console.log(result);
           this.chamados = JSON.parse(result);
         });
     },

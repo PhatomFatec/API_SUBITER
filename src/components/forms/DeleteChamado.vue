@@ -22,7 +22,7 @@
         <select id="codChamado">
           <option>Selecione o chamado</option>
           <option v-for="cham in chamadosList" :key="cham.id">
-            {{ cham.id }} - {{cham.title}}
+            {{ cham.id }} - {{ cham.title }}
           </option>
         </select>
       </fieldset>
@@ -49,7 +49,9 @@ export default {
     deleteChamado() {
       //
       var myHeaders = new Headers();
-      var codChamado = document.getElementById("codChamado").value.split(" ")[0];
+      var codChamado = document
+        .getElementById("codChamado")
+        .value.split(" ")[0];
       var token = localStorage.getItem("Token");
       myHeaders.append("Authorization", `${token}`);
 
@@ -62,37 +64,42 @@ export default {
         redirect: "follow",
       };
 
-      fetch(`https://subiter.herokuapp.com/requests/${codChamado}`, requestOptions)
-        .then((response) => response.text())
-        .then(this.closeDelete())
-        .then(this.$emit("change"))
+      fetch(
+        `https://subiter.herokuapp.com/requests/${codChamado}`,
+        requestOptions
+      )
+        .then((response) => {
+          response.text();
+          this.closeDelete();
+          this.$emit("change");
+        })
         .catch((error) => console.log("error", error));
     },
   },
-  data(){
-    return{
+  data() {
+    return {
       chamadosList: [],
-    }
+    };
   },
-  created(){
+  created() {
     var myHeaders = new Headers();
-      var token = localStorage.getItem("Token");
-      // console.log(token)
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `${token}`);
+    var token = localStorage.getItem("Token");
+    // console.log(token)
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `${token}`);
 
-      var requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow",
-      };
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
 
-      fetch("https://subiter.herokuapp.com/requests", requestOptions)
-        .then((response) => response.text())
-        .then((result) => {
-          // console.log(result);
-          this.chamadosList = JSON.parse(result);
-        });
-  }
+    fetch("https://subiter.herokuapp.com/requests", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        // console.log(result);
+        this.chamadosList = JSON.parse(result);
+      });
+  },
 };
 </script>

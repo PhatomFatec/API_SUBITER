@@ -63,8 +63,11 @@ export default {
       };
 
       fetch(`https://subiter.herokuapp.com/users/${codClient}`, requestOptions)
-        .then((response) => response.text())
-        .then(this.closeDelete())
+        .then((response) => {
+          response.text()
+          this.closeDelete()
+          this.$emit("change");
+          })
         .catch((error) => console.log("error", error));
     },
   },
