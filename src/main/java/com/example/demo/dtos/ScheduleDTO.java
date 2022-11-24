@@ -3,6 +3,7 @@ package com.example.demo.dtos;
 import java.io.Serializable;
 
 import com.example.demo.entities.Request;
+import com.example.demo.entities.Schedule;
 
 public class ScheduleDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -21,18 +22,17 @@ public class ScheduleDTO implements Serializable {
 
 	}
 
-	public ScheduleDTO(Long id, String serviceProvided, String appointment, String date, String address, String city,
-			String zipcode, String state, Request request) {
+	public ScheduleDTO(Schedule obj) {
 		super();
-		this.id = id;
-		this.serviceProvided = serviceProvided;
-		this.appointment = appointment;
-		this.date = date;
-		this.address = address;
-		this.city = city;
-		this.zipcode = zipcode;
-		this.state = state;
-		this.request = request;
+		this.id = obj.getId();
+		this.serviceProvided = obj.getServiceProvided();
+		this.appointment = obj.getAppointment();
+		this.date = obj.getDate();
+		this.address = obj.getAddress();
+		this.city = obj.getCity();
+		this.zipcode =obj.getZipcode();
+		this.state = obj.getState();
+		this.request = obj.getRequest();
 	}
 
 	public Long getId() {

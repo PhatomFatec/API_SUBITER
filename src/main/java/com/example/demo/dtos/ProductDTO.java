@@ -17,13 +17,13 @@ public class ProductDTO implements Serializable {
 
 	}
 
-	public ProductDTO(Long id, String model, String serialNumber, String description, String manufactureDate) {
+	public ProductDTO(Product obj) {
 		super();
-		this.id = id;
-		this.model = model;
-		this.serialNumber = serialNumber;
-		this.description = description;
-		this.manufactureDate = manufactureDate;
+		this.id = obj.getId();
+		this.model = obj.getModel();
+		this.serialNumber = obj.getSerialNumber();
+		this.description = obj.getDescription();
+		this.manufactureDate = obj.getManufactureDate();
 	}
 
 	public Long getId() {
