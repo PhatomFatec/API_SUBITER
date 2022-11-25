@@ -5,7 +5,7 @@
     <DeleteEquipamento @change="load" />
     <UpdateEquipamento @change="load" />
     <EquipamentoComponent :equipamento="equipamento" />
-    <AlertComponent titulo="Equipamento" acao="adicionado" />
+    <AlertComponent />
   </div>
 </template>
 

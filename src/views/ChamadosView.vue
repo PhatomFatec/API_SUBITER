@@ -5,7 +5,7 @@
     <DeleteChamado @change="load" />
     <ChamadosComponent @change="load" :chamados="chamados" />
     <UpdateChamados @change="load"/>
-    <AlertComponent titulo="Chamado" acao="cadastrado"/>
+    <AlertComponent />
   </div>
 </template>
 

@@ -138,8 +138,12 @@ export default {
           response.text()
           this.closeModal()
           this.$emit("change");
+          this.cadastra();
           })
-        .catch((error) => {console.log(error)});
+        .catch((error) => {
+          console.log("error", error)
+          this.naoCadastra();
+          });
 
       var modal = document.getElementById("modal");
       var inputs = modal.querySelectorAll("input, textarea");

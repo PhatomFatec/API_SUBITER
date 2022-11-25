@@ -32,7 +32,7 @@
       </fieldset>
       <fieldset id="fieldEmail">
         <legend id="legendEmail">E-mail</legend>
-        <input type="text" id="emailUpdate" required/>
+        <input type="text" id="emailUpdate" required />
       </fieldset>
       <fieldset id="fieldTelefone">
         <legend id="legendTelefone">Telefone</legend>
@@ -104,9 +104,11 @@ export default {
       }
     },
     UpdateCliente() {
-      
-      var codClienteUpdate = document.getElementById("codClienteUpdate").value.split(" ")[0];
-      var clienteNomeUpdate = document.getElementById("clienteNomeUpdate").value;
+      var codClienteUpdate = document
+        .getElementById("codClienteUpdate")
+        .value.split(" ")[0];
+      var clienteNomeUpdate =
+        document.getElementById("clienteNomeUpdate").value;
       var emailUpdate = document.getElementById("emailUpdate").value;
       var fonenumberUpdate = document.getElementById("fonenumberUpdate").value;
       //var telValido = validaTel(fonenumberUpdate)
@@ -116,31 +118,31 @@ export default {
       var corporateNameU = null;
       var cpfU = null;
       var rolesU = null;
-      
+
       var myHeaders = new Headers();
       var token = localStorage.getItem("Token");
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", `${token}`);
 
-      function validaTel (tel) {
-        if (tel.length == 11 && tel[2] == '9') {
-            return true;
-        } else
-            return false;
-      } 
+      function validaTel(tel) {
+        if (tel.length == 11 && tel[2] == "9") {
+          return true;
+        } else return false;
+      }
 
-      let telefoneValido = validaTel(fonenumberUpdate)
+      let telefoneValido = validaTel(fonenumberUpdate);
 
       if (telefoneValido == false || fonenumberUpdate == "") {
-        document.getElementById("fonenumberUpdate").value = ""
-        document.getElementById("fonenumberUpdate").placeholder = "Digite um Telefone valido!"
+        document.getElementById("fonenumberUpdate").value = "";
+        document.getElementById("fonenumberUpdate").placeholder =
+          "Digite um Telefone valido!";
       }
-      if (emailUpdate == "" || emailUpdate.includes('@') == false) {
-        document.getElementById("emailUpdate").value = ""
-        document.getElementById("emailUpdate").placeholder = "Digite um Email valido!"
-        var emailValido = false
+      if (emailUpdate == "" || emailUpdate.includes("@") == false) {
+        document.getElementById("emailUpdate").value = "";
+        document.getElementById("emailUpdate").placeholder =
+          "Digite um Email valido!";
+        var emailValido = false;
       }
-
 
       var cont = 0;
       while (cont < this.clienteList.length) {
@@ -154,7 +156,7 @@ export default {
         cont++;
       }
 
-      if (telefoneValido != false && emailValido != false ) {
+      if (telefoneValido != false && emailValido != false) {
         var raw = JSON.stringify({
           name: clienteNomeUpdate,
           email: emailUpdate,
@@ -178,15 +180,18 @@ export default {
           requestOptions
         )
           .then((response) => {
-            response.text()
-            this.closeUpdate()
+            response.text();
+            this.closeUpdate();
             this.$emit("change");
-            })
-          .catch((error) => console.log("error", error));
+            this.cadastra();
+          })
+          .catch((error) => {
+            console.log("error", error);
+            this.naoCadastra();
+          });
       }
-      },
     },
-
+  },
 
   data() {
     return {

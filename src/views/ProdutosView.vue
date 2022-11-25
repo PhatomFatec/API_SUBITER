@@ -5,7 +5,7 @@
     <DeleteProduto @change="load" />
     <UpdateProduto @change="load" />
     <ProdutoComponent :produtos="produtos" />
-    <AlertComponent titulo="Serviço" acao="adicionado" />
+    <AlertComponent />
   </div>
 </template>
 

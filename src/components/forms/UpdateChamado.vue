@@ -168,8 +168,12 @@ export default {
           response.text()
           this.closeUpdate()
           this.$emit("change");
+          this.cadastra();
           })
-        .catch((error) => console.log("error", error));
+        .catch((error) => {
+          console.log("error", error)
+          this.naoCadastra();
+          });
     },
   },
   data() {

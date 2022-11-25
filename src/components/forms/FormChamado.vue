@@ -236,11 +236,8 @@ export default {
       .then((response) => response.text())
       .then((result) => {
         usuarios = JSON.parse(result);
-        // console.log(usuarios);
         var cont = 0;
         var user_id = null;
-        // console.log("aqui");
-        // console.log(usuarios[0]);
         while (cont < usuarios.length) {
           if (usuarios[cont].email == localStorage.getItem("User")) {
             localStorage.setItem("Id", usuarios[cont].id);
@@ -255,10 +252,7 @@ export default {
     fetch("https://subiter.herokuapp.com/products", requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        // console.log("aopa");
-        // console.log(result);
         this.produtos = JSON.parse(result);
-        // console.log(this.produtos);
       })
       .catch((error) => console.log("error", error));
   },

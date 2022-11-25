@@ -1,17 +1,13 @@
 <template>
   <div class="alertas">
-    <div class="alert" id="alert">{{ titulo }} {{acao}}</div>
-    <div class="alert erro" id="alertErro">{{ titulo }} não {{acao}}</div>
+    <div class="alert" id="alert">Ação realizada</div>
+    <div class="alert erro" id="alertErro">Ação não realizada</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "AlertComponent",
-  props: {
-    titulo: String,
-    acao: String
-  },
   methods: {
     cadastra() {
       var alert = document.getElementById("alert");
@@ -35,8 +31,8 @@ export default {
 
 <style scoped>
 .alert {
-  width: 300px;
-  height: 70px;
+  width: 250px;
+  height: 50px;
   background: #8fde62;
   display: flex;
   justify-content: center;
@@ -50,7 +46,7 @@ export default {
   position: absolute;
   top: -100px;
   transition: 0.5s;
-  left: calc(50% - 150px);
+  left: calc(50% - 120.5px);
 }
 .erro {
   background: #f05446;

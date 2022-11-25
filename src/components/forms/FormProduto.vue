@@ -88,12 +88,11 @@ export default {
         turnRed("fieldDescricao", "legendDescricao", "descricao");
       }
 
-
-      if ( //verificações antes do post
+      if (
+        //verificações antes do post
         modelo.trim() != "" &&
-        descricao.trim() != "" 
-        ) {
-
+        descricao.trim() != ""
+      ) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", `${token}`);
@@ -114,11 +113,15 @@ export default {
 
         fetch("https://subiter.herokuapp.com/products", requestOptions)
           .then((response) => {
-            response.text()
-            this.closeModal()
+            response.text();
+            this.closeModal();
             this.$emit("change");
-            })
-          .catch((error) => console.log("error", error));
+            this.cadastra();
+          })
+          .catch((error) => {
+            console.log("error", error);
+            this.naoCadastra();
+          });
 
         var modal = document.getElementById("modal");
         var inputs = modal.querySelectorAll("input, textarea");
@@ -126,7 +129,7 @@ export default {
         inputs.forEach((input) => {
           input.value = "";
         });
-    }
+      }
     },
   },
 };

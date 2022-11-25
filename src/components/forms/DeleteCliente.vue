@@ -83,8 +83,12 @@ export default {
           response.text();
           this.closeDelete();
           this.$emit("change");
+          this.cadastra();
         })
-        .catch((error) => console.log("error", error));
+        .catch((error) => {
+          console.log("error", error)
+          this.naoCadastra();
+          });
     },
   },
   data() {

@@ -5,7 +5,7 @@
     <DeleteAgendamento @change="load" />
     <AgendamentosComponent :agendamentos="agendamentos" />
     <UpdateAgendamento @change="load" />
-    <AlertComponent titulo="Agendamento" acao="realizado"/>
+    <AlertComponent />
   </div>
 </template>
 

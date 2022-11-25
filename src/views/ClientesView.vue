@@ -5,7 +5,7 @@
     <DeleteCliente @change="load" />
     <UpdateCliente @change="load" />
     <ClientesComponent :clientes="clientes" />
-    <AlertComponent titulo="Usuário" acao="criado" />
+    <AlertComponent />
   </div>
 </template>
 
