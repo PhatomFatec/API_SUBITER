@@ -29,32 +29,36 @@ export default {
       myHeaders.append("Content-Type", "application/json");
 
       var raw = JSON.stringify({
-        "name": user,
-        "senha": password
+        name: user,
+        senha: password,
       });
 
       var requestOptions = {
-        method: 'POST',
+        method: "POST",
         headers: myHeaders,
         body: raw,
-        redirect: 'follow'
+        redirect: "follow",
       };
 
       fetch("https://subiter.herokuapp.com/login", requestOptions)
-        .then(response => response.text())
-        .then(result => {
-          var res = JSON.parse(result)
-          console.log(typeof (res))
-          console.log("a")
+        .then((response) => response.text())
+        .then((result) => {
+          var res = JSON.parse(result);
+          
+          console.log(typeof res);
 
-          window.location.replace("/")
+          localStorage.setItem("User", res.name);
+          localStorage.setItem("Role", res.autorizacao);
+          localStorage.setItem("Token", "Bearer " + res.token);
 
-          localStorage.setItem("User", res.name)
-          localStorage.setItem("Role", res.autorizacao)
-          localStorage.setItem("Token", "Bearer "+res.token)
-
+          if (res.status == null) {
+            window.location.replace("/");
+          }
+          else{
+            document.getElementById("warning").style.display = "block"
+          }
         })
-        .catch(error => console.log('error', error));
+        .catch((error) => console.log("error", error));
     },
   },
 };
@@ -73,7 +77,7 @@ button#login-btn {
 }
 </style>
 <style>
-.iconChat{
+.iconChat {
   display: none !important;
 }
 </style>
