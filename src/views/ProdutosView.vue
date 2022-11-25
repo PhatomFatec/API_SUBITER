@@ -5,6 +5,7 @@
     <DeleteProduto @change="load" />
     <UpdateProduto @change="load" />
     <ProdutoComponent :produtos="produtos" />
+    <AlertComponent />
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import FormProduto from "@/components/forms/FormProduto.vue";
 import ProdutoComponent from "@/components/ProdutosComponent.vue";
 import DeleteProduto from "@/components/forms/DeleteProduct.vue";
 import UpdateProduto from "@/components/forms/UpdateProduto.vue";
+import AlertComponent from "@/components/alerts/AlertsComponent.vue"
 
 export default {
   name: "ProdutosView",
@@ -20,7 +22,8 @@ export default {
     FormProduto,
     ProdutoComponent,
     DeleteProduto,
-    UpdateProduto
+    UpdateProduto,
+    AlertComponent
   },
   data() {
     return {

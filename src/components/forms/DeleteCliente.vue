@@ -38,6 +38,22 @@
 export default {
   name: "DeleteClient", //
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeDelete() {
       var delet = document.getElementById("delete");
       var inputs = delet.querySelectorAll("input, textarea");
@@ -63,9 +79,16 @@ export default {
       };
 
       fetch(`https://subiter.herokuapp.com/users/${codClient}`, requestOptions)
-        .then((response) => response.text())
-        .then(this.closeDelete())
-        .catch((error) => console.log("error", error));
+        .then((response) => {
+          response.text();
+          this.closeDelete();
+          this.$emit("change");
+          this.cadastra();
+        })
+        .catch((error) => {
+          console.log("error", error)
+          this.naoCadastra();
+          });
     },
   },
   data() {

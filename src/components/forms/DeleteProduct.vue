@@ -1,8 +1,18 @@
 <template>
   <div class="modal" id="delete">
     <div class="box">
-      <svg v-on:click="closeDelete()" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
-        fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+      <svg
+        v-on:click="closeDelete()"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        stroke="currentColor"
+        stroke-width="2"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="css-i6dzq1"
+      >
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
@@ -25,10 +35,25 @@
 </template>
 
 <script>
-
 export default {
   name: "deleteServico", //
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeDelete() {
       var delet = document.getElementById("delete");
       var inputs = delet.querySelectorAll("input, textarea");
@@ -40,7 +65,9 @@ export default {
     deleteServico() {
       //
       var myHeaders = new Headers();
-      var codServico = document.getElementById("codServico").value.split(" ")[0];
+      var codServico = document
+        .getElementById("codServico")
+        .value.split(" ")[0];
       var token = localStorage.getItem("Token");
       myHeaders.append("Authorization", `${token}`);
 
@@ -53,36 +80,46 @@ export default {
         redirect: "follow",
       };
 
-      fetch(`https://subiter.herokuapp.com/products/${codServico}`, requestOptions)
-        .then((response) => response.text())
-        .then(this.closeDelete())
-        .catch((error) => console.log("error", error));
+      fetch(
+        `https://subiter.herokuapp.com/products/${codServico}`,
+        requestOptions
+      )
+        .then((response) => {
+          response.text();
+          this.closeDelete();
+          this.$emit("change");
+          this.cadastra();
+        })
+        .catch((error) => {
+          console.log("error", error)
+          this.naoCadastra();
+          });
     },
   },
-  data(){
-    return{
+  data() {
+    return {
       servicoList: [],
-    }
+    };
   },
-  created(){
+  created() {
     var myHeaders = new Headers();
-      var token = localStorage.getItem("Token");
-      // console.log(token)
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `${token}`);
+    var token = localStorage.getItem("Token");
+    // console.log(token)
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `${token}`);
 
-      var requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow",
-      };
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
 
-      fetch("https://subiter.herokuapp.com/products", requestOptions)
-        .then((response) => response.text())
-        .then((result) => {
-          // console.log(result);
-          this.servicoList = JSON.parse(result);
-        });
-  }
+    fetch("https://subiter.herokuapp.com/products", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        // console.log(result);
+        this.servicoList = JSON.parse(result);
+      });
+  },
 };
 </script>

@@ -65,6 +65,22 @@
 export default {
   name: "FormCliente",
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     // CHANGE COLOR ******************************************************************
     backFieldBlue(x) {
       document.getElementById(x).style.borderColor = "#2196F3";
@@ -114,28 +130,25 @@ export default {
 
       function isValidCPF(cpf) {
         if (cpf.length == 11) {
-            return true;
-        } else
-            return false;
-      }
-      
-      function validaCNPJ (cnpj) {
-        if (cnpj.length >= 14) {
-            return true;
-        } else
-            return false;
+          return true;
+        } else return false;
       }
 
-      function validaTel (tel) {
-        if (tel.length == 11 && tel[2] == '9') {
-            return true;
-        } else
-            return false;
-      } 
- 
-    var telValido = validaTel(tel)
-    var cnpjValido = validaCNPJ(cnpj)
-    var cpfValido = isValidCPF(cpf)
+      function validaCNPJ(cnpj) {
+        if (cnpj.length >= 14) {
+          return true;
+        } else return false;
+      }
+
+      function validaTel(tel) {
+        if (tel.length == 11 && tel[2] == "9") {
+          return true;
+        } else return false;
+      }
+
+      var telValido = validaTel(tel);
+      var cnpjValido = validaCNPJ(cnpj);
+      var cpfValido = isValidCPF(cpf);
 
       function turnFieldRed(x) {
         document.getElementById(x).style.borderColor = "red";
@@ -149,66 +162,73 @@ export default {
         turnLegendRed(l);
       }
 
-
       if (nome.trim() == "") {
         turnRed("fieldNome", "legendNome", "nomeClient");
       }
       if (cpf.trim() == "") {
         turnRed("fieldCpf", "legendCpf", "cpfClient");
       } else if (cpfValido == false) {
-          console.log("falso")
-          document.getElementById("cpfClient").value = ""
-          document.getElementById("cpfClient").placeholder = "Digite um CPF valido!"
-          turnRed("fieldCpf", "legendCpf", "cpfClient");     
-        } 
+        console.log("falso");
+        document.getElementById("cpfClient").value = "";
+        document.getElementById("cpfClient").placeholder =
+          "Digite um CPF valido!";
+        turnRed("fieldCpf", "legendCpf", "cpfClient");
+      }
 
       if (tel.trim() == "") {
         turnRed("fieldTelefone", "legendTelefone", "telClient");
       } else if (telValido == false) {
-          console.log("falso")
-          document.getElementById("telClient").value = ""
-          document.getElementById("telClient").placeholder = "Digite um Telefone valido!"
-          turnRed("fieldTelefone", "legendTelefone", "telClient");
-
-        } 
+        console.log("falso");
+        document.getElementById("telClient").value = "";
+        document.getElementById("telClient").placeholder =
+          "Digite um Telefone valido!";
+        turnRed("fieldTelefone", "legendTelefone", "telClient");
+      }
       if (razaoSocial.trim() == "") {
         turnRed("fieldRazaoSocial", "legendRazaoSocial", "socialreasonClient");
       }
       if (cnpj.trim() == "") {
         turnRed("fieldCnpj", "legendCnpj", "cnpjClient");
       } else if (cnpjValido == false) {
-          console.log("falso")
-          document.getElementById("cnpjClient").value = ""
-          document.getElementById("cnpjClient").placeholder = "Digite um CNPJ valido!"
-          turnRed("fieldCnpj", "legendCnpj", "cnpjClient");
-        } 
+        console.log("falso");
+        document.getElementById("cnpjClient").value = "";
+        document.getElementById("cnpjClient").placeholder =
+          "Digite um CNPJ valido!";
+        turnRed("fieldCnpj", "legendCnpj", "cnpjClient");
+      }
 
       if (email.trim() == "") {
         turnRed("fieldEmail", "legendEmail", "emailClient");
-      } else if (email.includes('@') == false) {
-        document.getElementById("emailClient").value = ""
-        document.getElementById("emailClient").placeholder = "Digite um email valido!"
+      } else if (email.includes("@") == false) {
+        document.getElementById("emailClient").value = "";
+        document.getElementById("emailClient").placeholder =
+          "Digite um email valido!";
         turnRed("fieldEmail", "legendEmail", "emailClient");
-        var emailValido = false
-        return emailValido
+        var emailValido = false;
+        return emailValido;
       }
       if (password.trim() == "") {
         turnRed("fieldSenha", "legendSenha", "passClient");
       } else if (password.length <= 8) {
-        document.getElementById("passClient").value = ""
-        document.getElementById("passClient").placeholder = "Digite uma Senha valida! (min: 8 caracteres)"
+        document.getElementById("passClient").value = "";
+        document.getElementById("passClient").placeholder =
+          "Digite uma Senha valida! (min: 8 caracteres)";
         turnRed("fieldSenha", "legendSenha", "passClient");
       }
 
-
-      if ( //verificações antes do post
+      if (
+        //verificações antes do post
         nome.trim() != "" &&
-        cpf.trim() != "" && cpfValido != false &&
-        tel.trim() != "" && telValido != false &&
+        cpf.trim() != "" &&
+        cpfValido != false &&
+        tel.trim() != "" &&
+        telValido != false &&
         razaoSocial.trim() != "" &&
-        cnpj.trim() != "" && cnpjValido != false &&
-        email.trim() != "" && emailValido != false &&
-        password.trim() != "" 
+        cnpj.trim() != "" &&
+        cnpjValido != false &&
+        email.trim() != "" &&
+        emailValido != false &&
+        password.trim() != ""
       ) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -233,10 +253,16 @@ export default {
         };
 
         fetch("https://subiter.herokuapp.com/users", requestOptions)
-          .then((response) => response.text())
-          .then((result) => console.log(result))
-          .then(this.closeModal())
-          .catch((error) => console.log("error", error));
+          .then((response) => {
+            response.text();
+            this.closeModal();
+            this.$emit("change");
+            this.cadastra();
+          })
+          .catch((error) => {
+            console.log("error", error);
+            this.naoCadastra();
+          });
 
         var modal = document.getElementById("modal");
         var inputs = modal.querySelectorAll("input, textarea");
@@ -245,9 +271,6 @@ export default {
           input.value = "";
         });
       }
-
-      
-      
     },
     //CREATE CLIENT END **************************************************************
   },

@@ -5,6 +5,7 @@
     <DeleteEquipamento @change="load" />
     <UpdateEquipamento @change="load" />
     <EquipamentoComponent :equipamento="equipamento" />
+    <AlertComponent />
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import FormEquipamento from "@/components/forms/FormEquipamento.vue";
 import EquipamentoComponent from "@/components/EquipamentosComponent.vue";
 import DeleteEquipamento from "@/components/forms/DeleteEquipamento.vue";
 import UpdateEquipamento from "@/components/forms/UpdateEquipamento.vue";
+import AlertComponent from "@/components/alerts/AlertsComponent.vue"
 
 export default {
   name: "EquipamentosView",
@@ -21,6 +23,7 @@ export default {
     EquipamentoComponent,
     DeleteEquipamento,
     UpdateEquipamento,
+    AlertComponent
   },
   data() {
     return {

@@ -88,6 +88,22 @@
 export default {
   name: "FormAgendamento",
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeModal() {
       var modal = document.getElementById("modal");
       var inputs = modal.querySelectorAll("input, textarea");
@@ -177,9 +193,16 @@ export default {
       };
 
       fetch("https://subiter.herokuapp.com/schedule", requestOptions)
-        .then((response) => response.text())
-        .then(this.closeModal())
-        .catch((error) => console.log("error", error));
+        .then((response) => {
+          response.text()
+          this.closeModal()
+          this.$emit("change");
+          this.cadastra();
+          })
+        .catch((error) => {
+          console.log("error", error)
+          this.naoCadastra();
+          });
     }
     },
   },

@@ -5,6 +5,7 @@
     <DeleteCliente @change="load" />
     <UpdateCliente @change="load" />
     <ClientesComponent :clientes="clientes" />
+    <AlertComponent />
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import ClientesComponent from "@/components/ClientesComponent.vue";
 import FormCliente from "@/components/forms/FormCliente.vue";
 import DeleteCliente from "@/components/forms/DeleteCliente.vue";
 import UpdateCliente from "@/components/forms/UpdateCliente.vue";
+import AlertComponent from "@/components/alerts/AlertsComponent.vue"
 
 export default {
   name: "ClientesView",
@@ -21,6 +23,7 @@ export default {
     FormCliente,
     DeleteCliente,
     UpdateCliente,
+    AlertComponent
   },
   data() {
     return {

@@ -56,6 +56,22 @@ export default {
   name: "FormChamado",
   props: {},
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeModal() {
       var modal = document.getElementById("modal");
       var inputs = modal.querySelectorAll("input, textarea");
@@ -141,11 +157,17 @@ export default {
         };
 
         fetch("https://subiter.herokuapp.com/requests", requestOptions)
-          .then((response) => response.text())
+          .then((response) => {
+            response.text();
+            this.closeModal();
+            this.$emit("change");
+            this.cadastra();
+          })
           // .then((result) => console.log(result))
-          .then(this.closeModal())
-          .then(this.$emit("change"))
-          .catch((error) => console.log("error", error));
+          .catch((error) => {
+            console.log("error", error);
+            this.naoCadastra();
+          });
 
         var modal = document.getElementById("modal");
         var inputs = modal.querySelectorAll("input, textarea");
@@ -214,11 +236,8 @@ export default {
       .then((response) => response.text())
       .then((result) => {
         usuarios = JSON.parse(result);
-        // console.log(usuarios);
         var cont = 0;
         var user_id = null;
-        // console.log("aqui");
-        // console.log(usuarios[0]);
         while (cont < usuarios.length) {
           if (usuarios[cont].email == localStorage.getItem("User")) {
             localStorage.setItem("Id", usuarios[cont].id);
@@ -233,10 +252,7 @@ export default {
     fetch("https://subiter.herokuapp.com/products", requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        // console.log("aopa");
-        // console.log(result);
         this.produtos = JSON.parse(result);
-        // console.log(this.produtos);
       })
       .catch((error) => console.log("error", error));
   },

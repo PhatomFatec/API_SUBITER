@@ -70,6 +70,22 @@
 export default {
   name: "UpdateChamado",
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeUpdate() {
       var modal = document.getElementById("update");
       var inputs = modal.querySelectorAll("input, textarea");
@@ -148,10 +164,16 @@ export default {
       };
 
       fetch(`https://subiter.herokuapp.com/requests/${codCham}`, requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .then(this.closeUpdate())
-        .catch((error) => console.log("error", error));
+        .then((response) => {
+          response.text()
+          this.closeUpdate()
+          this.$emit("change");
+          this.cadastra();
+          })
+        .catch((error) => {
+          console.log("error", error)
+          this.naoCadastra();
+          });
     },
   },
   data() {
