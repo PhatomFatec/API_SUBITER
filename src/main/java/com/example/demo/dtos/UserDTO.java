@@ -28,18 +28,17 @@ public class UserDTO implements Serializable {
 	}
 
 
-	public UserDTO(Long id, String email, String password, String roles, String cpf, String foneNumber, String name,
-			String corporateName, String cnpj) {
+	public UserDTO(User obj) {
 		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.roles = roles;
-		this.cpf = cpf;
-		this.foneNumber = foneNumber;
-		this.name = name;
-		this.corporateName = corporateName;
-		this.cnpj = cnpj;
+		this.id = obj.getId();
+		this.email = obj.getEmail();
+		this.password = obj.getPassword();
+		this.roles = obj.getRoles();
+		this.cpf = obj.getCpf();
+		this.foneNumber = obj.getFoneNumber();
+		this.name = obj.getName();
+		this.corporateName = obj.getCorporateName();
+		this.cnpj = obj.getCnpj();
 	}
 
 
