@@ -35,6 +35,7 @@ public class ScheduleService {
 
 	@PreAuthorize("hasAnyRole('ADMIN', 'SUPPORT')")
 	public Schedule insert(Schedule obj) {
+		
 		return repository.save(obj);
 	}
 
