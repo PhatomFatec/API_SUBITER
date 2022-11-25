@@ -38,6 +38,22 @@
 export default {
   name: "deleteAgendamento", //
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeDelete() {
       var delet = document.getElementById("delete");
       var inputs = delet.querySelectorAll("input, textarea");
@@ -69,10 +85,10 @@ export default {
         requestOptions
       )
         .then((response) => {
-          response.text()
-          this.closeDelete()
+          response.text();
+          this.closeDelete();
           this.$emit("change");
-          })
+        })
         .catch((error) => console.log("error", error));
     },
   },

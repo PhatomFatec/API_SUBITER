@@ -65,6 +65,22 @@
 export default {
   name: "FormCliente",
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     // CHANGE COLOR ******************************************************************
     backFieldBlue(x) {
       document.getElementById(x).style.borderColor = "#2196F3";

@@ -164,7 +164,10 @@ export default {
             this.cadastra();
           })
           // .then((result) => console.log(result))
-          .catch((error) => console.log("error", error));
+          .catch((error) => {
+            console.log("error", error);
+            this.naoCadastra();
+          });
 
         var modal = document.getElementById("modal");
         var inputs = modal.querySelectorAll("input, textarea");

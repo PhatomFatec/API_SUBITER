@@ -48,6 +48,22 @@
 export default {
   name: "FormEquipamento",
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeModal() {
       var modal = document.getElementById("modal");
       var inputs = modal.querySelectorAll("input, textarea");

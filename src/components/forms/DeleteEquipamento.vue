@@ -38,6 +38,22 @@
 export default {
   name: "DeleteEquipamento", //
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeDelete() {
       var delet = document.getElementById("delete");
       var inputs = delet.querySelectorAll("input, textarea");

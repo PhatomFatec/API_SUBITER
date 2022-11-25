@@ -46,6 +46,22 @@ export default {
     clientes: Array,
   },
   methods: {
+    cadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
+    naoCadastra() {
+      var alert = document.getElementById("alert");
+      alert.style.top = "10px";
+
+      setTimeout(() => {
+        alert.style.top = "-100px";
+      }, "3000");
+    },
     closeUpdate() {
       var modal = document.getElementById("update");
       var inputs = modal.querySelectorAll("input, textarea");
