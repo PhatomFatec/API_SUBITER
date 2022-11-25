@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -58,7 +57,7 @@ public class Schedule implements Serializable {
 	private Instant registerDate;
 
 	@OneToOne
-	@MapsId
+	@JoinColumn(name = "request_id", referencedColumnName = "req_id")
 	private Request request;
 
 	@ManyToMany

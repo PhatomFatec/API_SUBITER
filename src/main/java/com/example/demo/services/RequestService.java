@@ -16,6 +16,7 @@ public class RequestService {
 
 	@Autowired
 	private RequestRepository repository;
+	
 
 	@PreAuthorize("isAuthenticated()")
 	public List<Request> findAll() {
@@ -40,9 +41,6 @@ public class RequestService {
 		newRequest.setDescription(obj.getDescription());
 		newRequest.setImgUrl(obj.getImgUrl());
 		newRequest.setStatus(obj.getStatus());
-		newRequest.setRequestDate(obj.getRequestDate());
-		newRequest.setUser(obj.getUser());
-		newRequest.setProduct(obj.getProduct());
 		return repository.save(newRequest);
 	}
 

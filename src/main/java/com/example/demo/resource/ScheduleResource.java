@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.demo.dtos.ScheduleDTO;
+import com.example.demo.entities.Equipment;
 import com.example.demo.entities.Schedule;
 import com.example.demo.services.EquipmentService;
 import com.example.demo.services.ScheduleService;
@@ -65,6 +66,11 @@ public class ScheduleResource {
 	public ResponseEntity<Schedule> insertEquip(@PathVariable Long idSchedule, @PathVariable Long idEquip) {
 
 		Schedule sche = service.addEquip(idSchedule, idEquip);
+		Equipment equip = serviceEquip.findById(idEquip);
+		System.out.println(equip);
+		equip.setAvailability(false);
+		serviceEquip.update(idEquip, equip);
+		System.out.println(equip);
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(sche.getId()).toUri();
 		return ResponseEntity.created(uri).build();

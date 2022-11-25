@@ -38,6 +38,7 @@ public class RequestResource {
 
 	@Autowired
 	private ImageService imgService;
+	
 
 	@ApiOperation(value = "", authorizations = { @Authorization(value = "Bearer") })
 	@GetMapping
@@ -84,6 +85,8 @@ public class RequestResource {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Request> updateRequest(@PathVariable Long id, @RequestBody Request obj) {
 		Request newRequest = service.update(id, obj);
+		
+		
 		return ResponseEntity.ok().body(newRequest);
 	}
 
