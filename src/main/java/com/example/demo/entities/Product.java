@@ -1,7 +1,6 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -42,7 +40,6 @@ public class Product implements Serializable {
 	private String manufactureDate;
 
 	@Column(name = "prod_register_date")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private LocalDate registerDate;
 
 	@JsonIgnore

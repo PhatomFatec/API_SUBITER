@@ -1,7 +1,6 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -20,7 +19,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -48,7 +46,6 @@ public class Request implements Serializable {
 	private String status;
 
 	@Column(name = "req_date")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
 	private LocalDate requestDate;
 
 	@ManyToOne
