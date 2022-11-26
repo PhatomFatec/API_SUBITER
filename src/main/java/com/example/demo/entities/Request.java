@@ -2,6 +2,7 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -48,7 +49,7 @@ public class Request implements Serializable {
 
 	@Column(name = "req_date")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant requestDate;
+	private LocalDate requestDate;
 
 	@ManyToOne
 	@JoinColumn(name = "u_id")
@@ -81,7 +82,7 @@ public class Request implements Serializable {
 		this.description = description;
 		this.imgUrl = imgUrl;
 		this.status = status;
-		this.requestDate = Instant.now();
+		this.requestDate = LocalDate.now();
 		this.user = user;
 		this.product = product;
 
@@ -135,11 +136,11 @@ public class Request implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public Instant getRequestDate() {
+	public LocalDate getRequestDate() {
 		return requestDate;
 	}
 
-	public void setRequestDate(Instant requestDate) {
+	public void setRequestDate(LocalDate requestDate) {
 		this.requestDate = requestDate;
 	}
 

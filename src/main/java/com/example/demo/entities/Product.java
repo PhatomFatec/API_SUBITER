@@ -2,6 +2,7 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -42,7 +43,7 @@ public class Product implements Serializable {
 
 	@Column(name = "prod_register_date")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "America/Sao_Paulo")
-	private Instant registerDate;
+	private LocalDate registerDate;
 
 	@JsonIgnore
 	@OneToMany(mappedBy ="product")
@@ -59,7 +60,7 @@ public class Product implements Serializable {
 		this.serialNumber = serialNumber;
 		this.description = description;
 		this.manufactureDate = manufactureDate;
-		this.registerDate = Instant.now();
+		this.registerDate = LocalDate.now();
 	}
 
 
@@ -116,12 +117,12 @@ public class Product implements Serializable {
 	}
 
 
-	public Instant getRegisterDate() {
+	public LocalDate getRegisterDate() {
 		return registerDate;
 	}
 
 
-	public void setRegisterDate(Instant registerDate) {
+	public void setRegisterDate(LocalDate registerDate) {
 		this.registerDate = registerDate;
 	}
 

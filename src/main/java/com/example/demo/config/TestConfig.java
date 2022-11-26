@@ -34,11 +34,11 @@ public class TestConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		User u1 = new User(null, "bob@gmail.com", encoder.encode("fff"), "ROLE_SUPPORT", "23232323", "97979797", "Bob",
-				"SEILAZINHO", "83787784");
+				"USUARIO_SUBITER", "83787784");
 		User u2 = new User(null, "asdb@gmail.com", encoder.encode("effefe"), "ROLE_CLIENT", "gggg", "464646", "Btere",
-				"NUMSEI", "96586848");
+				"USUARIO_SUBITER", "96586848");
 		User u3 = new User(null, "test@gmail.com", encoder.encode("123"), "ROLE_ADMIN", "55555", "553535", "Gertrudes",
-				"SURTO", "34234234");
+				"USUARIO_SUBITER", "34234234");
 //
 //		Product p1 = new Product(null, "seila", "9589658", "Barco", null, Instant.parse("2014-06-20T19:53:07Z"));
 //
