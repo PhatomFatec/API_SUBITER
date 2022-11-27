@@ -1,5 +1,5 @@
 # Sprint 02
-**Situação:** Finalizada <br>
+**Situação:**  Entregue ✔️ <br>
 **Data:** 09/10/2022 
 
 ## Backlog da Sprint
