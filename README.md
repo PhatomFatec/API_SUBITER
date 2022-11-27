@@ -125,7 +125,7 @@ Acesse o passo a passo de como executar o programa clicando [AQUI](https://githu
 | **Sprint 02**   | 19/09/22 | 09/10/22 |   ✔️ Realizado      |
 | **Sprint 03**   | 13/10/22 | 06/11/22 |   ✔️ Realizado      |
 | **Sprint 04**   | 07/11/22 | 27/11/22 |   ✔️ Realizado      |
-| **Apresentação final + Feira de Soluções** | 08/12/22 | " " " " " " |   ❌ Realizado  |
+| **Apresentação final + Feira de Soluções** | 08/12/22 | 08/12/22 |   ❌ Realizado  |
 
 <br>
 
