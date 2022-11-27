@@ -5,7 +5,7 @@
 ## Backlog da Sprint
 
 <p align="center">
- <img src="#">
+ <img src="https://user-images.githubusercontent.com/48994698/204164055-522bc782-b08b-42d3-a636-8849169b93d0.png">
 </p>
 
 ## Gráfico BurnDown
