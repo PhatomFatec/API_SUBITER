@@ -1,5 +1,5 @@
 # Sprint 04
-**Situação:** Finalizada <br>
+**Situação:**  Entregue ✔️ <br>
 **Data:** 27/11/2022	
 
 ## Backlog da Sprint
