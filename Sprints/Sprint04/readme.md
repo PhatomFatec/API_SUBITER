@@ -5,7 +5,7 @@
 ## Backlog da Sprint
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/48994698/204163632-698478e6-75ee-4f68-8496-9ff361af2a2b.png" width="750" height="400"> 
+  <img src="https://user-images.githubusercontent.com/48994698/204164954-8f50d137-8932-46ad-b468-cf7f48dfd7a8.png" width="750" height="400"> 
 </p>
 
 
