@@ -1,6 +1,6 @@
 # Sprint 01
 **Situação:** Entregue ✔️ <br>
-**Data:** 18/09/2022 
+**Data:**  29/08/22	- 18/09/22
 
 ## Backlog da Sprint
 
