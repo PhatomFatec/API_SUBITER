@@ -65,8 +65,8 @@ public class Request implements Serializable {
 	private Set<Comment> comment = new HashSet<>();
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
-	private Set<Image> image = new HashSet<>();
+	@OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
+	private Image image ;
 
 	public Request() {
 	}

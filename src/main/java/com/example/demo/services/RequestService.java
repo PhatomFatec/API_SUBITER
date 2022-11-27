@@ -41,6 +41,7 @@ public class RequestService {
 		newRequest.setDescription(obj.getDescription());
 		newRequest.setImgUrl(obj.getImgUrl());
 		newRequest.setStatus(obj.getStatus());
+		newRequest.setProduct(obj.getProduct());
 		return repository.save(newRequest);
 	}
 

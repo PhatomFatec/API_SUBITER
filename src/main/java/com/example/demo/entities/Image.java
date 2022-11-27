@@ -9,7 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,8 +30,8 @@ public class Image {
 	@Column(name = "img")
 	private byte[] img;
 
-	@ManyToOne
-	@JoinColumn(name = "req_id")
+	@OneToOne
+	@MapsId
 	private Request request;
 
 	public Image() {
