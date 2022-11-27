@@ -1,6 +1,6 @@
 # Sprint 04
 **Situação:**  Entregue ✔️ <br>
-**Data:** 27/11/2022	
+**Data:** 07/11/22  - 27/11/22
 
 ## Backlog da Sprint
 
