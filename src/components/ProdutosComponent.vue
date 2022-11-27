@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Lista de acesso aos chamados
+      Lista de acesso aos serviços
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"

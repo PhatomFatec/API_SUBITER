@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Lista de acesso aos chamados
+      Lista de acesso aos agendamentos
       <v-spacer></v-spacer>
       <v-text-field v-model="search" append-icon="mdi-magnify" label="Pesquisar" single-line hide-details>
       </v-text-field>

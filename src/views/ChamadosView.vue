@@ -16,6 +16,8 @@ import DeleteChamado from "@/components/forms/DeleteChamado.vue";
 import UpdateChamados from "@/components/forms/UpdateChamado.vue"
 import AlertComponent from "@/components/alerts/AlertsComponent.vue"
 
+
+
 export default {
   name: "ChamadosView",
   components: {
@@ -25,12 +27,34 @@ export default {
     UpdateChamados,
     AlertComponent
   },
+
   data() {
     return {
       chamados: [],
     };
   },
   methods: {
+
+    verifySituation() {
+      console.log("here1")
+      var rowLenght = document.getElementsByClassName('text-start')
+
+      for (var i = 0; i <= rowLenght.length; i++) {
+        if (rowLenght[i].innerText == "Fechado") {
+          rowLenght[i].style.color = 'green'
+          rowLenght[i].style.fontWeight = 800   
+        } else if (rowLenght[i].innerText == "Em andamento") {
+          rowLenght[i].style.color = 'green'
+          rowLenght[i].style.fontWeight = 800
+        } else if (rowLenght[i].innerText == "Pendente") {
+          rowLenght[i].style.color = 'green'
+          rowLenght[i].style.fontWeight = 800
+        } 
+  }
+
+    },
+
+    
     //faz o get da tabela
     load() {
       var myHeaders = new Headers();
@@ -47,19 +71,40 @@ export default {
 
       fetch("https://subiter.herokuapp.com/requests", requestOptions)
         .then((response) => response.text())
-        .then((result) => {
+        .then((result) => { 
           this.chamados = JSON.parse(result);
+         
         });
     },
   },
   //executa assim que a tela é carregada
   created() {
+
     //redireciona para a página de login
     if (localStorage.length == 0) {
       window.location.replace("/login");
     }
     //chama a função que carrega o get da tabela
     this.load();
+
+    setTimeout(function () {
+      var rowLenght = document.getElementsByClassName('text-start')
+      for (var i = 0; i <= rowLenght.length; i++) {    
+        if (rowLenght[i].innerText == "Fechado") {
+          rowLenght[i].style.color = 'green'
+          rowLenght[i].style.fontWeight = 800
+          rowLenght[i].style.borderRadius = "20px"   
+        } else if (rowLenght[i].innerText == "Em andamento") {
+          rowLenght[i].style.color = 'green'
+          rowLenght[i].style.fontWeight = 800
+        } else if (rowLenght[i].innerText == "Pendente") {
+          rowLenght[i].style.color = 'green'
+          rowLenght[i].style.fontWeight = 800
+        } 
+     }
+      
+    }, 3000)
+
     //insere botões responsáveis pelas funções do CRUD
     setTimeout(function () {
       var fatherElement =
@@ -93,7 +138,12 @@ export default {
         styleSheet.innerText = styles;
         document.head.appendChild(styleSheet);
       }
+      
     }, 10);
-  },
+   
+  }, 
+
+  
+
 };
 </script>

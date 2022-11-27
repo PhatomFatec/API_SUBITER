@@ -26,6 +26,8 @@ export default {
     chamados: Array,
   },
   data(chamados) {
+    console.log("teste");
+    console.log(chamados);
     console.log(chamados);
     return {
       search: "",
@@ -38,7 +40,7 @@ export default {
         },
         { text: "Título do chamado", value: "title" },
         { text: "Cliente", value: "user.name" },
-        { text: "Produto", value: "product.model" },
+        { text: "Serviço", value: "product.model" },
         { text: "Criação", value: "requestDate" },
         { text: "Situação", value: "status" },
       ],
