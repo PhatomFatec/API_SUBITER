@@ -95,10 +95,10 @@ export default {
           rowLenght[i].style.fontWeight = 800
           rowLenght[i].style.borderRadius = "20px"   
         } else if (rowLenght[i].innerText == "Em andamento") {
-          rowLenght[i].style.color = 'green'
+          rowLenght[i].style.color = 'orange'
           rowLenght[i].style.fontWeight = 800
         } else if (rowLenght[i].innerText == "Pendente") {
-          rowLenght[i].style.color = 'green'
+          rowLenght[i].style.color = 'red'
           rowLenght[i].style.fontWeight = 800
         } 
      }
