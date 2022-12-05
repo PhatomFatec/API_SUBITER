@@ -43,4 +43,8 @@ export default {
 @import "sass/components/sub-menu.css";
 @import "sass/components/navbar.css";
 @import "sass/components/menu.css";
+
+td.text-start{
+  text-align: center;
+}
 </style>
