@@ -36,10 +36,6 @@
           </option>
         </select>
       </fieldset>
-      <fieldset id="fieldImagem">
-        <legend id="legendImagem">Imagem</legend>
-        <input id="imagem" type="file" />
-      </fieldset>
 
       <div class="buttons">
         <button id="cancelar" v-on:click="closeModal()">Cancelar</button>
@@ -85,7 +81,6 @@ export default {
       var titulo = document.getElementById("titulo").value;
       var descricao = document.getElementById("descricao").value;
       var servico = document.getElementById("servico").value;
-      var imagem = document.getElementById("imagem").value;
       var usuario = localStorage.getItem("Id");
       var myHeaders = new Headers();
 
@@ -113,16 +108,11 @@ export default {
         turnRed("fieldServico", "legendServico", "servico");
       }
 
-      if (imagem.trim() == "") {
-        turnRed("fieldImagem", "legendImagem", "imagem");
-      }
-
       if (
         //verificações antes do post
         titulo.trim() != "" &&
         descricao.trim() != "" &&
-        servico.trim() != "" &&
-        imagem.trim() != ""
+        servico.trim() != ""
       ) {
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", `${token}`);
@@ -139,7 +129,7 @@ export default {
         var raw = JSON.stringify({
           title: titulo,
           description: descricao,
-          imgUrl: imagem,
+          imgUrl: "",
           status: "Pendente",
           product: {
             id: serv,
@@ -192,7 +182,7 @@ export default {
 
         setTimeout(function () {
           var raw2 = JSON.stringify({
-            imgUrl: imagem,
+            imgUrl: "",
           });
           var requestOptions2 = {
             method: "POST",
